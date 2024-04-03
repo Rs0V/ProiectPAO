@@ -30,4 +30,15 @@ public class Vec2 {
     public double dot(Vec2 other) {
         return this.x * other.x + this.y * other.y;
     }
+
+    public double dist(Vec2 other) {
+        return other.add(this.mul(-1)).length();
+    }
+    public boolean in(Vec2 topLeft, Vec2 bottomRight) {
+        return topLeft.x <= this.x && this.x <= bottomRight.x
+                && topLeft.y <= this.y && this.y <= bottomRight.y;
+    }
+	public boolean on(Vec2 v1, Vec2 v2) {
+		return v1.dist(this) + v2.dist(this) == v1.dist(v2);
+	}
 }

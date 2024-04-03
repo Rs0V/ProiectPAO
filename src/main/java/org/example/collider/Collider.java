@@ -35,6 +35,7 @@ public class Collider {
 		if (other.type == ColliderType.Ignore)
 			return false;
 
+
 		boolean collided = true;
 		if (this.shape instanceof Rectangle thisShape) {
 			double thisCos = Math.cos(Math.toRadians(-this.transform.getRotation()));
@@ -105,16 +106,43 @@ public class Collider {
 					}
 				}
 			}
-			else if (other.shape.getClass() == Circle.class) {
-				// TO-DO
+			else if (other.shape instanceof Circle otherShape) {
+				for (Vec2 point : thisPoints) {
+					if (point.dist(other.transform.getLocation()) > otherShape.getRadius()) {
+						collided = false;
+					}
+				}
 			}
 		}
-		else if (this.shape.getClass() == Circle.class) {
-			if (other.shape.getClass() == Rectangle.class) {
-				// TO-DO
+		else if (this.shape instanceof Circle thisShape) {
+			if (other.shape instanceof Rectangle otherShape) {
+				double otherCos = Math.cos(Math.toRadians(-other.transform.getRotation()));
+				double otherSin = Math.sin(Math.toRadians(-other.transform.getRotation()));
+
+				Vec2 otherDir = new Vec2(otherCos, otherSin);
+				Vec2 otherDirNormal = new Vec2(otherDir.y, -otherDir.x);
+
+				Vec2 otherDisplaceX = otherDir.mul(otherShape.getWidth() / 2).mul(other.transform.getScale().x);
+				Vec2 otherDisplaceY = otherDirNormal.mul(otherShape.getHeight() / 2).mul(other.transform.getScale().y);
+
+				Vec2[] otherPoints = {
+						other.transform.getLocation().add(otherDisplaceX.mul(-1)).add(otherDisplaceY.mul(-1)),
+						other.transform.getLocation().add(otherDisplaceX).add(otherDisplaceY.mul(-1)),
+						other.transform.getLocation().add(otherDisplaceX).add(otherDisplaceY),
+						other.transform.getLocation().add(otherDisplaceX.mul(-1)).add(otherDisplaceY)
+				};
+
+				for (Vec2 point : otherPoints) {
+					if (point.dist(this.transform.getLocation()) > thisShape.getRadius()) {
+						collided = false;
+					}
+				}
 			}
-			else if (other.shape.getClass() == Circle.class) {
-				// TO-DO
+			else if (other.shape instanceof Circle otherShape) {
+				if (this.transform.getLocation().dist(other.transform.getLocation())
+						> thisShape.getRadius() + otherShape.getRadius()) {
+					collided = false;
+				}
 			}
 		}
 

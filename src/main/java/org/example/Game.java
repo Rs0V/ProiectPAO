@@ -74,7 +74,7 @@ public class Game extends JFrame implements Runnable {
         Pawn player = new Pawn(new Transform(), new Collider(new Rectangle()));
 
         try {
-            image = ImageIO.read(new File("src/main/resources/circle.png")); // Load the image
+            image = ImageIO.read(new File("/Users/kris/Documents/GitHub/ProiectPAO/src/main/resources/circle.png")); // Load the image
         } catch (IOException e) {
             e.printStackTrace();
         }
