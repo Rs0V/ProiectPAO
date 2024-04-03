@@ -31,7 +31,7 @@ public class Actor {
 		this.transform = transform;
 	}
 
-	public Vec2 checkCollision(Actor other) {
+	public boolean checkCollision(Actor other) {
 		// TO-DO
 		return this.collider.checkCollision(other.collider);
 	}

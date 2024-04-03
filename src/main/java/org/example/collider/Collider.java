@@ -27,18 +27,83 @@ public class Collider {
 		this.type = type;
 	}
 
-	public Vec2 checkCollision(Collider other) {
+	public boolean checkCollision(Collider other) {
 		if (this.type == ColliderType.Ignore){
 //			throw new Exception("'checkCollision()' called on Collider of type ColliderType.Ignore");
 		}
 
 		if (other.type == ColliderType.Ignore)
-			return null;
+			return false;
 
-		boolean collided = false;
-		if (this.shape.getClass() == Rectangle.class) {
-			if (other.shape.getClass() == Rectangle.class) {
-				// TO-DO
+		boolean collided = true;
+		if (this.shape instanceof Rectangle thisShape) {
+			double thisCos = Math.cos(Math.toRadians(-this.transform.getRotation()));
+			double thisSin = Math.sin(Math.toRadians(-this.transform.getRotation()));
+
+			Vec2 thisDir = new Vec2(thisCos, thisSin);
+			Vec2 thisDirNormal = new Vec2(thisDir.y, -thisDir.x);
+
+			Vec2 thisDisplaceX = thisDir.mul(thisShape.getWidth() / 2).mul(this.transform.getScale().x);
+			Vec2 thisDisplaceY = thisDirNormal.mul(thisShape.getHeight() / 2).mul(this.transform.getScale().y);
+
+			Vec2[] thisPoints = {
+					this.transform.getLocation().add(thisDisplaceX.mul(-1)).add(thisDisplaceY.mul(-1)),
+					this.transform.getLocation().add(thisDisplaceX).add(thisDisplaceY.mul(-1)),
+					this.transform.getLocation().add(thisDisplaceX).add(thisDisplaceY),
+					this.transform.getLocation().add(thisDisplaceX.mul(-1)).add(thisDisplaceY)
+			};
+
+			if (other.shape instanceof Rectangle otherShape) {
+				double otherCos = Math.cos(Math.toRadians(-other.transform.getRotation()));
+				double otherSin = Math.sin(Math.toRadians(-other.transform.getRotation()));
+
+				Vec2 otherDir = new Vec2(otherCos, otherSin);
+				Vec2 otherDirNormal = new Vec2(otherDir.y, -otherDir.x);
+
+				Vec2 otherDisplaceX = otherDir.mul(otherShape.getWidth() / 2).mul(other.transform.getScale().x);
+				Vec2 otherDisplaceY = otherDirNormal.mul(otherShape.getHeight() / 2).mul(other.transform.getScale().y);
+
+				Vec2[] otherPoints = {
+						other.transform.getLocation().add(otherDisplaceX.mul(-1)).add(otherDisplaceY.mul(-1)),
+						other.transform.getLocation().add(otherDisplaceX).add(otherDisplaceY.mul(-1)),
+						other.transform.getLocation().add(otherDisplaceX).add(otherDisplaceY),
+						other.transform.getLocation().add(otherDisplaceX.mul(-1)).add(otherDisplaceY)
+				};
+
+				Vec2[][] pointsSet = {thisPoints, otherPoints};
+				for (Vec2[] points : pointsSet) {
+					for (int ip1 = 0; ip1 < points.length; ++ip1) {
+						int ip2 = (ip1 + 1) % points.length;
+
+						Vec2 point1 = points[ip1];
+						Vec2 point2 = points[ip2];
+
+						Vec2 normal = new Vec2(point2.y - point1.y, point1.x - point2.x);
+
+						Double minA = null, maxA = null;
+						for (Vec2 point : thisPoints) {
+							double projected = normal.dot(point);
+							if (minA == null || projected < minA)
+								minA = projected;
+							if (maxA == null || projected > maxA)
+								maxA = projected;
+						}
+
+						Double minB = null, maxB = null;
+						for (Vec2 point : otherPoints) {
+							double projected = normal.dot(point);
+							if (minB == null || projected < minB)
+								minB = projected;
+							if (maxB == null || projected > maxB)
+								maxB = projected;
+						}
+
+						if (maxA < minB || maxB < minA) {
+							collided = false;
+							break;
+						}
+					}
+				}
 			}
 			else if (other.shape.getClass() == Circle.class) {
 				// TO-DO
@@ -53,7 +118,7 @@ public class Collider {
 			}
 		}
 
-		return (collided) ? new Vec2(123, 123) : new Vec2();
+		return collided;
 	}
 
 	public Transform getTransform() {

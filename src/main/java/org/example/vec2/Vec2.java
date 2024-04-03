@@ -27,7 +27,7 @@ public class Vec2 {
         return new Vec2(this.x / len, this.y / len);
     }
 
-    public double dotProd(Vec2 other) {
+    public double dot(Vec2 other) {
         return this.x * other.x + this.y * other.y;
     }
 }
