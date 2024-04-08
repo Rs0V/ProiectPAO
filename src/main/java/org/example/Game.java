@@ -24,10 +24,12 @@ import org.example.actor.Pawn;
 import org.example.collider.Collider;
 import org.example.shape.Rectangle;
 import org.example.transform.Transform;
+import org.example.vec2.Vec2;
 
 
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.geom.AffineTransform;
@@ -43,15 +45,25 @@ import java.io.IOException;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 
 
 public class Game extends JFrame implements Runnable {
     private boolean running = false;
+    private int fps = 60;
+
+    private ArrayList<Actor> gameActorList;
     private Actor block;
     private Pawn player;
-    private BufferedImage image;
 
     private long lastTime;
+
+    private boolean leftPressed;
+    private boolean rightPressed;
+    private boolean upPressed;
+    private boolean downPressed;
+    private boolean jumpPressed;
+
 
     public Game() {
         // Initialize JFrame settings...
@@ -68,18 +80,17 @@ public class Game extends JFrame implements Runnable {
             }
         });
 
-        lastTime = System.nanoTime();
+        this.lastTime = System.nanoTime();
 
-        Actor block = new Actor(new Transform(), new Collider(new Rectangle()));
-        Pawn player = new Pawn(new Transform(), new Collider(new Rectangle()));
+        this.block = new Actor(null, null, null);
+        this.player = new Pawn(null, null, null);
 
-        try {
-            image = ImageIO.read(new File("/Users/kris/Documents/GitHub/ProiectPAO/src/main/resources/circle.png")); // Load the image
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        this.gameActorList = new ArrayList<>();
+        this.gameActorList.add(this.block);
+        this.gameActorList.add(this.player);
     }
 
+    //region start(), stop(), run(), paint() -> (clear screen with BLACK)
     public synchronized void start() {
         running = true;
         new Thread(this).start();
@@ -94,7 +105,7 @@ public class Game extends JFrame implements Runnable {
             update();
             render();
             try {
-                Thread.sleep(1000 / 60); // Cap the frame rate to 60 FPS
+                Thread.sleep(1000 / fps); // Cap the frame rate to 60 FPS
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -105,47 +116,62 @@ public class Game extends JFrame implements Runnable {
         g.setColor(Color.BLACK); // Set the color to black
         g.fillRect(0, 0, getWidth(), getHeight()); // Fill the entire window with black
     }
+    //endregion
 
+    private final double timeFactor = 1 / 1_000_000_000.0;
     public void update() {
         // Update game state...
+        long now = System.nanoTime();
+        double deltaTime = (now - lastTime) * timeFactor; // Delta time in seconds
+        lastTime = now;
+
+        Vec2 moveInput = new Vec2(
+                (rightPressed ? 1 : 0) - (leftPressed ? 1 : 0),
+                (downPressed ? 1 : 0) - (upPressed ? 1 : 0)
+        );
+        moveInput = moveInput.normalized();
+
+        if (leftPressed || rightPressed || upPressed || downPressed) {
+            player.getTransform().moveGlobal(moveInput.mul(deltaTime).mul(10000));
+        }
     }
 
     public void render() {
-        long now = System.nanoTime();
-        double deltaTime = (now - lastTime) / 1_000_000_000.0; // Delta time in seconds
-        lastTime = now;
-
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
             createBufferStrategy(3);
             return;
         }
-
         Graphics g = bs.getDrawGraphics();
         // Draw the game...
         paint(g);
-//        g.drawImage(image, 250, 100, null); // Draw the image at (x, y)
 
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-        double scale = Math.abs(Math.sin(now / 1_000_000_000.0)); // Change this to your desired scale
-        System.out.println(scale);
 
-        double originX = image.getWidth() / 2.0; // Change this to your desired scaling origin x-coordinate
-        double originY = image.getHeight() / 2.0; // Change this to your desired scaling origin y-coordinate
+        for (Actor actor : this.gameActorList) {
+            AffineTransform at = new AffineTransform();
+            Vec2 origin = new Vec2(
+                    actor.getSprite().getImage().getWidth() * actor.getSprite().getOrigin().x,
+                    actor.getSprite().getImage().getHeight() * actor.getSprite().getOrigin().y
+            );
+            at.translate(origin.x, origin.y);
 
-        AffineTransform at = new AffineTransform();
-//        at.translate(originX, originY);
-        at.scale(scale * .5, scale * .5);
-//        at.translate(-originX, -originY);
-//        at.translate(-250, -350);
+            at.scale(actor.getTransform().getScale().x, actor.getTransform().getScale().y);
+            at.scale(actor.getSprite().getScale().x, actor.getSprite().getScale().y);
 
-        g2d.drawImage(image, at, null);
+            at.translate(-origin.x, -origin.y);
+
+
+            at.translate(actor.getTransform().getLocation().x, actor.getTransform().getLocation().y);
+            at.rotate(actor.getTransform().getActualRotation());
+
+            g2d.drawImage(actor.getSprite().getImage(), at, null);
+        }
+
 
         g2d.dispose();
-
-//        g.dispose();
         bs.show();
     }
 
@@ -153,6 +179,135 @@ public class Game extends JFrame implements Runnable {
         Game game = new Game();
         // Initialize JFrame settings...
         game.setVisible(true);
+
+
+
+        //region LeftPressed Action
+        Action leftPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.leftPressed = true;
+            }
+        };
+        Action leftReleased = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.leftPressed = false;
+            }
+        };
+        String key = "left";
+        KeyStroke pressedKeyStroke = KeyStroke.getKeyStroke("A");
+        KeyStroke releasedKeyStroke = KeyStroke.getKeyStroke("released A");
+
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(pressedKeyStroke, key + " pressed");
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(releasedKeyStroke, key + " released");
+
+        game.getRootPane().getActionMap().put(key + " pressed", leftPressed);
+        game.getRootPane().getActionMap().put(key + " released", leftReleased);
+        //endregion
+
+
+        //region RightPressed Action
+        Action rightPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.rightPressed = true;
+            }
+        };
+        Action rightReleased = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.rightPressed = false;
+            }
+        };
+        key = "right";
+        pressedKeyStroke = KeyStroke.getKeyStroke("D");
+        releasedKeyStroke = KeyStroke.getKeyStroke("released D");
+
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(pressedKeyStroke, key + " pressed");
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(releasedKeyStroke, key + " released");
+
+        game.getRootPane().getActionMap().put(key + " pressed", rightPressed);
+        game.getRootPane().getActionMap().put(key + " released", rightReleased);
+        //endregion
+
+
+        //region UpPressed Action
+        Action upPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.upPressed = true;
+            }
+        };
+        Action upReleased = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.upPressed = false;
+            }
+        };
+        key = "up";
+        pressedKeyStroke = KeyStroke.getKeyStroke("W");
+        releasedKeyStroke = KeyStroke.getKeyStroke("released W");
+
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(pressedKeyStroke, key + " pressed");
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(releasedKeyStroke, key + " released");
+
+        game.getRootPane().getActionMap().put(key + " pressed", upPressed);
+        game.getRootPane().getActionMap().put(key + " released", upReleased);
+        //endregion
+
+
+        //region DownPressed Action
+        Action downPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.downPressed = true;
+            }
+        };
+        Action downReleased = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.downPressed = false;
+            }
+        };
+        key = "down";
+        pressedKeyStroke = KeyStroke.getKeyStroke("S");
+        releasedKeyStroke = KeyStroke.getKeyStroke("released S");
+
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(pressedKeyStroke, key + " pressed");
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(releasedKeyStroke, key + " released");
+
+        game.getRootPane().getActionMap().put(key + " pressed", downPressed);
+        game.getRootPane().getActionMap().put(key + " released", downReleased);
+        //endregion
+
+
+        //region JumpPressed Action
+        Action jumpPressed = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.jumpPressed = true;
+            }
+        };
+        Action jumpReleased = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                game.jumpPressed = false;
+            }
+        };
+        key = "jump";
+        pressedKeyStroke = KeyStroke.getKeyStroke("SPACE");
+        releasedKeyStroke = KeyStroke.getKeyStroke("released SPACE");
+
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(pressedKeyStroke, key + " pressed");
+        game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(releasedKeyStroke, key + " released");
+
+        game.getRootPane().getActionMap().put(key + " pressed", jumpPressed);
+        game.getRootPane().getActionMap().put(key + " released", jumpReleased);
+        //endregion
+
+
+
         game.start();
     }
 }

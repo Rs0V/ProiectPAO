@@ -1,5 +1,7 @@
 package org.example.collider;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.shape.Circle;
 import org.example.shape.Rectangle;
 import org.example.shape.Shape;
@@ -7,29 +9,23 @@ import org.example.transform.Transform;
 import org.example.vec2.Vec2;
 
 public class Collider {
+	@Getter @Setter
 	private Transform transform;
+	@Getter @Setter
 	private Shape shape;
+	@Getter @Setter
 	private ColliderType type;
 
-	public Collider(Shape shape) {
-		this.shape = shape;
-		this.transform = new Transform();
-		this.type = ColliderType.Block;
-	}
-	public Collider(Shape shape, ColliderType type) {
-		this.shape = shape;
-		this.transform = new Transform();
-		this.type = type;
-	}
+
 	public Collider(Shape shape, Transform transform, ColliderType type) {
-		this.shape = shape;
-		this.transform = transform;
+		this.shape = shape == null ? new Rectangle(null) : shape;
+		this.transform = transform == null ? new Transform(null, 0, null) : transform;
 		this.type = type;
 	}
 
-	public boolean checkCollision(Collider other) {
+	public boolean checkCollision(Collider other) throws Exception {
 		if (this.type == ColliderType.Ignore){
-//			throw new Exception("'checkCollision()' called on Collider of type ColliderType.Ignore");
+			throw new Exception("'checkCollision()' called on Collider of type ColliderType.Ignore");
 		}
 
 		if (other.type == ColliderType.Ignore)
@@ -147,19 +143,5 @@ public class Collider {
 		}
 
 		return collided;
-	}
-
-	public Transform getTransform() {
-		return this.transform;
-	}
-	public void setTransform(Transform transform) {
-		this.transform = transform;
-	}
-
-	public ColliderType getType() {
-		return this.type;
-	}
-	public void setType(ColliderType type) {
-		this.type = type;
 	}
 }

@@ -1,23 +1,16 @@
 package org.example.shape;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.vec2.Vec2;
 
 public class Rectangle extends Shape {
+	@Getter @Setter
 	private Vec2 size;
 
-	public Rectangle() {
-		this.size = new Vec2(1, 1);
-	}
-	public Rectangle(Vec2 size) {
-		this.size = size;
-	}
 
-	public Vec2 getSize() {
-		return this.size;
-	}
-	public Rectangle setSize(Vec2 size) {
-		this.size = size;
-		return this;
+	public Rectangle(Vec2 size) {
+		this.size = size == null ? new Vec2(1, 1) : size;
 	}
 
 	public double getWidth() {

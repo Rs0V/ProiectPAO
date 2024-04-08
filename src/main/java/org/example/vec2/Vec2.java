@@ -3,6 +3,7 @@ package org.example.vec2;
 public class Vec2 {
     public double x, y;
 
+
     public Vec2() {
         this.x = 0;
         this.y = 0;

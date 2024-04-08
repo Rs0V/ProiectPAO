@@ -1,25 +1,22 @@
 package org.example.transform;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.vec2.Vec2;
 
 public class Transform {
-	private Vec2 location, scale;
-	private double rotation; // in degrees
+	@Getter @Setter
+	private Vec2 location;
+	@Getter @Setter
+	private Vec2 scale;
+	@Getter @Setter
+	private double rotation; // in clockwise degrees
 
-	public Transform() {
-		this.location = new Vec2();
-		this.rotation = 0;
-		this.scale = new Vec2(1, 1);
-	}
-	public Transform(Vec2 location) {
-		this.location = location;
-		this.rotation = 0;
-		this.scale = new Vec2(1, 1);
-	}
+
 	public Transform(Vec2 location, double rotation, Vec2 scale) {
-		this.location = location;
+		this.location = location == null ? new Vec2() : location;
 		this.rotation = rotation;
-		this.scale = scale;
+		this.scale = scale == null ? new Vec2(1, 1) : scale;;
 	}
 
 	public Vec2 getForward() {
@@ -38,24 +35,8 @@ public class Transform {
 		return this;
 	}
 
-	public Vec2 getLocation() {
-		return this.location;
-	}
-	public Transform setLocation(Vec2 location) {
-		this.location = location;
-		return this;
-	}
-
 	public Transform rotate(double delta) {
 		this.rotation += delta;
-		return this;
-	}
-
-	public double getRotation() {
-		return this.rotation;
-	}
-	public Transform setRotation(double rotation) {
-		this.rotation = rotation;
 		return this;
 	}
 
@@ -68,11 +49,11 @@ public class Transform {
 		return this;
 	}
 
-	public Vec2 getScale() {
-		return this.scale;
+	public double getActualRotation() {
+		return Math.toRadians(-this.rotation);
 	}
-	public Transform setScale(Vec2 scale) {
-		this.scale = scale;
+	public Transform setActualRotation(double rotation) {
+		this.rotation = Math.toDegrees(-rotation);
 		return this;
 	}
 }
