@@ -25,6 +25,7 @@ public class Vec2 {
     }
     public Vec2 normalized() {
         double len = this.length();
+        len = len == 0 ? 1 : len;
         return new Vec2(this.x / len, this.y / len);
     }
 
@@ -42,4 +43,12 @@ public class Vec2 {
 	public boolean on(Vec2 v1, Vec2 v2) {
 		return v1.dist(this) + v2.dist(this) == v1.dist(v2);
 	}
+
+    @Override
+    public String toString() {
+        return "Vec2{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

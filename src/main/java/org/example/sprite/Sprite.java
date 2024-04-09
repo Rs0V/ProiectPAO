@@ -27,12 +27,12 @@ public class Sprite {
 		}
 		else {
 			try {
-				this.image = ImageIO.read(new File(imagePath.trim()));;
+				this.image = ImageIO.read(new File(imagePath.trim()));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
 		this.origin = origin == null ? new Vec2(0.5, 0.5) : origin;
-		this.scale = scale == null ? new Vec2(0.01, 0.01) : scale;
+		this.scale = scale == null ? new Vec2(0.1, 0.1) : scale;
 	}
 }

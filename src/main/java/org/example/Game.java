@@ -1,32 +1,32 @@
 package org.example;
 
 /*
-* Sistem de joc video
-* -------------------
-*
-* Obiecte: Vec2, Transform
-*          Shape, Rectangle, Circle, Collider,
-*          Actor, Pawn
-*          PickUp, Button, Switch, Spawner
-*          Level, Menu
-*          UI, UIElement, UIStat, UIButton
-*
-* Actiuni: Move, Rotate, Scale,
-*          Raycast, Overlap, Collide,
-*          Follow, Jump, Fall,
-*          ChangeStat, ChangeState, Spawn,
-*          Play, Quit, etc.
-* */
+ * Sistem de joc video
+ * -------------------
+ *
+ * Obiecte: Vec2, Transform
+ *          Shape, Rectangle, Circle, Collider,
+ *          Actor, Pawn
+ *          PickUp, Button, Switch, Spawner
+ *          Level, Menu
+ *          UI, UIElement, UIStat, UIButton
+ *
+ * Actiuni: Move, Rotate, Scale,
+ *          Raycast, Overlap, Collide,
+ *          Follow, Jump, Fall,
+ *          ChangeStat, ChangeState, Spawn,
+ *          Play, Quit, etc.
+ * */
 
 
 import org.example.actor.Actor;
 import org.example.actor.Pawn;
-import org.example.collider.Collider;
-import org.example.shape.Rectangle;
+import org.example.sprite.Sprite;
 import org.example.transform.Transform;
 import org.example.vec2.Vec2;
 
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -36,25 +36,25 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class Game extends JFrame implements Runnable {
     private boolean running = false;
-    private int fps = 60;
+    private final int fps = 60;
 
     private ArrayList<Actor> gameActorList;
-    private Actor block;
+    private ArrayList<Actor> trees;
     private Pawn player;
+    private double playerSpeed;
 
     private long lastTime;
 
@@ -62,7 +62,9 @@ public class Game extends JFrame implements Runnable {
     private boolean rightPressed;
     private boolean upPressed;
     private boolean downPressed;
-    private boolean jumpPressed;
+	private boolean jumpPressed;
+	private boolean lLeanPressed;
+	private boolean rLeanPressed;
 
 
     public Game() {
@@ -82,12 +84,42 @@ public class Game extends JFrame implements Runnable {
 
         this.lastTime = System.nanoTime();
 
-        this.block = new Actor(null, null, null);
-        this.player = new Pawn(null, null, null);
+		int noTrees = 10;
+		this.trees = new ArrayList<>();
+	    for (int i = 0; i < noTrees; i++) {
+		    this.trees.add(new Actor(
+				    new Transform(
+							new Vec2(
+									Math.random() * 300,
+									Math.random() * 100
+							),
+						    null,
+						    null,
+						    null
+				    ),
+				    null,
+				    new Sprite(
+						    "src/main/resources/treeus.png",
+						    null,
+						    new Vec2(5, 5)
+				    )
+		    ));
+	    }
+
+        this.player = new Pawn(
+                null,
+                null,
+                new Sprite(
+                        "src/main/resources/tempPlayer.png",
+                        null,
+                        new Vec2(2, 2)
+                )
+        );
+        this.playerSpeed = 100;
 
         this.gameActorList = new ArrayList<>();
-        this.gameActorList.add(this.block);
-        this.gameActorList.add(this.player);
+	    this.gameActorList.add(this.player);
+	    this.gameActorList.addAll(trees);
     }
 
     //region start(), stop(), run(), paint() -> (clear screen with BLACK)
@@ -122,18 +154,24 @@ public class Game extends JFrame implements Runnable {
     public void update() {
         // Update game state...
         long now = System.nanoTime();
-        double deltaTime = (now - lastTime) * timeFactor; // Delta time in seconds
-        lastTime = now;
+        double deltaTime = (now - this.lastTime) * this.timeFactor; // Delta time in seconds
+        this.lastTime = now;
 
         Vec2 moveInput = new Vec2(
-                (rightPressed ? 1 : 0) - (leftPressed ? 1 : 0),
-                (downPressed ? 1 : 0) - (upPressed ? 1 : 0)
+                (this.rightPressed ? 1 : 0) - (this.leftPressed ? 1 : 0),
+                (this.downPressed ? 1 : 0) - (this.upPressed ? 1 : 0)
         );
         moveInput = moveInput.normalized();
 
-        if (leftPressed || rightPressed || upPressed || downPressed) {
-            player.getTransform().moveGlobal(moveInput.mul(deltaTime).mul(10000));
+        if (this.leftPressed || this.rightPressed || this.upPressed || this.downPressed) {
+            this.player.getTransform().moveLocal(moveInput.mul(deltaTime).mul(this.playerSpeed));
         }
+	    if (this.lLeanPressed) {
+		    this.player.getTransform().rotate(-deltaTime * 100);
+	    }
+		if (this.rLeanPressed) {
+			this.player.getTransform().rotate(deltaTime * 100);
+		}
     }
 
     public void render() {
@@ -143,37 +181,81 @@ public class Game extends JFrame implements Runnable {
             return;
         }
         Graphics g = bs.getDrawGraphics();
+
         // Draw the game...
         paint(g);
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);
+
 
 
         for (Actor actor : this.gameActorList) {
+            actor.getTransform().setDepth(actor.getTransform().getLocation().y);
+//            System.out.println(actor.getTransform().getDepth());
+//            System.out.println(actor.getTransform().getLocation());
+        }
+        this.gameActorList.sort(Comparator.comparingDouble(a -> a.getTransform().getDepth()));
+        for (Actor actor : this.gameActorList) {
             AffineTransform at = new AffineTransform();
+            at.translate(getInsets().left, getInsets().top);
+
             Vec2 origin = new Vec2(
                     actor.getSprite().getImage().getWidth() * actor.getSprite().getOrigin().x,
                     actor.getSprite().getImage().getHeight() * actor.getSprite().getOrigin().y
             );
-            at.translate(origin.x, origin.y);
-
-            at.scale(actor.getTransform().getScale().x, actor.getTransform().getScale().y);
             at.scale(actor.getSprite().getScale().x, actor.getSprite().getScale().y);
+	        at.scale(actor.getTransform().getScale().x, actor.getTransform().getScale().y);
 
-            at.translate(-origin.x, -origin.y);
-
+	        at.translate(-origin.x, -origin.y);
 
             at.translate(actor.getTransform().getLocation().x, actor.getTransform().getLocation().y);
-            at.rotate(actor.getTransform().getActualRotation());
+
+	        at.rotate(actor.getTransform().getActualRotation(), origin.x, origin.y);
 
             g2d.drawImage(actor.getSprite().getImage(), at, null);
         }
 
 
+
         g2d.dispose();
         bs.show();
     }
+
+	public static void createAction(Game game, String actionBool, String key, String actionName){
+		Action actionPressed = new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				try {
+					Field field = game.getClass().getDeclaredField(actionBool);
+					field.setAccessible(true);
+					field.set(game, true);
+				} catch (NoSuchFieldException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		Action actionReleased = new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent event) {
+				try {
+					Field field = game.getClass().getDeclaredField(actionBool);
+					field.setAccessible(true);
+					field.set(game, false);
+				} catch (NoSuchFieldException | IllegalAccessException e) {
+					e.printStackTrace();
+				}
+			}
+		};
+		KeyStroke pressedKeyStroke = KeyStroke.getKeyStroke(key);
+		KeyStroke releasedKeyStroke = KeyStroke.getKeyStroke("released " + key);
+
+		game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(pressedKeyStroke, actionName + " pressed");
+		game.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(releasedKeyStroke, actionName + " released");
+
+		game.getRootPane().getActionMap().put(actionName + " pressed", actionPressed);
+		game.getRootPane().getActionMap().put(actionName + " released", actionReleased);
+	}
 
     public static void main(String[] args) {
         Game game = new Game();
@@ -305,6 +387,10 @@ public class Game extends JFrame implements Runnable {
         game.getRootPane().getActionMap().put(key + " pressed", jumpPressed);
         game.getRootPane().getActionMap().put(key + " released", jumpReleased);
         //endregion
+
+
+	    createAction(game, "lLeanPressed", "Q", "left-lean");
+	    createAction(game, "rLeanPressed", "E", "right-lean");
 
 
 

@@ -11,19 +11,22 @@ public class Transform {
 	private Vec2 scale;
 	@Getter @Setter
 	private double rotation; // in clockwise degrees
+	@Getter @Setter
+	private double depth;
 
 
-	public Transform(Vec2 location, double rotation, Vec2 scale) {
+	public Transform(Vec2 location, Double rotation, Vec2 scale, Double depth) {
 		this.location = location == null ? new Vec2() : location;
-		this.rotation = rotation;
-		this.scale = scale == null ? new Vec2(1, 1) : scale;;
+		this.rotation = rotation == null ? 0 : rotation;
+		this.scale = scale == null ? new Vec2(1, 1) : scale;
+		this.depth = depth == null ? 0 : depth;
 	}
 
 	public Vec2 getForward() {
-		return new Vec2(Math.cos(Math.toRadians(-this.rotation)), Math.sin(Math.toRadians(-this.rotation)));
+		return new Vec2(Math.cos(Math.toRadians(this.rotation)), Math.sin(Math.toRadians(this.rotation))).normalized();
 	}
 	public Vec2 getUp() {
-		return new Vec2(Math.cos(Math.toRadians(-this.rotation + 90)), Math.sin(Math.toRadians(-this.rotation + 90)));
+		return new Vec2(Math.cos(Math.toRadians(this.rotation + 90)), Math.sin(Math.toRadians(this.rotation + 90))).normalized();
 	}
 
 	public Transform moveGlobal(Vec2 delta) {
@@ -31,7 +34,7 @@ public class Transform {
 		return this;
 	}
 	public Transform moveLocal(Vec2 delta) {
-		this.location = this.getForward().mul(delta.x).add(this.getUp().mul(delta.y));
+		this.location = this.location.add(this.getForward().mul(delta.x).add(this.getUp().mul(delta.y)));
 		return this;
 	}
 
@@ -50,10 +53,10 @@ public class Transform {
 	}
 
 	public double getActualRotation() {
-		return Math.toRadians(-this.rotation);
+		return Math.toRadians(this.rotation);
 	}
 	public Transform setActualRotation(double rotation) {
-		this.rotation = Math.toDegrees(-rotation);
+		this.rotation = Math.toDegrees(rotation);
 		return this;
 	}
 }

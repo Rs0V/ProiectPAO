@@ -19,7 +19,7 @@ public class Collider {
 
 	public Collider(Shape shape, Transform transform, ColliderType type) {
 		this.shape = shape == null ? new Rectangle(null) : shape;
-		this.transform = transform == null ? new Transform(null, 0, null) : transform;
+		this.transform = transform == null ? new Transform(null, null, null, null) : transform;
 		this.type = type;
 	}
 

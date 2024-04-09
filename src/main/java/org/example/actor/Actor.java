@@ -6,12 +6,6 @@ import org.example.collider.Collider;
 import org.example.collider.ColliderType;
 import org.example.sprite.Sprite;
 import org.example.transform.Transform;
-import org.example.vec2.Vec2;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 
 public class Actor {
@@ -24,7 +18,7 @@ public class Actor {
 
 
 	public Actor(Transform transform, Collider collider, Sprite sprite) {
-		this.transform = transform == null ? new Transform(null, 0, null) : transform;
+		this.transform = transform == null ? new Transform(null, null, null, null) : transform;
 		this.collider = collider == null ? new Collider(null, null, ColliderType.Block) : collider;
 		this.sprite = sprite == null ? new Sprite(null, null, null) : sprite;
 	}
