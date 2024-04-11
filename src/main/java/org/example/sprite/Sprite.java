@@ -9,12 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+@Getter @Setter
 public class Sprite {
-	@Getter @Setter
 	private BufferedImage image;
-	@Getter @Setter
 	private Vec2 origin;
-	@Getter @Setter
 	private Vec2 scale;
 
 	public Sprite(String imagePath, Vec2 origin, Vec2 scale) {

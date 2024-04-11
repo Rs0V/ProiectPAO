@@ -8,12 +8,10 @@ import org.example.shape.Shape;
 import org.example.transform.Transform;
 import org.example.vec2.Vec2;
 
+@Getter @Setter
 public class Collider {
-	@Getter @Setter
 	private Transform transform;
-	@Getter @Setter
 	private Shape shape;
-	@Getter @Setter
 	private ColliderType type;
 
 

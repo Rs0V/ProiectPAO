@@ -4,14 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.vec2.Vec2;
 
+@Getter @Setter
 public class Transform {
-	@Getter @Setter
 	private Vec2 location;
-	@Getter @Setter
 	private Vec2 scale;
-	@Getter @Setter
 	private double rotation; // in clockwise degrees
-	@Getter @Setter
 	private double depth;
 
 

@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.example.vec2.Vec2;
 
+@Getter @Setter
 public class Rectangle extends Shape {
-	@Getter @Setter
 	private Vec2 size;
 
 

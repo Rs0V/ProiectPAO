@@ -3,8 +3,8 @@ package org.example.shape;
 import lombok.Getter;
 import lombok.Setter;
 
+@Getter @Setter
 public class Circle extends Shape {
-	@Getter @Setter
 	private double radius;
 
 
