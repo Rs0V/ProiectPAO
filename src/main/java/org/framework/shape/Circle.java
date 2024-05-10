@@ -1,4 +1,4 @@
-package org.example.shape;
+package org.framework.shape;
 
 import lombok.Getter;
 import lombok.Setter;

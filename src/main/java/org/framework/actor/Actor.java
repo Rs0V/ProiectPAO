@@ -1,13 +1,13 @@
-package org.example.actor;
+package org.framework.actor;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.Game;
-import org.example.collider.Collider;
-import org.example.collider.ColliderType;
-import org.example.sprite.Sprite;
-import org.example.transform.Transform;
-import org.example.vec2.Vec2;
+import org.framework.Game;
+import org.framework.collider.Collider;
+import org.framework.collider.ColliderType;
+import org.framework.sprite.Sprite;
+import org.framework.transform.Transform;
+import org.framework.vec2.Vec2;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -27,13 +27,6 @@ public class Actor {
 		this.collider = new Collider(null, null, ColliderType.Block);
 		this.sprite = new Sprite(null, null, null);
 	}
-
-//	public Actor(String id, Transform transform, Collider collider, Sprite sprite) {
-//		this.id = id;
-//		this.transform = transform == null ? new Transform(null, null, null, null) : transform;
-//		this.collider = collider == null ? new Collider(null, null, ColliderType.Block) : collider;
-//		this.sprite = sprite == null ? new Sprite(null, null, null) : sprite;
-//	}
 
 	public boolean checkCollision(Actor other) throws Exception {
 		// TO-DO

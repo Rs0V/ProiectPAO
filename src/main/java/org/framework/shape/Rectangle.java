@@ -1,8 +1,8 @@
-package org.example.shape;
+package org.framework.shape;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.vec2.Vec2;
+import org.framework.vec2.Vec2;
 
 @Getter @Setter
 public class Rectangle extends Shape {

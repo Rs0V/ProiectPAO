@@ -1,4 +1,4 @@
-package org.example;
+package org.framework;
 
 /*
  * Sistem de joc video
@@ -19,11 +19,15 @@ package org.example;
  * */
 
 
-import org.example.actor.Actor;
-import org.example.services.ActorManager;
-import org.example.services.InputMapper;
-import org.example.sprite.Sprite;
-import org.example.vec2.Vec2;
+import jdk.jfr.Unsigned;
+import org.framework.actor.Actor;
+import org.framework.services.ActorManager;
+import org.framework.services.GameProperties;
+import org.framework.services.InputMapper;
+import org.framework.services.MapGenerator;
+import org.framework.sprite.Sprite;
+import org.framework.vec2.Vec2;
+import org.game.player.Player;
 
 
 import javax.swing.*;
@@ -35,22 +39,22 @@ import java.awt.image.BufferStrategy;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 
 public class Game extends JFrame implements Runnable {
     private boolean running = false;
-    private final int fps = 60;
+
     private long last = System.nanoTime();
 	private long now;
 	private double time;
 	double deltaTime;
-	private Vec2 screenRes = new Vec2(800, 600);
 
 
-    public Game() {
+    public Game() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         // Initialize JFrame settings...
-        setSize((int)screenRes.x, (int)screenRes.y); // Set the size of the window
+        setSize((int)GameProperties.getScreenRes().x, (int)GameProperties.getScreenRes().y); // Set the size of the window
         setTitle("Game Window"); // Set the title of the window
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the default close operation
         setLocationRelativeTo(null); // Center the window
@@ -63,12 +67,13 @@ public class Game extends JFrame implements Runnable {
             }
         });
 
+		/*
 		int noTrees = 10;
 	    for (int i = 0; i < noTrees; i++) {
-		    Actor tree = ActorManager.createActor(String.format("tree-%d", i), false);
+		    Actor tree = ActorManager.createActor(String.format("tree-%d", i), Actor.class);
 			tree.getTransform().setLocation(new Vec2(
-					Math.clamp(Math.random() * screenRes.x, 100, screenRes.x - 100),
-					Math.clamp(Math.random() * screenRes.y, 100, screenRes.y - 100)
+					Math.clamp(Math.random() * GameProperties.getScreenRes().x, 100, GameProperties.getScreenRes().x - 100),
+					Math.clamp(Math.random() * GameProperties.getScreenRes().y, 100, GameProperties.getScreenRes().y - 100)
 			));
 			tree.setSprite(new Sprite(
 					"src/main/resources/treeus.png",
@@ -77,10 +82,10 @@ public class Game extends JFrame implements Runnable {
 			));
 	    }
 	    {
-		    Actor player = ActorManager.createActor("player-0", true);
+		    Actor player = ActorManager.createActor("player-0", Player.class);
 		    player.getTransform().setLocation(new Vec2(
-				    Math.clamp(Math.random() * screenRes.x, 100, screenRes.x - 100),
-				    Math.clamp(Math.random() * screenRes.y, 100, screenRes.y - 100)
+				    Math.clamp(Math.random() * GameProperties.getScreenRes().x, 100, GameProperties.getScreenRes().x - 100),
+				    Math.clamp(Math.random() * GameProperties.getScreenRes().y, 100, GameProperties.getScreenRes().y - 100)
 		    ));
 		    player.setSprite(new Sprite(
 				    "src/main/resources/tempPlayer.png",
@@ -88,7 +93,10 @@ public class Game extends JFrame implements Runnable {
 				    new Vec2(2, 2)
 		    ));
 	    }
-    }
+	    */
+
+	    MapGenerator.generateMap(0);
+	}
 
     //region start(), stop(), run(), paint() -> (clear screen with BLACK)
     public synchronized void start() {
@@ -105,7 +113,7 @@ public class Game extends JFrame implements Runnable {
             update();
             render();
             try {
-                Thread.sleep(1000 / fps); // Cap the frame rate to 60 FPS
+                Thread.sleep(1000 / GameProperties.getFps()); // Cap the frame rate to 60 FPS
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -118,11 +126,11 @@ public class Game extends JFrame implements Runnable {
     }
     //endregion
 
-    private final double timeFactor = 1 / 1_000_000_000.0;
+	private final double timeMeas = 1 / 1_000_000_000.0;
     public void update() {
         this.now = System.nanoTime();
-		this.time = this.now * this.timeFactor; // Current time in seconds
-        this.deltaTime = (this.now - this.last) * this.timeFactor; // Delta time in seconds
+		this.time = this.now * this.timeMeas; // Current time in seconds
+        this.deltaTime = ((double) (this.now - this.last)) * this.timeMeas * GameProperties.getTimeFactor(); // Delta time in seconds
         this.last = this.now;
 
 
@@ -151,9 +159,6 @@ public class Game extends JFrame implements Runnable {
 
         Graphics2D g2d = (Graphics2D) g;
 
-	    this.time = this.now * this.timeFactor; // Current time in seconds
-		this.deltaTime = (this.now - this.last) * this.timeFactor; // Delta time in seconds
-
 
 	    ArrayList<Actor> actorsList = ActorManager.getActorsList();
 //	    if (once) {
@@ -179,7 +184,7 @@ public class Game extends JFrame implements Runnable {
 
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Game game = new Game();
         // Initialize JFrame settings...
         game.setVisible(true);

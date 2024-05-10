@@ -1,6 +1,6 @@
-package org.example.services;
+package org.framework.services;
 
-import org.example.Game;
+import org.framework.Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

@@ -1,8 +1,8 @@
-package org.example.transform;
+package org.framework.transform;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.vec2.Vec2;
+import org.framework.vec2.Vec2;
 
 @Getter @Setter
 public class Transform {

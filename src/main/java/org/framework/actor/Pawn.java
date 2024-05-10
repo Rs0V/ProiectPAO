@@ -1,30 +1,20 @@
-package org.example.actor;
+package org.framework.actor;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.Game;
-import org.example.collider.Collider;
-import org.example.services.InputMapper;
-import org.example.sprite.Sprite;
-import org.example.transform.Transform;
-import org.example.vec2.Vec2;
+import org.framework.Game;
+import org.framework.services.InputMapper;
+import org.framework.vec2.Vec2;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 
 
 @Getter @Setter
 public class Pawn extends Actor {
 
-
-
 	public Pawn(String id) {
 		super(id);
 	}
-
-//	public Pawn(Transform transform, Collider collider, Sprite sprite) {
-//		super(transform, collider, sprite);
-//	}
 
 	@Override
 	public void update(double deltaTime) {

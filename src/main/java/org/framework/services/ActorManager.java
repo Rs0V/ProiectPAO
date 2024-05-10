@@ -1,8 +1,11 @@
-package org.example.services;
+package org.framework.services;
 
-import org.example.actor.Actor;
-import org.example.actor.Pawn;
+import org.framework.actor.Actor;
+import org.framework.actor.Pawn;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -10,10 +13,9 @@ public abstract class ActorManager {
 	private static final Map<String, Actor> actorsMap = new HashMap<>();
 
 
-	public static Actor createActor(String id, boolean isPawn) {
-		Actor newActor = isPawn
-				? new Pawn(id)
-				: new Actor(id);
+	public static Actor createActor(String id, Class<?> actorClassType) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+		Constructor<?> constr = actorClassType.getDeclaredConstructor(String.class);
+		Actor newActor = (Actor) constr.newInstance(id);
 		actorsMap.put(id, newActor);
 		return newActor;
 	}

@@ -1,12 +1,12 @@
-package org.example.collider;
+package org.framework.collider;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.shape.Circle;
-import org.example.shape.Rectangle;
-import org.example.shape.Shape;
-import org.example.transform.Transform;
-import org.example.vec2.Vec2;
+import org.framework.shape.Circle;
+import org.framework.shape.Rectangle;
+import org.framework.shape.Shape;
+import org.framework.transform.Transform;
+import org.framework.vec2.Vec2;
 
 @Getter @Setter
 public class Collider {

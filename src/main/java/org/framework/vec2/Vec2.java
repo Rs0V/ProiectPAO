@@ -1,4 +1,4 @@
-package org.example.vec2;
+package org.framework.vec2;
 
 public class Vec2 {
     public double x, y;
