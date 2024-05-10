@@ -19,15 +19,13 @@ package org.framework;
  * */
 
 
-import jdk.jfr.Unsigned;
 import org.framework.actor.Actor;
+import org.framework.actor.Camera;
 import org.framework.services.ActorManager;
 import org.framework.services.GameProperties;
 import org.framework.services.InputMapper;
 import org.framework.services.MapGenerator;
-import org.framework.sprite.Sprite;
-import org.framework.vec2.Vec2;
-import org.game.player.Player;
+import org.game.player.components.CCameraInput;
 
 
 import javax.swing.*;
@@ -96,6 +94,9 @@ public class Game extends JFrame implements Runnable {
 	    */
 
 	    MapGenerator.generateMap(0);
+		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
+
+		camera.addComponent("input", new CCameraInput(camera));
 	}
 
     //region start(), stop(), run(), paint() -> (clear screen with BLACK)
@@ -174,7 +175,7 @@ public class Game extends JFrame implements Runnable {
 //	    System.out.print(ActorManager.getActor("tree-0").getTransform().getLocation().y);
 //	    System.out.print("\n");
 	    for (Actor actor : actorsList) {
-			actor.render(this, g2d, deltaTime);
+			actor.render(g2d, (Camera) ActorManager.getActor("camera-0"), deltaTime);
         }
 
 
@@ -194,6 +195,15 @@ public class Game extends JFrame implements Runnable {
 	    InputMapper.createAction(game, "right-move", "D");
 	    InputMapper.createAction(game, "up-move", "W");
 	    InputMapper.createAction(game, "down-move", "S");
+
+	    InputMapper.createAction(game, "left-arrow", "LEFT");
+	    InputMapper.createAction(game, "right-arrow", "RIGHT");
+	    InputMapper.createAction(game, "up-arrow", "UP");
+	    InputMapper.createAction(game, "down-arrow", "DOWN");
+
+	    InputMapper.createAction(game, "zoom-in", "I");
+	    InputMapper.createAction(game, "zoom-out", "O");
+
 
 	    InputMapper.createAction(game, "left-lean", "Q");
 	    InputMapper.createAction(game, "right-lean", "E");

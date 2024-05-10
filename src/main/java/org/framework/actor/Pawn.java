@@ -43,9 +43,4 @@ public class Pawn extends Actor {
 			this.getTransform().rotate(deltaTime * 200);
 		}
 	}
-
-	@Override
-	public void render(Game game, Graphics2D g2d, double deltaTime) {
-		super.render(game, g2d, deltaTime);
-	}
 }

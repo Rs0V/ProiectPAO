@@ -1,4 +1,4 @@
-package org.game.player;
+package org.game.player.objects;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -44,10 +44,5 @@ public class Player extends Pawn {
 		}
 		this.getTransform().moveLocal(new Vec2(0, -this.gravity * deltaTime));
 		this.gravity -= this.mass * GameProperties.getG() * deltaTime;
-	}
-
-	@Override
-	public void render(Game game, Graphics2D g2d, double deltaTime) {
-		super.render(game, g2d, deltaTime);
 	}
 }

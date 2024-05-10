@@ -1,17 +1,14 @@
 package org.framework.services;
 
-import jdk.jfr.Unsigned;
 import org.framework.actor.Actor;
 import org.framework.sprite.Sprite;
 import org.framework.vec2.Vec2;
-import org.game.player.Player;
+import org.game.player.objects.Player;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public abstract class MapGenerator {
 	private static final int mapLineToPixels = 100;

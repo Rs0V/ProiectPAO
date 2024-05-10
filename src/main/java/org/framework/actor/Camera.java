@@ -12,20 +12,19 @@ public class Camera extends Actor {
 	private Vec2 screenSize;
 
 
-	public Camera(String id, boolean physical) {
+	public Camera(String id) {
 		super(id);
 		this.sprite = null;
-		if (physical == false)
-			this.collider = null;
+		this.collider = null;
 
 		this.zoom = 1;
 		this.screenSize = new Vec2(GameProperties.getScreenRes().x, GameProperties.getScreenRes().y);
 	}
 
-	public int worldToScreenX(double worldX) {
-		return (int) ((worldX - x) * zoom);
-	}
-	public int worldToScreenY(double worldY) {
-		return (int) ((worldY - y) * zoom);
-	}
+//	public int worldToScreenX(double worldX) {
+//		return (int) ((worldX - x) * zoom);
+//	}
+//	public int worldToScreenY(double worldY) {
+//		return (int) ((worldY - y) * zoom);
+//	}
 }
