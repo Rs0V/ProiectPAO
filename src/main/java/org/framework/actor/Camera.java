@@ -20,11 +20,4 @@ public class Camera extends Actor {
 		this.zoom = 1;
 		this.screenSize = new Vec2(GameProperties.getScreenRes().x, GameProperties.getScreenRes().y);
 	}
-
-//	public int worldToScreenX(double worldX) {
-//		return (int) ((worldX - x) * zoom);
-//	}
-//	public int worldToScreenY(double worldY) {
-//		return (int) ((worldY - y) * zoom);
-//	}
 }

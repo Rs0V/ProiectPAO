@@ -11,9 +11,9 @@ import java.io.IOException;
 
 @Getter @Setter
 public class Sprite {
-	private BufferedImage image;
-	private Vec2 origin;
-	private Vec2 scale;
+	protected BufferedImage image;
+	protected Vec2 origin;
+	protected Vec2 scale;
 
 	public Sprite(String imagePath, Vec2 origin, Vec2 scale) {
 		if (imagePath == null || imagePath.trim().isEmpty()) {
