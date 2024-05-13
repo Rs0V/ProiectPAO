@@ -1,4 +1,4 @@
-package org.framework.sprite;
+package org.framework.sprite.enums;
 
 public enum AnimStop {
 	Start,

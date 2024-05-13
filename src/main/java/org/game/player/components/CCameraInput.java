@@ -11,7 +11,7 @@ import java.awt.*;
 
 @AllArgsConstructor
 public class CCameraInput implements IComponent {
-	Camera self;
+	protected Camera self;
 
 
 	@Override

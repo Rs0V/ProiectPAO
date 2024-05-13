@@ -8,6 +8,7 @@ import org.framework.component.IComponent;
 import org.framework.sprite.Sprite;
 import org.framework.transform.Transform;
 import org.framework.vec2.Vec2;
+import org.utilities.CSet;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -18,6 +19,7 @@ import java.util.Map;
 @Getter @Setter
 public class Actor {
 	protected final String id;
+	@CSet
 	protected Transform transform;
 	protected Collider collider;
 	protected Sprite sprite;

@@ -25,6 +25,8 @@ import org.framework.services.ActorManager;
 import org.framework.services.GameProperties;
 import org.framework.services.InputMapper;
 import org.framework.services.MapGenerator;
+import org.framework.sprite.AnimatedSprite;
+import org.framework.vec2.Vec2;
 import org.game.player.components.CCameraInput;
 
 
@@ -65,36 +67,15 @@ public class Game extends JFrame implements Runnable {
             }
         });
 
-		/*
-		int noTrees = 10;
-	    for (int i = 0; i < noTrees; i++) {
-		    Actor tree = ActorManager.createActor(String.format("tree-%d", i), Actor.class);
-			tree.getTransform().setLocation(new Vec2(
-					Math.clamp(Math.random() * GameProperties.getScreenRes().x, 100, GameProperties.getScreenRes().x - 100),
-					Math.clamp(Math.random() * GameProperties.getScreenRes().y, 100, GameProperties.getScreenRes().y - 100)
-			));
-			tree.setSprite(new Sprite(
-					"src/main/resources/treeus.png",
-					null,
-					new Vec2(5, 5)
-			));
-	    }
-	    {
-		    Actor player = ActorManager.createActor("player-0", Player.class);
-		    player.getTransform().setLocation(new Vec2(
-				    Math.clamp(Math.random() * GameProperties.getScreenRes().x, 100, GameProperties.getScreenRes().x - 100),
-				    Math.clamp(Math.random() * GameProperties.getScreenRes().y, 100, GameProperties.getScreenRes().y - 100)
-		    ));
-		    player.setSprite(new Sprite(
-				    "src/main/resources/tempPlayer.png",
-				    null,
-				    new Vec2(2, 2)
-		    ));
-	    }
-	    */
-
 	    MapGenerator.generateMap(0);
 		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
+		ActorManager.getActor("player-0").setSprite(new AnimatedSprite(
+				"src/main/resources/Ijee.png",
+				new Vec2(32, 32),
+				6,
+				10)
+		);
+		ActorManager.getActor("player-0").getTransform().setScale(new Vec2(20, 20));
 
 		camera.addComponent("input", new CCameraInput(camera));
 	}

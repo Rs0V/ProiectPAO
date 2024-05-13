@@ -2,54 +2,79 @@ package org.framework.sprite;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.utilities.Utilities;
+import org.framework.sprite.components.CAnimSprite;
 import org.framework.vec2.Vec2;
 
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter @Setter
 public class AnimatedSprite extends Sprite {
+	protected List<BufferedImage> frames;
 	protected int frameRate;
-	protected PlaybackType playbackType;
-	protected Vec2 cellSize;
-	protected int noImages;
-	protected int imgIndex = 0;
+	protected int imgIndex;
+
+	protected CAnimSprite animComp;
 
 
 	public AnimatedSprite(String imagePath, Vec2 cellSize, int noImages, Integer frameRate) {
 		super(imagePath, null, null);
-		this.frameRate = frameRate == null ? 15 : frameRate;
-		this.playbackType = PlaybackType.Loop;
-		this.cellSize = cellSize;
-		this.noImages = noImages;
-	}
+		this.frames = new ArrayList<>();
 
-	public void play(PlaybackType playbackType) {
-		this.playbackType = playbackType;
-	}
+		this.frameRate = frameRate == null ? 10 : frameRate;
+		this.animComp = new CAnimSprite();
+		this.animComp.setAnimSprite(this);
 
-	public void stop(AnimStop animStop) {
-		switch (animStop) {
-			case AnimStop.Start:
-				this.playbackType = PlaybackType.Still;
-				this.imgIndex = 0;
-				break;
-			case AnimStop.Current:
-				this.playbackType = PlaybackType.Still;
-				break;
-			case AnimStop.End:
-				this.playbackType = PlaybackType.Still;
-				this.imgIndex = noImages - 1;
-				break;
+		int x = 0, y = 0;
+		while(noImages-- > 0) {
+			frames.add(this.image.getSubimage(x, y, (int) cellSize.x, (int) cellSize.y));
+			x += (int) cellSize.x;
+			if (x >= this.image.getWidth()) {
+				x = 0;
+				y += (int) cellSize.y;
+			}
 		}
-	}
-	public void stopExact(int imgIndex) {
-		this.playbackType = PlaybackType.Still;
-		this.imgIndex = imgIndex;
+
+		this.imgIndex = 0;
+		this.image = this.frames.getFirst();
 	}
 
-	public void reset() {
-		this.imgIndex = 0;
+	public BufferedImage getNextFrame(Integer start, Integer end) {
+		int _start = start == null ? 0 : start;
+		int _end = start == null ? this.frames.size() - 1 : end;
+
+		return this.frames.get(Utilities.jumpClamp(this.imgIndex + 1, _start, _end));
+	}
+	public BufferedImage getPrevFrame(Integer start, Integer end) {
+		int _start = start == null ? 0 : start;
+		int _end = start == null ? this.frames.size() - 1 : end;
+
+		return this.frames.get(Utilities.jumpClamp(this.getImgIndex() - 1, _start, _end));
+	}
+
+	public BufferedImage goToNextFrame(Integer start, Integer end) {
+		int _start = start == null ? 0 : start;
+		int _end = start == null ? this.frames.size() - 1 : end;
+
+		this.imgIndex = Utilities.jumpClamp(this.imgIndex + 1, _start, _end);
+		this.image = this.frames.get(this.imgIndex);
+		return this.image;
+	}
+	public BufferedImage goToPrevFrame(Integer start, Integer end) {
+		int _start = start == null ? 0 : start;
+		int _end = start == null ? this.frames.size() - 1 : end;
+
+		this.imgIndex = Utilities.jumpClamp(this.imgIndex - 1, _start, _end);
+		this.image = this.frames.get(this.imgIndex);
+		return this.image;
+	}
+
+	public boolean isAtStart() {
+		return this.imgIndex == 0;
+	}
+	public boolean isAtEnd() {
+		return this.imgIndex == this.frames.size() - 1;
 	}
 }

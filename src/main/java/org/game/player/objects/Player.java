@@ -26,6 +26,8 @@ public class Player extends Pawn {
 
 	@Override
 	public void update(double deltaTime) {
+		super.update(deltaTime);
+
 		boolean leftMove = InputMapper.checkAction("left-move");
 		boolean rightMove = InputMapper.checkAction("right-move");
 		boolean upMove = InputMapper.checkAction("up-move");
