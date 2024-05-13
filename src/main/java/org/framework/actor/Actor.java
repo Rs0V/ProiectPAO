@@ -19,7 +19,6 @@ import java.util.Map;
 @Getter @Setter
 public class Actor {
 	protected final String id;
-	@CSet
 	protected Transform transform;
 	protected Collider collider;
 	protected Sprite sprite;

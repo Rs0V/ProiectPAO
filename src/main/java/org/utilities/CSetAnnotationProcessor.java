@@ -1,10 +1,8 @@
 package org.utilities;
 
-import javax.annotation.processing.AbstractProcessor;
-import javax.annotation.processing.Processor;
-import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
-import javax.annotation.processing.SupportedSourceVersion;
+import com.google.auto.service.AutoService;
+
+import javax.annotation.processing.*;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
@@ -15,8 +13,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Set;
 
-@SupportedAnnotationTypes("org.utilities.CSet") // Replace with your actual package and annotation
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+@AutoService(Processor.class)
+@SupportedSourceVersion(SourceVersion.RELEASE_18)
+@SupportedAnnotationTypes("org.utilities.CSet")
 public class CSetAnnotationProcessor extends AbstractProcessor {
 	@Override
 	public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
@@ -26,7 +25,6 @@ public class CSetAnnotationProcessor extends AbstractProcessor {
 					if (fieldElement.getKind().isField()) {
 						VariableElement variableElement = (VariableElement) fieldElement;
 						String fieldName = variableElement.getSimpleName().toString();
-						String setterName = "set" + this.capitalize(fieldName);
 
 						String setterMethod = this.generateSetterMethod(
 								classElement.asType().toString(),
@@ -36,7 +34,8 @@ public class CSetAnnotationProcessor extends AbstractProcessor {
 
 						try {
 							JavaFileObject sourceFile = processingEnv.getFiler().createSourceFile(
-									classElement.getQualifiedName() + "Generated");
+									classElement.getQualifiedName() + "Generated"
+							);
 							try (PrintWriter writer = new PrintWriter(sourceFile.openWriter())) {
 								writer.println("package " + classElement.getEnclosingElement() + ";");
 								writer.println("public class " + classElement.getSimpleName() + "Generated {");
