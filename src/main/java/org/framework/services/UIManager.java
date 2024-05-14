@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.framework.Game;
 import org.framework.actor.Camera;
 import org.framework.services.enums.UIPositions;
-import org.framework.ui.UIComponent;
+import org.framework.ui.UIElement;
 import org.framework.vec2.Vec2;
 
 import java.lang.reflect.Constructor;
@@ -18,7 +18,7 @@ public abstract class UIManager {
 	private static Game game;
 	@Getter @Setter
 	private static Camera mainCamera;
-	private static final Map<String, UIComponent> uiComponentsMap = new HashMap<>();
+	private static final Map<String, UIElement> uiElementsMap = new HashMap<>();
 
 
 	private static Vec2 uiPosToVec2(UIPositions position) {
@@ -36,7 +36,7 @@ public abstract class UIManager {
 	}
 
 	/**
-	 * Used with createUIComponent(...) to better position the UIComponents created.
+	 * Used with createUIElement(...) to better position the UIElements created.
 	 */
 	public static Vec2 createUIPosition(UIPositions pos1, UIPositions pos2, Integer percentage) {
 		assert pos1 != null : "The first 'uiPosition' argument mustn't be null";
@@ -45,24 +45,29 @@ public abstract class UIManager {
 		return Vec2.lerp(uiPosToVec2(pos1), uiPosToVec2(pos2), (double) percentage / 100);
 	}
 
-	public static UIComponent createUIComponent(String id, Class<?> uiClassType, Vec2 position) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-		Constructor<?> constr = uiClassType.getDeclaredConstructor(String.class);
-		UIComponent newUIComponent = (UIComponent) constr.newInstance(id);
-		newUIComponent.getTransform().setLocation(position);
-		uiComponentsMap.put(id, newUIComponent);
-		return newUIComponent;
+	public static UIElement createUIElement(String id, Class<?> uiClassType, Vec2 position) {
+		try {
+			Constructor<?> constr = uiClassType.getDeclaredConstructor(String.class);
+			UIElement newUIElement = (UIElement) constr.newInstance(id);
+			newUIElement.getTransform().setLocation(position);
+			uiElementsMap.put(id, newUIElement);
+			return newUIElement;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	public static UIComponent getUIComponent(String id) {
-		return uiComponentsMap.get(id);
+	public static UIElement getUIElement(String id) {
+		return uiElementsMap.get(id);
 	}
 
-	public static Set<Map.Entry<String, UIComponent>> getUIComponentsIter() {
-		return uiComponentsMap.entrySet();
+	public static Set<Map.Entry<String, UIElement>> getUIElementsIter() {
+		return uiElementsMap.entrySet();
 	}
 
-	public static ArrayList<UIComponent> getUIComponentsList() {
-		return uiComponentsMap.entrySet()
+	public static ArrayList<UIElement> getUIElementsList() {
+		return uiElementsMap.entrySet()
 				.stream().map(Map.Entry::getValue)
 				.sorted(Comparator.comparingDouble(a -> -a.getTransform().getDepth()))
 				.collect(Collectors.toCollection(ArrayList::new));

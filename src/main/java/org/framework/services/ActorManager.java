@@ -13,11 +13,17 @@ public abstract class ActorManager {
 	private static final Map<String, Actor> actorsMap = new HashMap<>();
 
 
-	public static Actor createActor(String id, Class<?> actorClassType) throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
-		Constructor<?> constr = actorClassType.getDeclaredConstructor(String.class);
-		Actor newActor = (Actor) constr.newInstance(id);
-		actorsMap.put(id, newActor);
-		return newActor;
+	public static Actor createActor(String id, Class<?> actorClassType) {
+		try {
+			Constructor<?> constr = actorClassType.getDeclaredConstructor(String.class);
+			Actor newActor = (Actor) constr.newInstance(id);
+			actorsMap.put(id, newActor);
+			return newActor;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public static Actor getActor(String id) {

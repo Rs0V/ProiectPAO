@@ -2,10 +2,7 @@ package org.framework.ui;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.framework.actor.Actor;
 import org.framework.actor.Camera;
-import org.framework.collider.Collider;
-import org.framework.collider.ColliderType;
 import org.framework.component.IComponent;
 import org.framework.services.enums.RenderHints;
 import org.framework.sprite.AnimatedSprite;
@@ -19,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Getter @Setter
-public class UIComponent {
+public class UIElement {
 	protected final String id;
 	protected Transform transform;
 	protected Sprite sprite;
@@ -27,7 +24,7 @@ public class UIComponent {
 	protected Map<String, IComponent> components;
 
 
-	public UIComponent(String id) {
+	public UIElement(String id) {
 		this.id = id;
 		this.transform = new Transform(null, null, null, null);
 		this.sprite = new Sprite(null, null, null);
@@ -35,7 +32,7 @@ public class UIComponent {
 		this.components = new HashMap<>();
 	}
 
-	public UIComponent addComponent(String compName, IComponent component) {
+	public UIElement addComponent(String compName, IComponent component) {
 		this.components.put(compName, component);
 		return this;
 	}

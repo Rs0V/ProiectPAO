@@ -18,7 +18,7 @@ public class Sprite {
 	public Sprite(String imagePath, Vec2 origin, Vec2 scale) {
 		if (imagePath == null || imagePath.trim().isEmpty()) {
 			try {
-				this.image = ImageIO.read(new File("src/main/resources/square.png"));
+				this.image = ImageIO.read(new File("src/main/resources/images/square.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

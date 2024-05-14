@@ -27,7 +27,7 @@ public abstract class MapGenerator {
 	};
 
 
-	public static Set<Actor> generateMap(int mapNumber) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+	public static Set<Actor> generateMap(int mapNumber) {
 		Set<Actor> actors = new HashSet<>();
 		String[] map = Arrays.stream(maps[mapNumber].split("\\s"))
 				.filter(x -> x.isBlank() == false)
@@ -45,16 +45,18 @@ public abstract class MapGenerator {
 				switch (ch) {
 					case '@':
 						actor = ActorManager.createActor("player-0", Player.class);
+						assert actor != null : "Couldn't create Actor object";
 						actor.setSprite(new Sprite(
-								"src/main/resources/tempPlayer.png",
+								"src/main/resources/images/tempPlayer.png",
 								null,
 								new Vec2(2, 2)
 						));
 						break;
 					case '#':
 						actor = ActorManager.createActor(String.format("block-%d", blockNumber), Actor.class);
+						assert actor != null : "Couldn't create Actor object";
 						actor.setSprite(new Sprite(
-								"src/main/resources/square.png",
+								"src/main/resources/images/square.png",
 								null,
 								new Vec2(.05, .05)
 						));

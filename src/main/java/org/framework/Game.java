@@ -9,10 +9,11 @@ import org.framework.services.MapGenerator;
 import org.framework.services.UIManager;
 import org.framework.services.enums.RenderHints;
 import org.framework.services.enums.UIPositions;
+import org.framework.sound.CSound;
 import org.framework.sprite.AnimatedSprite;
 import org.framework.sprite.Sprite;
 import org.framework.sprite.enums.PlaybackType;
-import org.framework.ui.UIComponent;
+import org.framework.ui.UIElement;
 import org.framework.vec2.Vec2;
 import org.game.player.components.CCameraInput;
 
@@ -39,7 +40,7 @@ public class Game extends JFrame implements Runnable {
 	double deltaTime;
 
 
-    public Game() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public Game() {
         setSize((int)GameProperties.getScreenRes().x, (int)GameProperties.getScreenRes().y);
         setTitle("Game Window");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,57 +58,65 @@ public class Game extends JFrame implements Runnable {
 	    MapGenerator.generateMap(0);
 
 		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
-	    camera.addComponent("input", new CCameraInput(camera));
+	    assert camera != null : "Couldn't create Camera object";
+	    camera
+			    .addComponent("click-sound", new CSound("src/main/resources/sounds/click.wav", 4))
+			    .addComponent("input", new CCameraInput(camera))
+	    ;
 		UIManager.setGame(this);
 		UIManager.setMainCamera(camera);
 
 		ActorManager.getActor("player-0").setSprite(new AnimatedSprite(
-				"src/main/resources/Ijee.png",
+				"src/main/resources/images/Ijee.png",
 				new Vec2(32, 32),
 				6,
 				5)
 		).getTransform().setScale(new Vec2(20, 20));
 
-	    var leftArrow = UIManager.createUIComponent(
+	    var leftArrow = UIManager.createUIElement(
 				"left-arrow",
-			    UIComponent.class,
+			    UIElement.class,
 			    UIManager.createUIPosition(UIPositions.BottomLeft, UIPositions.Bottom, 55)
 	    );
-		leftArrow.setSprite(new Sprite(
-				"src/main/resources/left_arrow.png",
+	    assert leftArrow != null : "Couldn't create UIElement";
+	    leftArrow.setSprite(new Sprite(
+				"src/main/resources/images/left_arrow.png",
 				null,
 				new Vec2(.3, .3)
 		)).getTransform().setRotation(-90.0).moveGlobal(new Vec2(0.0, -80));
 
-	    var upArrow = UIManager.createUIComponent(
+	    var upArrow = UIManager.createUIElement(
 				"up-arrow",
-			    UIComponent.class,
+			    UIElement.class,
 			    UIManager.createUIPosition(UIPositions.BottomLeft, UIPositions.Bottom, 85)
 	    );
+	    assert upArrow != null : "Couldn't create UIElement";
 	    upArrow.setSprite(new Sprite(
-			    "src/main/resources/up_arrow.png",
+			    "src/main/resources/images/up_arrow.png",
 			    null,
 			    new Vec2(.3, .3)
 	    )).getTransform().setRotation(0.0).moveGlobal(new Vec2(0.0, -80));
 
-	    var downArrow = UIManager.createUIComponent(
+	    var downArrow = UIManager.createUIElement(
 				"down-arrow",
-			    UIComponent.class,
+			    UIElement.class,
 			    UIManager.createUIPosition(UIPositions.Bottom, UIPositions.BottomRight, 15)
 	    );
+	    assert downArrow != null : "Couldn't create UIElement";
 	    downArrow.setSprite(new Sprite(
-			    "src/main/resources/down_arrow.png",
+			    "src/main/resources/images/down_arrow.png",
 			    null,
 			    new Vec2(.3, .3)
 	    )).getTransform().setRotation(-180.0).moveGlobal(new Vec2(0.0, -80));
 
-	    var rightArrow = UIManager.createUIComponent(
+	    var rightArrow = UIManager.createUIElement(
 				"right-arrow",
-			    UIComponent.class,
+			    UIElement.class,
 			    UIManager.createUIPosition(UIPositions.Bottom, UIPositions.BottomRight, 45)
 	    );
+	    assert rightArrow != null : "Couldn't create UIElement";
 	    rightArrow.setSprite(new Sprite(
-			    "src/main/resources/right_arrow.png",
+			    "src/main/resources/images/right_arrow.png",
 			    null,
 			    new Vec2(.3, .3)
 	    )).getTransform().setRotation(90.0).moveGlobal(new Vec2(0.0, -80));
@@ -159,8 +168,8 @@ public class Game extends JFrame implements Runnable {
 		for (var actor : ActorManager.getActorsIter()) {
 			actor.getValue().update(this.deltaTime);
 		}
-		for (var uiComponent : UIManager.getUIComponentsIter()) {
-			uiComponent.getValue().update(this.deltaTime);
+		for (var uiElement : UIManager.getUIElementsIter()) {
+			uiElement.getValue().update(this.deltaTime);
 		}
     }
 
@@ -181,9 +190,9 @@ public class Game extends JFrame implements Runnable {
 	    for (Actor actor : actorsList) {
 			actor.render(g2d, RenderHints.Pixelated, (Camera) ActorManager.getActor("camera-0"), deltaTime);
         }
-	    ArrayList<UIComponent> uiComponentsList = UIManager.getUIComponentsList();
-	    for (UIComponent uiComponent : uiComponentsList) {
-		    uiComponent.render(g2d, RenderHints.Smooth, (Camera) ActorManager.getActor("camera-0"), deltaTime);
+	    ArrayList<UIElement> uiElementsList = UIManager.getUIElementsList();
+	    for (UIElement uiElement : uiElementsList) {
+		    uiElement.render(g2d, RenderHints.Smooth, (Camera) ActorManager.getActor("camera-0"), deltaTime);
 	    }
 
 
@@ -193,7 +202,7 @@ public class Game extends JFrame implements Runnable {
 
 
 
-    public static void main(String[] args) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) {
         Game game = new Game();
         // Initialize JFrame settings...
         game.setVisible(true);
