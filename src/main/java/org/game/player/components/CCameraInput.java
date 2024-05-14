@@ -5,6 +5,7 @@ import org.framework.actor.Actor;
 import org.framework.actor.Camera;
 import org.framework.component.IComponent;
 import org.framework.services.InputMapper;
+import org.framework.services.enums.RenderHints;
 import org.framework.vec2.Vec2;
 
 import java.awt.*;
@@ -46,7 +47,7 @@ public class CCameraInput implements IComponent {
 	}
 
 	@Override
-	public void render(Graphics2D g2d, Camera camera, double deltaTime) {
+	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera, double deltaTime) {
 
 	}
 }

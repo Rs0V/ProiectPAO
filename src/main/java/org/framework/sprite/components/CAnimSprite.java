@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.framework.actor.Camera;
 import org.framework.component.IComponent;
+import org.framework.services.enums.RenderHints;
 import org.framework.sprite.AnimatedSprite;
 import org.framework.sprite.enums.AnimStop;
 import org.framework.sprite.enums.PlaybackType;
@@ -64,16 +65,17 @@ public class CAnimSprite implements IComponent {
 	}
 
 	@Override
-	public void render(Graphics2D g2d, Camera camera, double deltaTime) {
+	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera, double deltaTime) {
 
 	}
 
 	public void play(PlaybackType playbackType, Integer start, Integer end, Integer direction, Integer times) {
 		this.playbackType = playbackType;
+		assert this.playbackType != PlaybackType.Still : "The Playback type shouldn't be 'Still' when calling the 'play()' function";
 
 		this.start = start == null ? 0 : start;
 		this.end = end == null ? this.animSprite.getFrames().size() - 1 : end;
-		assert this.start < this.end;
+		assert this.start < this.end : "The start frame of the animation needs to be smaller than the end frame";
 
 		this.direction = direction == null ? 1 : direction;
 		this.times = times == null ? -1 : times;

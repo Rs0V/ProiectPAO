@@ -13,6 +13,12 @@ public class Vec2 {
         this.y = y;
     }
 
+    public static Vec2 lerp(Vec2 v1, Vec2 v2, double alpha) {
+        double x = alpha * v2.x + (1 - alpha) * v1.x;
+        double y = alpha * v2.y + (1 - alpha) * v1.y;
+        return new Vec2(x, y);
+    }
+
     public Vec2 add(Vec2 other) {
         return new Vec2(this.x + other.x, this.y + other.y);
     }

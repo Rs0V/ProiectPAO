@@ -1,31 +1,18 @@
 package org.framework;
 
-/*
- * Sistem de joc video
- * -------------------
- *
- * Obiecte: Vec2, Transform
- *          Shape, Rectangle, Circle, Collider,
- *          Actor, Pawn
- *          PickUp, Button, Switch, Spawner
- *          Level, Menu
- *          UI, UIElement, UIStat, UIButton
- *
- * Actiuni: Move, Rotate, Scale,
- *          Raycast, Overlap, Collide,
- *          Follow, Jump, Fall,
- *          ChangeStat, ChangeState, Spawn,
- *          Play, Quit, etc.
- * */
-
-
 import org.framework.actor.Actor;
 import org.framework.actor.Camera;
 import org.framework.services.ActorManager;
 import org.framework.services.GameProperties;
 import org.framework.services.InputMapper;
 import org.framework.services.MapGenerator;
+import org.framework.services.UIManager;
+import org.framework.services.enums.RenderHints;
+import org.framework.services.enums.UIPositions;
 import org.framework.sprite.AnimatedSprite;
+import org.framework.sprite.Sprite;
+import org.framework.sprite.enums.PlaybackType;
+import org.framework.ui.UIComponent;
 import org.framework.vec2.Vec2;
 import org.game.player.components.CCameraInput;
 
@@ -53,13 +40,12 @@ public class Game extends JFrame implements Runnable {
 
 
     public Game() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
-        // Initialize JFrame settings...
-        setSize((int)GameProperties.getScreenRes().x, (int)GameProperties.getScreenRes().y); // Set the size of the window
-        setTitle("Game Window"); // Set the title of the window
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the default close operation
+        setSize((int)GameProperties.getScreenRes().x, (int)GameProperties.getScreenRes().y);
+        setTitle("Game Window");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Center the window
-        setResizable(false); // Make the window not resizable
-        setVisible(true); // Make the window visible
+        setResizable(false);
+        setVisible(true);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -67,17 +53,64 @@ public class Game extends JFrame implements Runnable {
             }
         });
 
+
 	    MapGenerator.generateMap(0);
+
 		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
+	    camera.addComponent("input", new CCameraInput(camera));
+		UIManager.setGame(this);
+		UIManager.setMainCamera(camera);
+
 		ActorManager.getActor("player-0").setSprite(new AnimatedSprite(
 				"src/main/resources/Ijee.png",
 				new Vec2(32, 32),
 				6,
-				10)
-		);
-		ActorManager.getActor("player-0").getTransform().setScale(new Vec2(20, 20));
+				5)
+		).getTransform().setScale(new Vec2(20, 20));
 
-		camera.addComponent("input", new CCameraInput(camera));
+	    var leftArrow = UIManager.createUIComponent(
+				"left-arrow",
+			    UIComponent.class,
+			    UIManager.createUIPosition(UIPositions.BottomLeft, UIPositions.Bottom, 55)
+	    );
+		leftArrow.setSprite(new Sprite(
+				"src/main/resources/left_arrow.png",
+				null,
+				new Vec2(.3, .3)
+		)).getTransform().setRotation(-90.0).moveGlobal(new Vec2(0.0, -80));
+
+	    var upArrow = UIManager.createUIComponent(
+				"up-arrow",
+			    UIComponent.class,
+			    UIManager.createUIPosition(UIPositions.BottomLeft, UIPositions.Bottom, 85)
+	    );
+	    upArrow.setSprite(new Sprite(
+			    "src/main/resources/up_arrow.png",
+			    null,
+			    new Vec2(.3, .3)
+	    )).getTransform().setRotation(0.0).moveGlobal(new Vec2(0.0, -80));
+
+	    var downArrow = UIManager.createUIComponent(
+				"down-arrow",
+			    UIComponent.class,
+			    UIManager.createUIPosition(UIPositions.Bottom, UIPositions.BottomRight, 15)
+	    );
+	    downArrow.setSprite(new Sprite(
+			    "src/main/resources/down_arrow.png",
+			    null,
+			    new Vec2(.3, .3)
+	    )).getTransform().setRotation(-180.0).moveGlobal(new Vec2(0.0, -80));
+
+	    var rightArrow = UIManager.createUIComponent(
+				"right-arrow",
+			    UIComponent.class,
+			    UIManager.createUIPosition(UIPositions.Bottom, UIPositions.BottomRight, 45)
+	    );
+	    rightArrow.setSprite(new Sprite(
+			    "src/main/resources/right_arrow.png",
+			    null,
+			    new Vec2(.3, .3)
+	    )).getTransform().setRotation(90.0).moveGlobal(new Vec2(0.0, -80));
 	}
 
     //region start(), stop(), run(), paint() -> (clear screen with BLACK)
@@ -91,6 +124,7 @@ public class Game extends JFrame implements Runnable {
     }
 
     public void run() {
+		_start();
         while (running) {
             update();
             render();
@@ -108,6 +142,12 @@ public class Game extends JFrame implements Runnable {
     }
     //endregion
 
+	public void _start() {
+		((AnimatedSprite) ActorManager.getActor("player-0").getSprite())
+				.getAnimComp()
+				.play(PlaybackType.Play, null, null, null, null);
+	}
+
 	private final double timeMeas = 1 / 1_000_000_000.0;
     public void update() {
         this.now = System.nanoTime();
@@ -118,16 +158,12 @@ public class Game extends JFrame implements Runnable {
 
 		for (var actor : ActorManager.getActorsIter()) {
 			actor.getValue().update(this.deltaTime);
-//			if (actor.getKey().equals("tree-0")) {
-//				actor.getValue().getTransform().setLocation(new Vec2(
-//						actor.getValue().getTransform().getLocation().x,
-//						Math.sin(this.time) * 100
-//				));
-//			}
+		}
+		for (var uiComponent : UIManager.getUIComponentsIter()) {
+			uiComponent.getValue().update(this.deltaTime);
 		}
     }
 
-//	private boolean once = true;
     public void render() {
         BufferStrategy bs = getBufferStrategy();
         if (bs == null) {
@@ -136,28 +172,19 @@ public class Game extends JFrame implements Runnable {
         }
         Graphics g = bs.getDrawGraphics();
 
-        // Draw the game...
         paint(g);
 
         Graphics2D g2d = (Graphics2D) g;
 
 
 	    ArrayList<Actor> actorsList = ActorManager.getActorsList();
-//	    if (once) {
-//		    for (Actor actor : actorsList) {
-//			    System.out.print(actor.getId());
-//			    System.out.print(": ");
-//			    System.out.print(actor.getTransform().getLocation().y);
-//			    System.out.print("\n");
-//		    }
-//			once = false;
-//		    System.out.print("\n\n------------------------------\n\n");
-//	    }
-//	    System.out.print(ActorManager.getActor("tree-0").getTransform().getLocation().y);
-//	    System.out.print("\n");
 	    for (Actor actor : actorsList) {
-			actor.render(g2d, (Camera) ActorManager.getActor("camera-0"), deltaTime);
+			actor.render(g2d, RenderHints.Pixelated, (Camera) ActorManager.getActor("camera-0"), deltaTime);
         }
+	    ArrayList<UIComponent> uiComponentsList = UIManager.getUIComponentsList();
+	    for (UIComponent uiComponent : uiComponentsList) {
+		    uiComponent.render(g2d, RenderHints.Smooth, (Camera) ActorManager.getActor("camera-0"), deltaTime);
+	    }
 
 
         g2d.dispose();

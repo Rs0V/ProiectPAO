@@ -2,6 +2,7 @@
   <configuration default="false" name="Run Game" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="org.framework.Game" />
     <module name="ProiectPAO" />
+    <option name="VM_PARAMETERS" value="-ea" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
