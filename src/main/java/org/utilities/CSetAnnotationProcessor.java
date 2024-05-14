@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.Set;
 
 @AutoService(Processor.class)
-@SupportedSourceVersion(SourceVersion.RELEASE_18)
+@SupportedSourceVersion(SourceVersion.RELEASE_21)
 @SupportedAnnotationTypes("org.utilities.CSet")
 public class CSetAnnotationProcessor extends AbstractProcessor {
 	@Override
