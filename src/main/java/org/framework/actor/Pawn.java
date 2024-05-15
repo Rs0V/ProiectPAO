@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.framework.Game;
 import org.framework.services.InputMapper;
+import org.framework.services.TimeManager;
 import org.framework.vec2.Vec2;
 
 import java.awt.*;
@@ -17,8 +18,8 @@ public class Pawn extends Actor {
 	}
 
 	@Override
-	public void update(double deltaTime) {
-		super.update(deltaTime);
+	public void update() {
+		super.update();
 
 		boolean leftMove = InputMapper.checkAction("left-move");
 		boolean rightMove = InputMapper.checkAction("right-move");
@@ -36,13 +37,13 @@ public class Pawn extends Actor {
 		moveInput = moveInput.normalized();
 
 		if (leftMove || rightMove || upMove || downMove) {
-			this.getTransform().moveLocal(moveInput.mul(deltaTime).mul(200));
+			this.getTransform().moveLocal(moveInput.mul(TimeManager.getDeltaTime()).mul(200));
 		}
 		if (leftLean) {
-			this.getTransform().rotate(deltaTime * 200 * -1);
+			this.getTransform().rotate(-200 * TimeManager.getDeltaTime());
 		}
 		if (rightLean) {
-			this.getTransform().rotate(deltaTime * 200);
+			this.getTransform().rotate(200 * TimeManager.getDeltaTime());
 		}
 	}
 }

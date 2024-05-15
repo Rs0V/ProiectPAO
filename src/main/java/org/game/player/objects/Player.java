@@ -6,6 +6,7 @@ import org.framework.Game;
 import org.framework.actor.Pawn;
 import org.framework.services.GameProperties;
 import org.framework.services.InputMapper;
+import org.framework.services.TimeManager;
 import org.framework.vec2.Vec2;
 
 import java.awt.*;
@@ -25,8 +26,8 @@ public class Player extends Pawn {
 	}
 
 	@Override
-	public void update(double deltaTime) {
-		super.update(deltaTime);
+	public void update() {
+		super.update();
 
 		boolean leftMove = InputMapper.checkAction("left-move");
 		boolean rightMove = InputMapper.checkAction("right-move");
@@ -39,12 +40,12 @@ public class Player extends Pawn {
 		moveInput = moveInput.normalized();
 
 		if (leftMove || rightMove) {
-			this.getTransform().moveLocal(moveInput.mul(this.speed).mul(deltaTime));
+			this.getTransform().moveLocal(moveInput.mul(this.speed).mul(TimeManager.getDeltaTime()));
 		}
 		if (upMove && this.gravity < 1 /*jump threshold*/) {
 			this.gravity = this.jumpForce;
 		}
-		this.getTransform().moveLocal(new Vec2(0, -this.gravity * deltaTime));
-		this.gravity -= this.mass * GameProperties.getG() * deltaTime;
+		this.getTransform().moveLocal(new Vec2(0, -this.gravity * TimeManager.getDeltaTime()));
+		this.gravity -= this.mass * GameProperties.getG() * TimeManager.getDeltaTime();
 	}
 }

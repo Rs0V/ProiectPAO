@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.framework.actor.Camera;
 import org.framework.component.IComponent;
+import org.framework.services.TimeManager;
 import org.framework.services.enums.RenderHints;
 import org.framework.sprite.AnimatedSprite;
 import org.framework.sprite.enums.AnimStop;
@@ -29,7 +30,7 @@ public class CAnimSprite implements IComponent {
 
 
 	@Override
-	public void update(double deltaTime) {
+	public void update() {
 		if (this.playbackType == PlaybackType.Still) {
 			timer = -1;
 			return;
@@ -61,11 +62,11 @@ public class CAnimSprite implements IComponent {
 			resetVarsToDefault();
 		}
 
-		timer -= deltaTime;
+		timer -= TimeManager.getDeltaTime();
 	}
 
 	@Override
-	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera, double deltaTime) {
+	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera) {
 
 	}
 

@@ -37,19 +37,19 @@ public class UIElement {
 		return this;
 	}
 
-	public void update(double deltaTime) {
-		this.components.forEach((k, c) -> c.update(deltaTime));
+	public void update() {
+		this.components.forEach((k, c) -> c.update());
 		if (this.sprite instanceof AnimatedSprite animatedSprite) {
-			animatedSprite.getAnimComp().update(deltaTime);
+			animatedSprite.getAnimComp().update();
 		}
 	}
 
-	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera, double deltaTime) {
+	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera) {
 		if (this.sprite == null)
 			return;
-		this.components.forEach((k, c) -> c.render(g2d, renderHints, camera, deltaTime));
+		this.components.forEach((k, c) -> c.render(g2d, renderHints, camera));
 		if (this.sprite instanceof AnimatedSprite animatedSprite) {
-			animatedSprite.getAnimComp().update(deltaTime);
+			animatedSprite.getAnimComp().render(g2d, renderHints, camera);
 		}
 
 		var rh = switch (renderHints) {

@@ -6,6 +6,7 @@ import org.framework.actor.Camera;
 import org.framework.component.IComponent;
 import org.framework.services.ChartEditor;
 import org.framework.services.InputMapper;
+import org.framework.services.TimeManager;
 import org.framework.services.enums.Arrows;
 import org.framework.services.enums.RenderHints;
 import org.framework.sound.CSound;
@@ -15,7 +16,6 @@ import java.awt.*;
 
 public class CCameraInput implements IComponent {
 	protected Camera self;
-	protected double time = 0;
 
 
 	public CCameraInput(Camera camera) {
@@ -27,9 +27,7 @@ public class CCameraInput implements IComponent {
 	protected boolean upHeld = false;
 	protected boolean downHeld = false;
 	@Override
-	public void update(double deltaTime) {
-		time += deltaTime;
-
+	public void update() {
 		boolean leftMove = InputMapper.checkAction("left-arrow");
 		boolean rightMove = InputMapper.checkAction("right-arrow");
 		boolean upMove = InputMapper.checkAction("up-arrow");
@@ -49,13 +47,13 @@ public class CCameraInput implements IComponent {
 		moveInput = moveInput.normalized();
 
 		if (leftMove || rightMove || upMove || downMove) {
-//			self.getTransform().moveLocal(moveInput.mul(deltaTime).mul(200));
+//			self.getTransform().moveLocal(moveInput.mul(TimeManager.getDeltaTime()).mul(200));
 		}
 
 		if (leftMove) {
 			if (this.leftHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
-				ChartEditor.checkNoteHit(Arrows.Left, this.time);
+				ChartEditor.checkNoteHit(Arrows.Left);
 				this.leftHeld = true;
 			}
 		} else {
@@ -64,7 +62,7 @@ public class CCameraInput implements IComponent {
 		if (rightMove) {
 			if (this.rightHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
-				ChartEditor.checkNoteHit(Arrows.Right, this.time);
+				ChartEditor.checkNoteHit(Arrows.Right);
 				this.rightHeld = true;
 			}
 		} else {
@@ -73,7 +71,7 @@ public class CCameraInput implements IComponent {
 		if (upMove) {
 			if (this.upHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
-				ChartEditor.checkNoteHit(Arrows.Up, this.time);
+				ChartEditor.checkNoteHit(Arrows.Up);
 				this.upHeld = true;
 			}
 		} else {
@@ -82,7 +80,7 @@ public class CCameraInput implements IComponent {
 		if (downMove) {
 			if (this.downHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
-				ChartEditor.checkNoteHit(Arrows.Down, this.time);
+				ChartEditor.checkNoteHit(Arrows.Down);
 				this.downHeld = true;
 			}
 		} else {
@@ -90,15 +88,15 @@ public class CCameraInput implements IComponent {
 		}
 
 		if (leftLean || rightLean) {
-			self.getTransform().rotate(deltaTime * 200 * ((rightLean?1:0) - (leftLean?1:0)));
+			self.getTransform().rotate(200 * ((rightLean?1:0) - (leftLean?1:0)) * TimeManager.getDeltaTime());
 		}
 		if (zoomIn || zoomOut) {
-			self.setZoom(self.getZoom() + ((zoomIn?1:0) - (zoomOut?1:0)) * deltaTime);
+			self.setZoom(self.getZoom() + ((zoomIn?1:0) - (zoomOut?1:0)) * TimeManager.getDeltaTime());
 		}
 	}
 
 	@Override
-	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera, double deltaTime) {
+	public void render(Graphics2D g2d, RenderHints renderHints, Camera camera) {
 
 	}
 }

@@ -56,9 +56,9 @@ public abstract class UIManager {
 			uiElementsMap.put(id, newUIElement);
 			return newUIElement;
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			throw new RuntimeException("Class '" + uiClassType.getName() + "' doesn't inherit from UIElement"); // workaround for rust-like panic!()
 		}
-		return null;
 	}
 
 	public static UIElement getUIElement(String id) {

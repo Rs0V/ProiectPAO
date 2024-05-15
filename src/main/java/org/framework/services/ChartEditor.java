@@ -34,29 +34,15 @@ public abstract class ChartEditor {
 	 */
 	private static final List<Triplet<String, Double, Arrows>> notesList = new ArrayList<>();
 
-	@Getter @Setter
-	private static double startTime = 0;
-
 	@Getter
 	private static IComponent CSpawnNotes = new IComponent() {
-		private double time = 0;
-
-
 		@Override
-		public void update(double deltaTime) {
+		public void update() {
 			if (notesList.isEmpty())
 				return;
 
 			var noteTriplet = notesList.getFirst();
-			if (time - startTime > noteTriplet.getValue1()) {
-				// Value Switch will permanently borrow the Object Reference.
-				// Results into dangling reference that will eventually get garbage collected.
-//				Vec2 noteSpawnPos = switch (noteTriplet.getValue2()) {
-//					case Left -> UIManager.getUIElement("left-arrow").getTransform().getLocation();
-//					case Right -> UIManager.getUIElement("right-arrow").getTransform().getLocation();
-//					case Up -> UIManager.getUIElement("up-arrow").getTransform().getLocation();
-//					case Down -> UIManager.getUIElement("down-arrow").getTransform().getLocation();
-//				};
+			if (TimeManager.getTime() > noteTriplet.getValue1()) {
 				Vec2 noteSpawnPos = new Vec2();
 				switch (noteTriplet.getValue2()) {
 					case Left -> noteSpawnPos.x = UIManager.getUIElement("left-arrow").getTransform().getLocation().x;
@@ -68,17 +54,16 @@ public abstract class ChartEditor {
 
 				((Note) ActorManager.createActor(noteTriplet.getValue0(), Note.class))
 						.setArrow(noteTriplet.getValue2())
-						.setTime(startTime + noteTriplet.getValue1() + (notesDespawnY - notesSpawnY) / notesSpeed)
+						.setHitTime(noteTriplet.getValue1() + (notesDespawnY - notesSpawnY) / notesSpeed)
 						.setSpeed(notesSpeed)
 						.setDespawnY(notesDespawnY)
 						.getTransform().setLocation(noteSpawnPos);
 				notesList.removeFirst();
 			}
-			time += deltaTime;
 		}
 
 		@Override
-		public void render(Graphics2D g2d, RenderHints renderHints, Camera camera, double deltaTime) {
+		public void render(Graphics2D g2d, RenderHints renderHints, Camera camera) {
 
 		}
 	};
@@ -97,7 +82,7 @@ public abstract class ChartEditor {
 
 		assert map.length % 2 == 0 : "Chart map isn't valid";
 		for (int i = 0; i < map.length; i += 2) {
-			Double time = Double.parseDouble(map[i]);
+			Double hitTime = Double.parseDouble(map[i]);
 			Arrows arrow = switch (map[i+1]) {
 				case "left" -> Arrows.Left;
 				case "right" -> Arrows.Right;
@@ -108,7 +93,7 @@ public abstract class ChartEditor {
 					yield Arrows.Left;
 				}
 			};
-			notesList.add(Triplet.with(String.format("note-%d", i / 2), time - (notesDespawnY - notesSpawnY) / notesSpeed, arrow));
+			notesList.add(Triplet.with(String.format("note-%d", i / 2), hitTime - (notesDespawnY - notesSpawnY) / notesSpeed, arrow));
 		}
 
 		if (noteHitTimeFrame == null) {
@@ -117,7 +102,7 @@ public abstract class ChartEditor {
 		}
 	}
 
-	public static void checkNoteHit(Arrows pressedArrow, double time) {
+	public static void checkNoteHit(Arrows pressedArrow) {
 		Note note = null;
 		try {
 			note = (Note) ActorManager.getActorsList().stream()
@@ -129,13 +114,17 @@ public abstract class ChartEditor {
 			return;
 		}
 
-		if (note.getArrow() == pressedArrow && note.getTime() - noteHitTimeFrame < time && time < note.getTime() + noteHitTimeFrame) {
+		if (
+				note.getArrow() == pressedArrow
+				&& note.getHitTime() - noteHitTimeFrame < TimeManager.getTime()
+				&& TimeManager.getTime() < note.getHitTime() + noteHitTimeFrame
+		) {
 			System.out.printf("%nHit note with ID: '" + note.getId() + "'%n%n");
 			ActorManager.removeActor(note.getId());
 		}
 		else {
 			System.out.printf("%nNeed: " + note.getArrow().toString() + "    Pressed: " + pressedArrow.toString() + "%n");
-			System.out.printf("%f < %f < %f%n%n", note.getTime() - noteHitTimeFrame, time, note.getTime() + noteHitTimeFrame);
+			System.out.printf("%f < %f < %f%n%n", note.getHitTime() - noteHitTimeFrame, TimeManager.getTime(), note.getHitTime() + noteHitTimeFrame);
 		}
 	}
 }
