@@ -2,10 +2,7 @@ package org.framework;
 
 import org.framework.actor.Actor;
 import org.framework.actor.Camera;
-import org.framework.services.ActorManager;
-import org.framework.services.GameProperties;
-import org.framework.services.InputMapper;
-import org.framework.services.MapGenerator;
+import org.framework.services.*;
 import org.framework.services.UIManager;
 import org.framework.services.enums.RenderHints;
 import org.framework.services.enums.UIPositions;
@@ -36,6 +33,7 @@ public class Game extends JFrame implements Runnable {
 
     private long last = System.nanoTime();
 	private long now;
+	private final double beginTime = System.nanoTime();
 	private double time;
 	double deltaTime;
 
@@ -55,7 +53,7 @@ public class Game extends JFrame implements Runnable {
         });
 
 
-	    MapGenerator.generateMap(0);
+//	    MapGenerator.generateMap(0);
 
 		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
 	    assert camera != null : "Couldn't create Camera object";
@@ -66,12 +64,14 @@ public class Game extends JFrame implements Runnable {
 		UIManager.setGame(this);
 		UIManager.setMainCamera(camera);
 
-		ActorManager.getActor("player-0").setSprite(new AnimatedSprite(
-				"src/main/resources/images/Ijee.png",
-				new Vec2(32, 32),
-				6,
-				5)
-		).getTransform().setScale(new Vec2(20, 20));
+
+//		ActorManager.getActor("player-0").setSprite(new AnimatedSprite(
+//				"src/main/resources/images/Ijee.png",
+//				new Vec2(32, 32),
+//				6,
+//				5)
+//		).getTransform().setScale(new Vec2(20, 20));
+
 
 	    var leftArrow = UIManager.createUIElement(
 				"left-arrow",
@@ -85,6 +85,7 @@ public class Game extends JFrame implements Runnable {
 				new Vec2(.3, .3)
 		)).getTransform().setRotation(-90.0).moveGlobal(new Vec2(0.0, -80));
 
+
 	    var upArrow = UIManager.createUIElement(
 				"up-arrow",
 			    UIElement.class,
@@ -96,6 +97,7 @@ public class Game extends JFrame implements Runnable {
 			    null,
 			    new Vec2(.3, .3)
 	    )).getTransform().setRotation(0.0).moveGlobal(new Vec2(0.0, -80));
+
 
 	    var downArrow = UIManager.createUIElement(
 				"down-arrow",
@@ -109,6 +111,7 @@ public class Game extends JFrame implements Runnable {
 			    new Vec2(.3, .3)
 	    )).getTransform().setRotation(-180.0).moveGlobal(new Vec2(0.0, -80));
 
+
 	    var rightArrow = UIManager.createUIElement(
 				"right-arrow",
 			    UIElement.class,
@@ -120,6 +123,26 @@ public class Game extends JFrame implements Runnable {
 			    null,
 			    new Vec2(.3, .3)
 	    )).getTransform().setRotation(90.0).moveGlobal(new Vec2(0.0, -80));
+
+
+		ChartEditor.setNotesDespawnY(camera.getScreenSize().y + 100);
+	    ChartEditor.createChart(
+       """
+        5.0 -> left
+        5.5 -> right
+        5.8 -> up
+        6.0 -> up
+        6.3 -> left
+        6.6 -> right
+        7.0 -> down
+        7.5 -> right
+        7.8 -> down
+        8.0 -> down
+        8.3 -> left
+        8.6 -> right
+        8.8 -> left
+        9.0 -> up
+       """);
 	}
 
     //region start(), stop(), run(), paint() -> (clear screen with BLACK)
@@ -152,25 +175,33 @@ public class Game extends JFrame implements Runnable {
     //endregion
 
 	public void _start() {
-		((AnimatedSprite) ActorManager.getActor("player-0").getSprite())
-				.getAnimComp()
-				.play(PlaybackType.Play, null, null, null, null);
+		this.time = (System.nanoTime() - beginTime) * this.timeMeas;
+
+//		((AnimatedSprite) ActorManager.getActor("player-0").getSprite())
+//				.getAnimComp()
+//				.play(PlaybackType.Play, null, null, null, null);
+
+		ChartEditor.setStartTime(this.time);
 	}
 
 	private final double timeMeas = 1 / 1_000_000_000.0;
     public void update() {
         this.now = System.nanoTime();
-		this.time = this.now * this.timeMeas; // Current time in seconds
+		this.time = (this.now - beginTime) * this.timeMeas; // Current time in seconds
         this.deltaTime = ((double) (this.now - this.last)) * this.timeMeas * GameProperties.getTimeFactor(); // Delta time in seconds
         this.last = this.now;
 
+		ChartEditor.getCSpawnNotes().update(deltaTime);
 
 		for (var actor : ActorManager.getActorsIter()) {
 			actor.getValue().update(this.deltaTime);
 		}
+		ActorManager.safe();
+
 		for (var uiElement : UIManager.getUIElementsIter()) {
 			uiElement.getValue().update(this.deltaTime);
 		}
+		UIManager.safe();
     }
 
     public void render() {
@@ -186,14 +217,19 @@ public class Game extends JFrame implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
 
 
+//	    ChartEditor.getCSpawnNotes().render(g2d, RenderHints.Smooth, (Camera) ActorManager.getActor("camera-0"), deltaTime);
+
 	    ArrayList<Actor> actorsList = ActorManager.getActorsList();
 	    for (Actor actor : actorsList) {
 			actor.render(g2d, RenderHints.Pixelated, (Camera) ActorManager.getActor("camera-0"), deltaTime);
         }
+		ActorManager.safe();
+
 	    ArrayList<UIElement> uiElementsList = UIManager.getUIElementsList();
 	    for (UIElement uiElement : uiElementsList) {
 		    uiElement.render(g2d, RenderHints.Smooth, (Camera) ActorManager.getActor("camera-0"), deltaTime);
 	    }
+		UIManager.safe();
 
 
         g2d.dispose();

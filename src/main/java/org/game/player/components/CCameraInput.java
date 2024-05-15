@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.framework.actor.Actor;
 import org.framework.actor.Camera;
 import org.framework.component.IComponent;
+import org.framework.services.ChartEditor;
 import org.framework.services.InputMapper;
+import org.framework.services.enums.Arrows;
 import org.framework.services.enums.RenderHints;
 import org.framework.sound.CSound;
 import org.framework.vec2.Vec2;
@@ -13,6 +15,7 @@ import java.awt.*;
 
 public class CCameraInput implements IComponent {
 	protected Camera self;
+	protected double time = 0;
 
 
 	public CCameraInput(Camera camera) {
@@ -25,6 +28,8 @@ public class CCameraInput implements IComponent {
 	protected boolean downHeld = false;
 	@Override
 	public void update(double deltaTime) {
+		time += deltaTime;
+
 		boolean leftMove = InputMapper.checkAction("left-arrow");
 		boolean rightMove = InputMapper.checkAction("right-arrow");
 		boolean upMove = InputMapper.checkAction("up-arrow");
@@ -44,12 +49,13 @@ public class CCameraInput implements IComponent {
 		moveInput = moveInput.normalized();
 
 		if (leftMove || rightMove || upMove || downMove) {
-			self.getTransform().moveLocal(moveInput.mul(deltaTime).mul(200));
+//			self.getTransform().moveLocal(moveInput.mul(deltaTime).mul(200));
 		}
 
 		if (leftMove) {
 			if (this.leftHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
+				ChartEditor.checkNoteHit(Arrows.Left, this.time);
 				this.leftHeld = true;
 			}
 		} else {
@@ -58,6 +64,7 @@ public class CCameraInput implements IComponent {
 		if (rightMove) {
 			if (this.rightHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
+				ChartEditor.checkNoteHit(Arrows.Right, this.time);
 				this.rightHeld = true;
 			}
 		} else {
@@ -66,6 +73,7 @@ public class CCameraInput implements IComponent {
 		if (upMove) {
 			if (this.upHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
+				ChartEditor.checkNoteHit(Arrows.Up, this.time);
 				this.upHeld = true;
 			}
 		} else {
@@ -74,6 +82,7 @@ public class CCameraInput implements IComponent {
 		if (downMove) {
 			if (this.downHeld == false) {
 				((CSound) self.getComponents().get("click-sound")).play();
+				ChartEditor.checkNoteHit(Arrows.Down, this.time);
 				this.downHeld = true;
 			}
 		} else {

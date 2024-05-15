@@ -3,6 +3,7 @@ package org.framework.services;
 import lombok.Getter;
 import lombok.Setter;
 import org.framework.Game;
+import org.framework.actor.Actor;
 import org.framework.actor.Camera;
 import org.framework.services.enums.UIPositions;
 import org.framework.ui.UIElement;
@@ -18,6 +19,8 @@ public abstract class UIManager {
 	private static Game game;
 	@Getter @Setter
 	private static Camera mainCamera;
+	private static boolean safeToRemove = true;
+	private static final List<String> removeQueue = new ArrayList<>();
 	private static final Map<String, UIElement> uiElementsMap = new HashMap<>();
 
 
@@ -61,15 +64,35 @@ public abstract class UIManager {
 	public static UIElement getUIElement(String id) {
 		return uiElementsMap.get(id);
 	}
+	public static void removeUIElement(String id) {
+		if (safeToRemove == false) {
+			if (id != null)
+				removeQueue.add(id);
+		} else {
+			if (id != null)
+				removeQueue.add(id);
+			while (removeQueue.isEmpty() == false) {
+				uiElementsMap.remove(removeQueue.getFirst());
+				removeQueue.removeFirst();
+			}
+		}
+	}
 
 	public static Set<Map.Entry<String, UIElement>> getUIElementsIter() {
+		safeToRemove = false;
 		return uiElementsMap.entrySet();
 	}
 
 	public static ArrayList<UIElement> getUIElementsList() {
+		safeToRemove = false;
 		return uiElementsMap.entrySet()
 				.stream().map(Map.Entry::getValue)
 				.sorted(Comparator.comparingDouble(a -> -a.getTransform().getDepth()))
 				.collect(Collectors.toCollection(ArrayList::new));
+	}
+
+	public static void safe() {
+		safeToRemove = true;
+		removeUIElement(null);
 	}
 }
