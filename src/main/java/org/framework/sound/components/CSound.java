@@ -1,20 +1,16 @@
-package org.framework.sound;
+package org.framework.sound.components;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.framework.actor.Camera;
 import org.framework.component.IComponent;
 import org.framework.services.enums.RenderHints;
 
-import javax.management.ConstructorParameters;
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import java.awt.*;
 import java.io.File;
-import java.net.URL;
 
 public class CSound implements IComponent {
 	@Getter

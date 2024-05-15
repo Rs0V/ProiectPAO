@@ -6,10 +6,8 @@ import org.framework.services.*;
 import org.framework.services.UIManager;
 import org.framework.services.enums.RenderHints;
 import org.framework.services.enums.UIPositions;
-import org.framework.sound.CSound;
-import org.framework.sprite.AnimatedSprite;
+import org.framework.sound.components.CSound;
 import org.framework.sprite.Sprite;
-import org.framework.sprite.enums.PlaybackType;
 import org.framework.ui.UIElement;
 import org.framework.vec2.Vec2;
 import org.game.player.components.CCameraInput;
@@ -24,7 +22,6 @@ import java.awt.image.BufferStrategy;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 
@@ -53,7 +50,10 @@ public class Game extends JFrame implements Runnable {
 		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
 	    assert camera != null : "Couldn't create Camera object";
 	    camera
-			    .addComponent("click-sound", new CSound("src/main/resources/sounds/click.wav", 4))
+			    .addComponent("left-click", new CSound("src/main/resources/sounds/click.wav", 4))
+			    .addComponent("right-click", new CSound("src/main/resources/sounds/click.wav", 4))
+			    .addComponent("up-click", new CSound("src/main/resources/sounds/click.wav", 4))
+			    .addComponent("down-click", new CSound("src/main/resources/sounds/click.wav", 4))
 			    .addComponent("input", new CCameraInput(camera))
 	    ;
 		UIManager.setGame(this);

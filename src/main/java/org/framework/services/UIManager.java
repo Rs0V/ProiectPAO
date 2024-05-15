@@ -8,6 +8,7 @@ import org.framework.actor.Camera;
 import org.framework.services.enums.UIPositions;
 import org.framework.ui.UIElement;
 import org.framework.vec2.Vec2;
+import org.utilities.Utilities;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -45,7 +46,7 @@ public abstract class UIManager {
 		assert pos1 != null : "The first 'uiPosition' argument mustn't be null";
 		pos2 = pos2 == null ? pos1 : pos2;
 		percentage = percentage == null ? 50 : percentage;
-		return Vec2.lerp(uiPosToVec2(pos1), uiPosToVec2(pos2), (double) percentage / 100);
+		return Utilities.lerp(uiPosToVec2(pos1), uiPosToVec2(pos2), (double) percentage / 100);
 	}
 
 	public static UIElement createUIElement(String id, Class<?> uiClassType, Vec2 position) {

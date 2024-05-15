@@ -1,7 +1,5 @@
 package org.game.player.components;
 
-import lombok.AllArgsConstructor;
-import org.framework.actor.Actor;
 import org.framework.actor.Camera;
 import org.framework.component.IComponent;
 import org.framework.services.ChartEditor;
@@ -9,7 +7,7 @@ import org.framework.services.InputMapper;
 import org.framework.services.TimeManager;
 import org.framework.services.enums.Arrows;
 import org.framework.services.enums.RenderHints;
-import org.framework.sound.CSound;
+import org.framework.sound.components.CSound;
 import org.framework.vec2.Vec2;
 
 import java.awt.*;
@@ -52,7 +50,7 @@ public class CCameraInput implements IComponent {
 
 		if (leftMove) {
 			if (this.leftHeld == false) {
-				((CSound) self.getComponents().get("click-sound")).play();
+				((CSound) self.getComponents().get("left-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Left);
 				this.leftHeld = true;
 			}
@@ -61,7 +59,7 @@ public class CCameraInput implements IComponent {
 		}
 		if (rightMove) {
 			if (this.rightHeld == false) {
-				((CSound) self.getComponents().get("click-sound")).play();
+				((CSound) self.getComponents().get("right-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Right);
 				this.rightHeld = true;
 			}
@@ -70,7 +68,7 @@ public class CCameraInput implements IComponent {
 		}
 		if (upMove) {
 			if (this.upHeld == false) {
-				((CSound) self.getComponents().get("click-sound")).play();
+				((CSound) self.getComponents().get("up-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Up);
 				this.upHeld = true;
 			}
@@ -79,7 +77,7 @@ public class CCameraInput implements IComponent {
 		}
 		if (downMove) {
 			if (this.downHeld == false) {
-				((CSound) self.getComponents().get("click-sound")).play();
+				((CSound) self.getComponents().get("down-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Down);
 				this.downHeld = true;
 			}
