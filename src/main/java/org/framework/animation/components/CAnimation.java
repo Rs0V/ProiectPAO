@@ -26,7 +26,8 @@ public class CAnimation<T> implements IComponent {
 	@Getter @Setter
 	protected T max;
 	@Getter @Setter
-	protected double duration;
+	protected double duration = 1;
+
 	protected double t = 0;
 	protected int loops = 0;
 	@Getter @Setter
@@ -35,7 +36,7 @@ public class CAnimation<T> implements IComponent {
 	protected EasingType easingType;
 
 
-	public CAnimation(Object targetParent, String targetName, EasingType easingType, T min, T max) {
+	public CAnimation(Object targetParent, String targetName, EasingType easingType, T min, T max, double duration) {
 		this.targetParent = targetParent;
 		Class<?> targetParentClass = this.targetParent.getClass();
 		try {
@@ -68,9 +69,9 @@ public class CAnimation<T> implements IComponent {
 				);
 				break;
 		}
-
 		this.min = min;
 		this.max = max;
+		this.duration = duration;
 	}
 
 	public void play(int loops) {
@@ -121,7 +122,7 @@ public class CAnimation<T> implements IComponent {
 				e.printStackTrace();
 			}
 
-			var tempT = Utilities.jumpClamp(t + TimeManager.getDeltaTime() / duration, 0.0, 1.0);
+			var tempT = Utilities.jumpClamp(this.t + TimeManager.getDeltaTime() / this.duration, 0.0, 1.0);
 			if (tempT < this.t) {
 				if (this.loops > 0)
 					this.loops--;

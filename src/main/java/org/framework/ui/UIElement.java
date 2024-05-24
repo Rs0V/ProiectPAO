@@ -20,6 +20,7 @@ public class UIElement {
 	protected final String id;
 	protected Transform transform;
 	protected Sprite sprite;
+	protected boolean affectedByCamera = false;
 
 	protected Map<String, IComponent> components;
 
@@ -60,6 +61,15 @@ public class UIElement {
 
 
 		AffineTransform at = new AffineTransform();
+
+		if (this.affectedByCamera == true) {
+			at.translate(camera.getScreenSize().x / 2, camera.getScreenSize().y / 2);
+			at.scale(camera.getZoom(), camera.getZoom());
+			at.translate(-camera.getTransform().getLocation().x, -camera.getTransform().getLocation().y);
+			at.translate(-camera.getScreenSize().x / 2, -camera.getScreenSize().y / 2);
+			at.rotate(-camera.getTransform().getActualRotation(), camera.getScreenSize().x / 2, camera.getScreenSize().y / 2);
+		}
+
 		at.translate(this.getTransform().getLocation().x, this.getTransform().getLocation().y);
 
 		Vec2 origin = new Vec2(

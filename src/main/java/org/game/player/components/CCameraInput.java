@@ -4,6 +4,7 @@ import org.framework.actor.Camera;
 import org.framework.component.IComponent;
 import org.framework.services.ChartEditor;
 import org.framework.services.InputMapper;
+import org.framework.services.Recorder;
 import org.framework.services.TimeManager;
 import org.framework.services.enums.Arrows;
 import org.framework.services.enums.RenderHints;
@@ -53,6 +54,8 @@ public class CCameraInput implements IComponent {
 				((CSound) self.getComponents().get("left-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Left);
 				this.leftHeld = true;
+
+				Recorder.record("presses", String.format("%f -> left%n", TimeManager.getTime()));
 			}
 		} else {
 			this.leftHeld = false;
@@ -62,6 +65,8 @@ public class CCameraInput implements IComponent {
 				((CSound) self.getComponents().get("right-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Right);
 				this.rightHeld = true;
+
+				Recorder.record("presses", String.format("%f -> right%n", TimeManager.getTime()));
 			}
 		} else {
 			this.rightHeld = false;
@@ -71,6 +76,8 @@ public class CCameraInput implements IComponent {
 				((CSound) self.getComponents().get("up-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Up);
 				this.upHeld = true;
+
+				Recorder.record("presses", String.format("%f -> up%n", TimeManager.getTime()));
 			}
 		} else {
 			this.upHeld = false;
@@ -80,6 +87,8 @@ public class CCameraInput implements IComponent {
 				((CSound) self.getComponents().get("down-click")).play();
 				ChartEditor.checkNoteHit(Arrows.Down);
 				this.downHeld = true;
+
+				Recorder.record("presses", String.format("%f -> down%n", TimeManager.getTime()));
 			}
 		} else {
 			this.downHeld = false;

@@ -28,6 +28,26 @@ public abstract class Utilities {
 		return Vec2.lerp(min, max, alpha);
 	}
 
+
+	public static double lext(int min, int max, int value) {
+		return (value - min) * 1.0 / (max - min);
+	}
+	public static double lext(long min, long max, long value) {
+		return (value - min) * 1.0 / (max - min);
+	}
+	public static double lext(float min, float max, float value) {
+		return (value - min) / (max - min);
+	}
+	public static double lext(double min, double max, double value) {
+		return (value - min) / (max - min);
+	}
+	public static double lext(Vec2 min, Vec2 max, Vec2 value) {
+		double x = (value.x - min.x) / (max.x - min.x);
+		double y = (value.y - min.y) / (max.y - min.y);
+		return (x + y) / 2;
+	}
+
+
 	public static String generateId() {
 		StringBuilder id = new StringBuilder();
 		for (int i = 0; i < 18; i++) {

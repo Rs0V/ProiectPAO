@@ -22,7 +22,6 @@ public class CSound implements IComponent {
 
 	public CSound(String soundFilePath, double volume) {
 		this.sound = new File(soundFilePath);
-		assert volume > 0 && volume < 6 : "Volume has to be in the [0, 6] interval";
 		this.volume = volume;
 
 		try {
