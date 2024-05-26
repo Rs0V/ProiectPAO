@@ -8,6 +8,7 @@ import org.framework.component.IComponent;
 import org.framework.level.Level;
 import org.framework.services.*;
 import org.framework.services.UIManager;
+import org.framework.services.database.CRUDService;
 import org.framework.services.enums.RenderHints;
 import org.framework.services.enums.UIPositions;
 import org.framework.sound.components.CSound;
@@ -26,7 +27,9 @@ import java.awt.image.BufferStrategy;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,6 +56,8 @@ public class Game extends JFrame implements Runnable {
             }
         });
 
+
+		CRUDService.createTables();
 
 		TimeManager.init();
 
@@ -137,6 +142,8 @@ public class Game extends JFrame implements Runnable {
 			    levelMap);
 	    //endregion
 		level1.load();
+		CRUDService.insertLevel(1, level1.getSong().getSound().getPath(), level1.getNotesSpeed());
+		CRUDService.insertNotes(1, level1.getMap());
 
 		camera.addComponent("beat-zoom", new CAnimation(
 				camera,
@@ -171,7 +178,6 @@ public class Game extends JFrame implements Runnable {
     }
 
     public synchronized void stop() {
-		_stop();
         running = false;
     }
 
@@ -186,6 +192,7 @@ public class Game extends JFrame implements Runnable {
                 e.printStackTrace();
             }
         }
+		_stop();
     }
 
     public void paint(Graphics g) {
@@ -200,7 +207,30 @@ public class Game extends JFrame implements Runnable {
 	}
 
 	public void _stop() {
-		System.out.printf("%n%nScore: %dpts%n", ChartEditor.getScore());
+		System.out.printf("%n%nScore: %dpts%n%n", ChartEditor.getScore());
+
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Enter a string: ");
+			String input = reader.readLine();
+			System.out.println("You entered: " + input);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		Scanner scanner = new Scanner(System.in);
+//		System.out.println("Enter your name (5 letters): ");
+//
+//		boolean readName = false;
+//		while(readName == false) {
+//			if (scanner.hasNextLine()) {
+//				String playerName = scanner.nextLine().trim();
+//				CRUDService.insertPlayer(playerName);
+//				CRUDService.insertScore(ChartEditor.getScore(), playerName, 1);
+//
+//				readName = true;
+//			}
+//		}
+//		scanner.close();
 	}
 
     public void update() {
