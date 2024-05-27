@@ -59,6 +59,8 @@ public class Game extends JFrame implements Runnable {
 
 
 		TimeManager.init();
+		Recorder.watch("audit", "src/main/java/org/framework/services/records/noteHits.txt", true);
+
 
 		Camera camera = (Camera) ActorManager.createActor("camera-0", Camera.class);
 	    assert camera != null : "Couldn't create Camera object";
@@ -143,7 +145,7 @@ public class Game extends JFrame implements Runnable {
 		} catch (Exception e) {
 			String levelMap = null;
 			try {
-				levelMap = String.join("\n", Files.readAllLines(Paths.get("src/main/java/org/framework/level/levels/level-1.txt"), StandardCharsets.UTF_8));
+				levelMap = String.join("\n", Files.readAllLines(Paths.get("src/main/java/org/framework/level/levels/level-config.txt"), StandardCharsets.UTF_8));
 			} catch (Exception ee) {
 				ee.printStackTrace();
 			}
@@ -229,6 +231,7 @@ public class Game extends JFrame implements Runnable {
 			this.setExtendedState(JFrame.ICONIFIED);
 			robot.delay(100);
 			this.setExtendedState(JFrame.NORMAL);
+			levelPlayed.getSong().play();
 		} catch (AWTException e) {
 			e.printStackTrace();
 		}
@@ -296,6 +299,8 @@ public class Game extends JFrame implements Runnable {
 
 
     public static void main(String[] args) {
+		Recorder.watch("audit", "src/main/java/org/framework/services/records/audit.csv", false);
+
 		PreGame preGame = new PreGame();
 		new Thread(preGame).start();
 

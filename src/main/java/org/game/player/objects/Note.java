@@ -7,6 +7,7 @@ import org.framework.actor.Camera;
 import org.framework.collider.Collider;
 import org.framework.collider.ColliderType;
 import org.framework.services.ActorManager;
+import org.framework.services.Recorder;
 import org.framework.services.TimeManager;
 import org.framework.services.enums.Arrows;
 import org.framework.services.enums.RenderHints;
@@ -35,7 +36,7 @@ public class Note extends Actor {
 		super.update();
 		this.getTransform().moveGlobal(new Vec2(0, speed * TimeManager.getDeltaTime()));
 		if (this.getTransform().getLocation().y > this.despawnY) {
-			System.out.printf("%nRemoving object with ID: '" + this.id + "' ...%n%n");
+			Recorder.record("audit", String.format("%nRemoving object with ID: '" + this.id + "' ...%n%n"));
 			ActorManager.removeActor(this.id);
 		}
 	}

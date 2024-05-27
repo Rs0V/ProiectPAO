@@ -137,7 +137,7 @@ public abstract class ChartEditor {
 			notesList.add(Triplet.with(String.format("note-%s-%d", map[i+1], i / 2), ht, arrow));
 		}
 		noteHitTimeFrame = noteHitTimeFrame / notesSpeed / 2;
-		System.out.printf("NoteHitTimeFrame set to: %f%n%n", noteHitTimeFrame);
+		Recorder.record("audit", String.format("NoteHitTimeFrame set to: %f%n%n", noteHitTimeFrame));
 	}
 
 	public static void checkNoteHit(Arrows pressedArrow) {
@@ -162,7 +162,7 @@ public abstract class ChartEditor {
 				&& note.getHitTime() - noteHitTimeFrame < TimeManager.getTime()
 				&& TimeManager.getTime() < note.getHitTime() + noteHitTimeFrame
 		) {
-			System.out.printf("%nHit note with ID: '%s'", note.getId());
+			Recorder.record("audit", String.format("%nHit note with ID: '%s'", note.getId()));
 			ActorManager.removeActor(note.getId());
 
 			String image = null;
@@ -185,9 +185,9 @@ public abstract class ChartEditor {
 			} else {
 				image = "src/main/resources/images/bruhNoteHit.png";
 			}
-			System.out.printf("%nAccuracy: %d%%", accuracy);
-			System.out.printf("         NoteTime: %f", note.getHitTime());
-			System.out.printf("         Time: %f%n%n", TimeManager.getTime());
+			Recorder.record("audit", String.format("%nAccuracy: %d%%", accuracy));
+			Recorder.record("audit", String.format("         NoteTime: %f", note.getHitTime()));
+			Recorder.record("audit", String.format("         Time: %f%n%n", TimeManager.getTime()));
 
 			Vec2 rndOffset = new Vec2(Math.random() * 50, Math.random() * 50);
 			var scoreElem = UIManager.createUIElement(
@@ -232,8 +232,8 @@ public abstract class ChartEditor {
 			((CRemoveUIElement) scoreElem.getComponents().get("remove-self")).activate();
 		}
 		else {
-			System.out.printf("%nNeed: " + note.getArrow().toString() + "    Pressed: " + pressedArrow.toString() + "%n");
-			System.out.printf("%f < %f < %f%n%n", note.getHitTime() - noteHitTimeFrame, TimeManager.getTime(), note.getHitTime() + noteHitTimeFrame);
+			Recorder.record("audit", String.format("%nNeed: " + note.getArrow().toString() + "    Pressed: " + pressedArrow.toString() + "%n"));
+			Recorder.record("audit", String.format("%f < %f < %f%n%n", note.getHitTime() - noteHitTimeFrame, TimeManager.getTime(), note.getHitTime() + noteHitTimeFrame));
 		}
 	}
 }

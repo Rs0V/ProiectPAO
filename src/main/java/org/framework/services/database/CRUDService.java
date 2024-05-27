@@ -264,7 +264,7 @@ public abstract class CRUDService {
             PreparedStatement preparedStatement = connection.prepareStatement(selectPlayersSql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Map<String, String>> playerList = new ArrayList<>();
+            List<Map<String, String>> playersList = new ArrayList<>();
             while (resultSet.next()) {
                 Map<String, String> playerMap = new HashMap<>();
 
@@ -276,9 +276,9 @@ public abstract class CRUDService {
                 playerMap.put("name", playerName.toUpperCase());
                 playerMap.put("date_created", playerDateCreated.toString());
 
-                playerList.add(playerMap);
+                playersList.add(playerMap);
             }
-            return playerList;
+            return playersList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -351,7 +351,7 @@ public abstract class CRUDService {
             PreparedStatement preparedStatement = connection.prepareStatement(selectLevelsSql);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            List<Map<String, String>> levelList = new ArrayList<>();
+            List<Map<String, String>> levelsList = new ArrayList<>();
             while (resultSet.next()) {
                 Map<String, String> levelMap = new HashMap<>();
 
@@ -365,14 +365,58 @@ public abstract class CRUDService {
                 levelMap.put("song", levelSong);
                 levelMap.put("note_speed", String.valueOf(noteSpeed));
 
-                levelList.add(levelMap);
+                levelsList.add(levelMap);
             }
-            return levelList;
+            return levelsList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
+
+    public static List<Map<String, String>> getScores() {
+        String selectScoresSql = "select * from Scores";
+        Connection connection = DBConfig.getDBConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(selectScoresSql);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Map<String, String>> scoresList = new ArrayList<>();
+
+            while (resultSet.next()) {
+                Map<String, String> scoreMap = new HashMap<>();
+
+                int levelId = resultSet.getInt("level_id");
+                int playerId = resultSet.getInt("player_id");
+                double scoreValue = resultSet.getDouble("value");
+
+                scoreMap.put("player_id", String.valueOf(playerId));
+                scoreMap.put("level_id", String.valueOf(levelId));
+                scoreMap.put("value", String.valueOf(scoreValue));
+
+                scoresList.add(scoreMap);
+            }
+            if (scoresList.isEmpty() == false) {
+                scoresList.sort((a, b) -> {
+                    int levelA = Integer.parseInt(a.get("level_id"));
+                    int levelB = Integer.parseInt(b.get("level_id"));
+
+                    Integer levelANumber = Integer.parseInt(getLevelById(levelA).get("number"));
+                    Integer levelBNumber = Integer.parseInt(getLevelById(levelB).get("number"));
+
+                    Double scoreA = Double.parseDouble(a.get("value"));
+                    Double scoreB = Double.parseDouble(b.get("value"));
+
+                    return levelANumber.compareTo(levelBNumber) * 2 + scoreA.compareTo(scoreB);
+                });
+            }
+            return scoresList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    } 
 
     public static Map<String, String> getScoreByPlayerAndLevel(String playerName, int levelNumber) throws Exception {
         String selectScoreSql = "select * from Scores where player_id = ? and level_id = ?";
@@ -425,7 +469,7 @@ public abstract class CRUDService {
             preparedStatement.setInt(1, playerId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<Map<String, String>> scoreList = new ArrayList<>();
+            List<Map<String, String>> scoresList = new ArrayList<>();
 
             while (resultSet.next()) {
                 Map<String, String> scoreMap = new HashMap<>();
@@ -437,10 +481,10 @@ public abstract class CRUDService {
                 scoreMap.put("level_id", String.valueOf(levelId));
                 scoreMap.put("value", String.valueOf(scoreValue));
 
-                scoreList.add(scoreMap);
+                scoresList.add(scoreMap);
             }
-            if (scoreList.isEmpty() == false) {
-                scoreList.sort((a, b) -> {
+            if (scoresList.isEmpty() == false) {
+                scoresList.sort((a, b) -> {
                     int levelA = Integer.parseInt(a.get("level_id"));
                     int levelB = Integer.parseInt(b.get("level_id"));
 
@@ -450,7 +494,7 @@ public abstract class CRUDService {
                     return levelANumber.compareTo(levelBNumber);
                 });
             }
-            return scoreList;
+            return scoresList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -471,7 +515,7 @@ public abstract class CRUDService {
             preparedStatement.setInt(1, levelId);
 
             ResultSet resultSet = preparedStatement.executeQuery();
-            List<Map<String, String>> scoreList = new ArrayList<>();
+            List<Map<String, String>> scoresList = new ArrayList<>();
 
             while (resultSet.next()) {
                 Map<String, String> scoreMap = new HashMap<>();
@@ -483,26 +527,67 @@ public abstract class CRUDService {
                 scoreMap.put("level_id", String.valueOf(levelId));
                 scoreMap.put("value", String.valueOf(scoreValue));
 
-                scoreList.add(scoreMap);
+                scoresList.add(scoreMap);
             }
-            if (scoreList.isEmpty() == false) {
-                scoreList.sort((a, b) -> {
-                    int playerA = Integer.parseInt(a.get("player_id"));
-                    int playerB = Integer.parseInt(b.get("player_id"));
-
-                    String playerAName = getLevelById(playerA).get("name");
-                    String playerBName = getLevelById(playerB).get("name");
-
-                    return playerAName.compareTo(playerBName);
+            if (scoresList.isEmpty() == false) {
+                scoresList.sort((a, b) -> {
+                    Double scoreA = Double.parseDouble(a.get("value"));
+                    Double scoreB = Double.parseDouble(b.get("value"));
+                    
+                    return scoreA.compareTo(scoreB);
                 });
             }
-            return scoreList;
+            return scoresList;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    public static List<Map<String, String>> getNotes() {
+        String selectNotesSql = "select * from Notes";
+        Connection connection = DBConfig.getDBConnection();
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(selectNotesSql);
+
+            List<Map<String, String>> notesList = new ArrayList<>();
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                Map<String, String> noteMap = new HashMap<>();
+
+                String direction = resultSet.getString("direction");
+                double timing = resultSet.getDouble("timing");
+                int levelId = resultSet.getInt("level_id");
+                
+                noteMap.put("direction", direction);
+                noteMap.put("timing", String.valueOf(timing));
+                noteMap.put("level_id", String.valueOf(levelId));
+
+                notesList.add(noteMap);
+            }
+            if (notesList.isEmpty() == false) {
+                notesList.sort((a, b) -> {
+                    int levelA = Integer.parseInt(a.get("level_id"));
+                    int levelB = Integer.parseInt(b.get("level_id"));
+
+                    Integer levelANumber = Integer.parseInt(getLevelById(levelA).get("number"));
+                    Integer levelBNumber = Integer.parseInt(getLevelById(levelB).get("number"));
+
+                    Double noteATiming = Double.parseDouble(a.get("timing"));
+                    Double noteBTiming = Double.parseDouble(b.get("timing"));
+
+                    return levelANumber.compareTo(levelBNumber) * 2 + noteATiming.compareTo(noteBTiming);
+                });
+            }
+            return notesList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public static List<Map<String, String>> getNotesByLevel(int levelNumber) throws Exception {
         String selectNotesSql = "select * from Notes where level_id = ?";
         Connection connection = DBConfig.getDBConnection();
@@ -556,7 +641,7 @@ public abstract class CRUDService {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Player '" + playerName + "' doesn't exist!");
         }
     }
 
@@ -571,7 +656,7 @@ public abstract class CRUDService {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Level with number '" + levelNumber + "' doesn't exist!");
         }
     }
 
@@ -586,7 +671,7 @@ public abstract class CRUDService {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Level with number '" + levelNumber + "' doesn't exist!");
         }
     }
 
@@ -601,7 +686,7 @@ public abstract class CRUDService {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Level with number '" + levelNumber + "' doesn't exist!");
         }
     }
 
@@ -627,7 +712,7 @@ public abstract class CRUDService {
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Score for player '" + playerName + "' on level with number '" + levelNumber + "' doesn't exist!");
         }
     }
 
@@ -655,6 +740,25 @@ public abstract class CRUDService {
         }
         return null;
     }
+    
+    public static List<Map<String, String>> deletePlayers() throws Exception {
+        String deletePlayersSql = "delete from Players";
+        Connection connection = DBConfig.getDBConnection();
+
+        try {
+            var playersList = getPlayers();
+            if (playersList == null)
+                throw new Exception("Couldn't find any players.");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(deletePlayersSql);
+            preparedStatement.execute();
+
+            return playersList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static Map<String, String> deleteLevel(int levelNumber) throws Exception {
         String deleteLevelSql = "delete from Levels where number = ?";
@@ -676,6 +780,44 @@ public abstract class CRUDService {
         return null;
     }
 
+    public static List<Map<String, String>> deleteLevels() throws Exception {
+        String deleteLevelsSql = "delete from Levels";
+        Connection connection = DBConfig.getDBConnection();
+
+        try {
+            var levelsList = getLevels();
+            if (levelsList == null)
+                throw new Exception("Couldn't find any levels.");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteLevelsSql);
+            preparedStatement.execute();
+
+            return levelsList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static List<Map<String, String>> deleteScores() throws Exception {
+        String deleteScoresSql = "delete from Scores";
+        Connection connection = DBConfig.getDBConnection();
+
+        try {
+            var scoresList = getScores();
+            if (scoresList == null)
+                throw new Exception("Couldn't find any scores.");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteScoresSql);
+            preparedStatement.execute();
+
+            return scoresList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public static List<Map<String, String>> deleteScoresByPlayer(String playerName) throws Exception {
         String deleteScoreByPlayerSql = "delete from Scores where player_id = ?";
         Connection connection = DBConfig.getDBConnection();
@@ -763,6 +905,25 @@ public abstract class CRUDService {
         return null;
     }
 
+    public static List<Map<String, String>> deleteNotes() throws Exception {
+        String deleteScoresSql = "delete from Scores";
+        Connection connection = DBConfig.getDBConnection();
+
+        try {
+            var notesList = getNotes();
+            if (notesList == null)
+                throw new Exception("Couldn't find any notes.");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteScoresSql);
+            preparedStatement.execute();
+
+            return notesList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
     public static List<Map<String, String>> deleteNotesByLevel(int levelNumber) throws Exception {
         String deleteNotesByLevelSql = "delete from Notes where level_id = ?";
         Connection connection = DBConfig.getDBConnection();

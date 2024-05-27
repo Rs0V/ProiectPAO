@@ -25,6 +25,5 @@ public class Level {
 	public void load() {
 		ChartEditor.setNotesSpeed(this.notesSpeed);
 		ChartEditor.createChart(this.map);
-		this.song.play();
 	}
 }
