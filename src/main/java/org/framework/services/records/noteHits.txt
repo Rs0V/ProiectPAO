@@ -2,1345 +2,1322 @@ NoteHitTimeFrame set to: 0.142857
 
 
 Hit note with ID: 'note-up-0'
-Accuracy: 88%         NoteTime: 2.004362         Time: 1.987693
+Accuracy: 78%         NoteTime: 2.004362         Time: 1.974610
 
 
 Hit note with ID: 'note-down-1'
-Accuracy: 94%         NoteTime: 2.398661         Time: 2.391608
+Accuracy: 98%         NoteTime: 2.398661         Time: 2.398623
 
 
 Hit note with ID: 'note-down-2'
-Accuracy: 98%         NoteTime: 2.617982         Time: 2.621894
+Accuracy: 98%         NoteTime: 2.617982         Time: 2.622975
 
 
 Hit note with ID: 'note-right-3'
-Accuracy: 88%         NoteTime: 3.004242         Time: 3.022768
+Accuracy: 90%         NoteTime: 3.004242         Time: 3.020863
 
 
 Hit note with ID: 'note-left-4'
-Accuracy: 82%         NoteTime: 3.351325         Time: 3.327964
+Accuracy: 88%         NoteTime: 3.351325         Time: 3.335803
 
 
 Hit note with ID: 'note-up-5'
-Accuracy: 90%         NoteTime: 3.691592         Time: 3.678797
+Accuracy: 98%         NoteTime: 3.691592         Time: 3.690366
 
 
 Hit note with ID: 'note-down-6'
-Accuracy: 92%         NoteTime: 4.132766         Time: 4.123491
+Accuracy: 94%         NoteTime: 4.132766         Time: 4.125217
 
 
 Hit note with ID: 'note-right-7'
-Accuracy: 96%         NoteTime: 4.354674         Time: 4.361096
+Accuracy: 90%         NoteTime: 4.354674         Time: 4.370597
 
 
 Hit note with ID: 'note-left-8'
-Accuracy: 84%         NoteTime: 4.746501         Time: 4.725996
+Accuracy: 100%         NoteTime: 4.746501         Time: 4.746638
 
 
 Hit note with ID: 'note-down-9'
-Accuracy: 98%         NoteTime: 5.081885         Time: 5.081636
+Accuracy: 84%         NoteTime: 5.081885         Time: 5.059947
 
 
 Hit note with ID: 'note-up-10'
-Accuracy: 92%         NoteTime: 5.420539         Time: 5.410150
+Accuracy: 94%         NoteTime: 5.420539         Time: 5.411991
 
 
-Need: Right    Pressed: Right
-5.684693 < 5.986072 < 5.970407
+Hit note with ID: 'note-right-11'
+Accuracy: 98%         NoteTime: 5.827550         Time: 5.825220
 
 
-Removing object with ID: 'note-right-11' ...
-
-
-Need: Left    Pressed: Left
-5.896692 < 6.199043 < 6.182406
+Hit note with ID: 'note-left-12'
+Accuracy: 88%         NoteTime: 6.039549         Time: 6.024577
 
 
 Hit note with ID: 'note-down-13'
-Accuracy: 52%         NoteTime: 6.143137         Time: 6.212306
+Accuracy: 92%         NoteTime: 6.143137         Time: 6.133611
 
 
-Removing object with ID: 'note-left-12' ...
-
-
-Need: Up    Pressed: Up
-6.116311 < 6.414982 < 6.402025
-
-
-Removing object with ID: 'note-up-14' ...
+Hit note with ID: 'note-up-14'
+Accuracy: 74%         NoteTime: 6.259168         Time: 6.223614
 
 
 Hit note with ID: 'note-right-15'
-Accuracy: 74%         NoteTime: 6.758311         Time: 6.723412
+Accuracy: 100%         NoteTime: 6.758311         Time: 6.760520
 
 
 Hit note with ID: 'note-down-16'
-Accuracy: 92%         NoteTime: 7.102466         Time: 7.091131
+Accuracy: 92%         NoteTime: 7.102466         Time: 7.091761
 
 
 Hit note with ID: 'note-up-17'
-Accuracy: 76%         NoteTime: 7.794053         Time: 7.760822
+Accuracy: 54%         NoteTime: 7.794053         Time: 7.729817
 
 
 Hit note with ID: 'note-down-18'
-Accuracy: 96%         NoteTime: 8.150402         Time: 8.156545
+Accuracy: 100%         NoteTime: 8.150402         Time: 8.150525
 
 
 Hit note with ID: 'note-left-19'
-Accuracy: 88%         NoteTime: 8.514889         Time: 8.500167
+Accuracy: 90%         NoteTime: 8.514889         Time: 8.502829
 
 
 Hit note with ID: 'note-right-20'
-Accuracy: 96%         NoteTime: 8.823049         Time: 8.818595
+Accuracy: 98%         NoteTime: 8.823049         Time: 8.821762
 
 
 Hit note with ID: 'note-up-21'
-Accuracy: 80%         NoteTime: 9.253118         Time: 9.226816
+Accuracy: 78%         NoteTime: 9.253118         Time: 9.222415
 
 
 Hit note with ID: 'note-up-22'
-Accuracy: 92%         NoteTime: 9.460008         Time: 9.450611
+Accuracy: 92%         NoteTime: 9.460008         Time: 9.451246
 
 
 Hit note with ID: 'note-down-23'
-Accuracy: 92%         NoteTime: 9.910779         Time: 9.901892
+Accuracy: 90%         NoteTime: 9.910779         Time: 9.926780
 
 
 Hit note with ID: 'note-left-24'
-Accuracy: 66%         NoteTime: 10.225985         Time: 10.178099
+Accuracy: 94%         NoteTime: 10.225985         Time: 10.219594
 
 
 Hit note with ID: 'note-right-25'
-Accuracy: 90%         NoteTime: 10.595266         Time: 10.609706
+Accuracy: 84%         NoteTime: 10.595266         Time: 10.620531
 
 
 Hit note with ID: 'note-down-26'
-Accuracy: 66%         NoteTime: 10.994295         Time: 10.946331
+Accuracy: 90%         NoteTime: 10.994295         Time: 11.008635
 
 
 Hit note with ID: 'note-down-27'
-Accuracy: 64%         NoteTime: 11.222479         Time: 11.171647
+Accuracy: 98%         NoteTime: 11.222479         Time: 11.222462
 
 
 Hit note with ID: 'note-left-28'
-Accuracy: 57%         NoteTime: 11.605618         Time: 11.545889
+Accuracy: 98%         NoteTime: 11.605618         Time: 11.610904
 
 
 Hit note with ID: 'note-right-29'
-Accuracy: 100%         NoteTime: 11.919299         Time: 11.920089
+Accuracy: 96%         NoteTime: 11.919299         Time: 11.916074
 
 
 Hit note with ID: 'note-down-30'
-Accuracy: 86%         NoteTime: 12.277924         Time: 12.258681
+Accuracy: 100%         NoteTime: 12.277924         Time: 12.279307
 
 
 Hit note with ID: 'note-up-31'
-Accuracy: 82%         NoteTime: 12.648541         Time: 12.676331
+Accuracy: 78%         NoteTime: 12.648541         Time: 12.618975
 
 
 Hit note with ID: 'note-left-32'
-Accuracy: 86%         NoteTime: 12.875060         Time: 12.857807
+Accuracy: 98%         NoteTime: 12.875060         Time: 12.873868
 
 
 Hit note with ID: 'note-right-33'
-Accuracy: 90%         NoteTime: 13.062594         Time: 13.079184
+Accuracy: 80%         NoteTime: 13.062594         Time: 13.093156
 
 
 Hit note with ID: 'note-down-34'
-Accuracy: 100%         NoteTime: 13.320815         Time: 13.321838
+Accuracy: 80%         NoteTime: 13.320815         Time: 13.293384
 
 
 Hit note with ID: 'note-up-35'
-Accuracy: 62%         NoteTime: 13.536852         Time: 13.591724
+Accuracy: 82%         NoteTime: 13.536852         Time: 13.562590
 
 
 Hit note with ID: 'note-down-36'
-Accuracy: 94%         NoteTime: 14.035436         Time: 14.028494
+Accuracy: 88%         NoteTime: 14.035436         Time: 14.054735
 
 
 Hit note with ID: 'note-left-37'
-Accuracy: 78%         NoteTime: 14.395462         Time: 14.364506
+Accuracy: 66%         NoteTime: 14.395462         Time: 14.347716
 
 
 Hit note with ID: 'note-right-38'
-Accuracy: 82%         NoteTime: 14.599252         Time: 14.573975
+Accuracy: 98%         NoteTime: 14.599252         Time: 14.603145
 
 
 Hit note with ID: 'note-down-39'
-Accuracy: 86%         NoteTime: 14.809052         Time: 14.791626
+Accuracy: 98%         NoteTime: 14.809052         Time: 14.812709
 
 
 Hit note with ID: 'note-up-40'
-Accuracy: 90%         NoteTime: 15.022827         Time: 15.010977
+Accuracy: 98%         NoteTime: 15.022827         Time: 15.027771
 
 
 Hit note with ID: 'note-left-41'
-Accuracy: 80%         NoteTime: 15.206776         Time: 15.238070
+Accuracy: 54%         NoteTime: 15.206776         Time: 15.273102
 
 
 Hit note with ID: 'note-down-42'
-Accuracy: 92%         NoteTime: 15.453728         Time: 15.445110
+Accuracy: 100%         NoteTime: 15.453728         Time: 15.454428
 
 
 Hit note with ID: 'note-down-43'
-Accuracy: 74%         NoteTime: 15.694846         Time: 15.660095
+Accuracy: 72%         NoteTime: 15.694846         Time: 15.737139
 
 
 Hit note with ID: 'note-right-44'
-Accuracy: 92%         NoteTime: 16.088613         Time: 16.078675
+Accuracy: 86%         NoteTime: 16.088613         Time: 16.111379
 
 
 Hit note with ID: 'note-left-45'
-Accuracy: 92%         NoteTime: 16.274205         Time: 16.288014
+Accuracy: 88%         NoteTime: 16.274205         Time: 16.293087
 
 
 Hit note with ID: 'note-down-46'
-Accuracy: 80%         NoteTime: 16.522396         Time: 16.494502
+Accuracy: 88%         NoteTime: 16.522396         Time: 16.539961
 
 
 Hit note with ID: 'note-up-47'
-Accuracy: 94%         NoteTime: 16.724195         Time: 16.717667
+Accuracy: 90%         NoteTime: 16.724195         Time: 16.740225
 
 
 Hit note with ID: 'note-right-48'
-Accuracy: 84%         NoteTime: 16.963612         Time: 16.940846
+Accuracy: 98%         NoteTime: 16.963612         Time: 16.967004
 
 
 Hit note with ID: 'note-right-49'
-Accuracy: 94%         NoteTime: 17.191731         Time: 17.184201
+Accuracy: 96%         NoteTime: 17.191731         Time: 17.199825
 
 
 Hit note with ID: 'note-left-50'
-Accuracy: 72%         NoteTime: 17.380382         Time: 17.340707
+Accuracy: 98%         NoteTime: 17.380382         Time: 17.380028
 
 
 Hit note with ID: 'note-down-51'
-Accuracy: 94%         NoteTime: 17.808224         Time: 17.802181
+Accuracy: 98%         NoteTime: 17.808224         Time: 17.811340
 
 
 Hit note with ID: 'note-up-52'
-Accuracy: 84%         NoteTime: 18.038033         Time: 18.016593
+Accuracy: 90%         NoteTime: 18.038033         Time: 18.025750
 
 
 Hit note with ID: 'note-left-53'
-Accuracy: 72%         NoteTime: 18.222813         Time: 18.263355
+Accuracy: 94%         NoteTime: 18.222813         Time: 18.234216
 
 
 Hit note with ID: 'note-right-54'
-Accuracy: 92%         NoteTime: 18.445842         Time: 18.459154
+Accuracy: 98%         NoteTime: 18.445842         Time: 18.445702
 
 
 Hit note with ID: 'note-up-55'
-Accuracy: 90%         NoteTime: 18.669930         Time: 18.658037
+Accuracy: 96%         NoteTime: 18.669930         Time: 18.664747
 
 
 Hit note with ID: 'note-down-56'
-Accuracy: 92%         NoteTime: 18.871516         Time: 18.860308
+Accuracy: 78%         NoteTime: 18.871516         Time: 18.904879
 
 
 Hit note with ID: 'note-left-57'
-Accuracy: 90%         NoteTime: 19.081503         Time: 19.069791
+Accuracy: 96%         NoteTime: 19.081503         Time: 19.076191
 
 
 Hit note with ID: 'note-right-58'
-Accuracy: 90%         NoteTime: 19.512812         Time: 19.529095
+Accuracy: 96%         NoteTime: 19.512812         Time: 19.520156
 
 
 Hit note with ID: 'note-down-59'
-Accuracy: 92%         NoteTime: 19.745283         Time: 19.734523
+Accuracy: 100%         NoteTime: 19.745283         Time: 19.747399
 
 
 Hit note with ID: 'note-up-60'
-Accuracy: 88%         NoteTime: 19.959200         Time: 19.942066
+Accuracy: 96%         NoteTime: 19.959200         Time: 19.955319
 
 
 Hit note with ID: 'note-up-61'
-Accuracy: 98%         NoteTime: 20.164150         Time: 20.161979
+Accuracy: 100%         NoteTime: 20.164150         Time: 20.165606
 
 
 Hit note with ID: 'note-up-62'
-Accuracy: 98%         NoteTime: 20.374741         Time: 20.380027
+Accuracy: 98%         NoteTime: 20.374741         Time: 20.372614
 
 
 Hit note with ID: 'note-up-63'
-Accuracy: 57%         NoteTime: 20.631424         Time: 20.572635
+Accuracy: 74%         NoteTime: 20.631424         Time: 20.596069
 
 
 Hit note with ID: 'note-down-64'
-Accuracy: 80%         NoteTime: 20.835175         Time: 20.806950
+Accuracy: 72%         NoteTime: 20.835175         Time: 20.877968
 
 
 Hit note with ID: 'note-left-65'
-Accuracy: 94%         NoteTime: 21.008247         Time: 21.002297
+Accuracy: 90%         NoteTime: 21.008247         Time: 21.023006
 
 
 Hit note with ID: 'note-right-66'
-Accuracy: 82%         NoteTime: 21.240304         Time: 21.216460
+Accuracy: 84%         NoteTime: 21.240304         Time: 21.219896
 
 
 Hit note with ID: 'note-up-67'
-Accuracy: 86%         NoteTime: 21.435835         Time: 21.417172
+Accuracy: 96%         NoteTime: 21.435835         Time: 21.442811
 
 
 Hit note with ID: 'note-down-68'
-Accuracy: 74%         NoteTime: 21.665669         Time: 21.629097
+Accuracy: 78%         NoteTime: 21.665669         Time: 21.635751
 
 
 Hit note with ID: 'note-up-69'
-Accuracy: 88%         NoteTime: 21.856842         Time: 21.875955
+Accuracy: 92%         NoteTime: 21.856842         Time: 21.869559
 
 
 Hit note with ID: 'note-down-70'
-Accuracy: 98%         NoteTime: 22.008936         Time: 22.007732
+Accuracy: 68%         NoteTime: 22.008936         Time: 21.965996
 
 
 Hit note with ID: 'note-up-71'
-Accuracy: 84%         NoteTime: 22.063151         Time: 22.088110
+Accuracy: 94%         NoteTime: 22.063151         Time: 22.073591
 
 
 Hit note with ID: 'note-right-72'
-Accuracy: 84%         NoteTime: 22.296584         Time: 22.275420
+Accuracy: 70%         NoteTime: 22.296584         Time: 22.340740
 
 
 Hit note with ID: 'note-left-73'
-Accuracy: 92%         NoteTime: 22.483082         Time: 22.473095
+Accuracy: 86%         NoteTime: 22.483082         Time: 22.503563
 
 
 Hit note with ID: 'note-down-74'
-Accuracy: 86%         NoteTime: 22.719529         Time: 22.702333
+Accuracy: 94%         NoteTime: 22.719529         Time: 22.712787
 
 
 Hit note with ID: 'note-up-75'
-Accuracy: 80%         NoteTime: 22.968269         Time: 22.941943
+Accuracy: 86%         NoteTime: 22.968269         Time: 22.948999
 
 
 Hit note with ID: 'note-down-76'
-Accuracy: 74%         NoteTime: 23.187284         Time: 23.151852
+Accuracy: 82%         NoteTime: 23.187284         Time: 23.213081
 
 
 Hit note with ID: 'note-left-77'
-Accuracy: 68%         NoteTime: 23.420383         Time: 23.376855
+Accuracy: 80%         NoteTime: 23.420383         Time: 23.394313
 
 
 Hit note with ID: 'note-right-78'
-Accuracy: 82%         NoteTime: 23.624448         Time: 23.599590
+Accuracy: 98%         NoteTime: 23.624448         Time: 23.623508
 
 
 Hit note with ID: 'note-left-79'
-Accuracy: 94%         NoteTime: 23.829627         Time: 23.821721
+Accuracy: 88%         NoteTime: 23.829627         Time: 23.849500
 
 
 Hit note with ID: 'note-right-80'
-Accuracy: 92%         NoteTime: 24.036885         Time: 24.026371
+Accuracy: 100%         NoteTime: 24.036885         Time: 24.037877
 
 
 Hit note with ID: 'note-left-81'
-Accuracy: 98%         NoteTime: 24.219625         Time: 24.223874
+Accuracy: 90%         NoteTime: 24.219625         Time: 24.234405
 
 
 Hit note with ID: 'note-down-82'
-Accuracy: 78%         NoteTime: 24.450293         Time: 24.420456
+Accuracy: 98%         NoteTime: 24.450293         Time: 24.450163
 
 
 Hit note with ID: 'note-up-83'
-Accuracy: 86%         NoteTime: 24.619729         Time: 24.641246
+Accuracy: 84%         NoteTime: 24.619729         Time: 24.642657
 
 
 Hit note with ID: 'note-left-84'
-Accuracy: 88%         NoteTime: 24.849984         Time: 24.835230
+Accuracy: 100%         NoteTime: 24.849984         Time: 24.850406
 
 
 Hit note with ID: 'note-down-85'
-Accuracy: 86%         NoteTime: 25.073479         Time: 25.054582
+Accuracy: 84%         NoteTime: 25.073479         Time: 25.096529
 
 
 Hit note with ID: 'note-left-86'
-Accuracy: 50%         NoteTime: 25.301458         Time: 25.230528
+Accuracy: 70%         NoteTime: 25.301458         Time: 25.260819
 
 
 Hit note with ID: 'note-right-87'
-Accuracy: 54%         NoteTime: 25.414500         Time: 25.350764
+Accuracy: 78%         NoteTime: 25.414500         Time: 25.385812
 
 
 Hit note with ID: 'note-down-88'
-Accuracy: 82%         NoteTime: 25.537568         Time: 25.563465
+Accuracy: 98%         NoteTime: 25.537568         Time: 25.542910
 
 
 Hit note with ID: 'note-up-89'
-Accuracy: 80%         NoteTime: 25.740978         Time: 25.713388
+Accuracy: 10%         NoteTime: 25.740978         Time: 25.613291
 
 
-Need: Left    Pressed: Left
-26.255531 < 26.014923 < 26.541245
+Hit note with ID: 'note-down-90'
+Accuracy: 90%         NoteTime: 26.002430         Time: 25.990255
 
 
 Hit note with ID: 'note-right-91'
-Accuracy: 100%         NoteTime: 26.179357         Time: 26.181294
-
-
-Removing object with ID: 'note-down-90' ...
+Accuracy: 98%         NoteTime: 26.179357         Time: 26.183073
 
 
 Hit note with ID: 'note-left-92'
-Accuracy: 84%         NoteTime: 26.398388         Time: 26.421759
+Accuracy: 96%         NoteTime: 26.398388         Time: 26.406713
 
 
-Need: Up    Pressed: Up
-26.649816 < 26.644683 < 26.935530
-
-
-Need: Down    Pressed: Down
-26.432966 < 26.753667 < 26.718680
-
-
-Removing object with ID: 'note-down-93' ...
+Hit note with ID: 'note-down-93'
+Accuracy: 80%         NoteTime: 26.575823         Time: 26.606853
 
 
 Hit note with ID: 'note-up-94'
-Accuracy: 38%         NoteTime: 26.792673         Time: 26.883908
-
-
-Hit note with ID: 'note-left-96'
-Accuracy: 26%         NoteTime: 27.164651         Time: 27.059993
+Accuracy: 92%         NoteTime: 26.792673         Time: 26.783868
 
 
 Hit note with ID: 'note-down-95'
-Accuracy: 10%         NoteTime: 26.961457         Time: 27.090242
+Accuracy: 62%         NoteTime: 26.961457         Time: 27.017141
+
+
+Hit note with ID: 'note-left-96'
+Accuracy: 78%         NoteTime: 27.164651         Time: 27.196760
 
 
 Hit note with ID: 'note-right-97'
-Accuracy: 82%         NoteTime: 27.383755         Time: 27.359511
+Accuracy: 88%         NoteTime: 27.383755         Time: 27.402250
 
 
 Hit note with ID: 'note-down-98'
-Accuracy: 28%         NoteTime: 27.676470         Time: 27.575591
+Accuracy: 100%         NoteTime: 27.676470         Time: 27.677966
 
 
 Hit note with ID: 'note-up-99'
-Accuracy: 42%         NoteTime: 27.880411         Time: 27.798425
+Accuracy: 90%         NoteTime: 27.880411         Time: 27.867304
 
 
 Hit note with ID: 'note-down-100'
-Accuracy: 22%         NoteTime: 28.141669         Time: 28.032338
+Accuracy: 88%         NoteTime: 28.141669         Time: 28.126806
 
 
 Hit note with ID: 'note-left-101'
-Accuracy: 44%         NoteTime: 28.346945         Time: 28.269725
+Accuracy: 98%         NoteTime: 28.346945         Time: 28.350551
 
 
 Hit note with ID: 'note-right-102'
-Accuracy: 80%         NoteTime: 28.538654         Time: 28.512519
-
-
-Need: Down    Pressed: Down
-28.703421 < 28.699359 < 28.989135
-
-
-Hit note with ID: 'note-up-103'
-Accuracy: 78%         NoteTime: 28.765774         Time: 28.797401
+Accuracy: 94%         NoteTime: 28.538654         Time: 28.549485
 
 
 Hit note with ID: 'note-down-104'
-Accuracy: 64%         NoteTime: 28.846278         Time: 28.898848
+Accuracy: 22%         NoteTime: 28.846278         Time: 28.737707
 
 
-Need: Up    Pressed: Up
-28.803070 < 29.134860 < 29.088784
+Hit note with ID: 'note-up-103'
+Accuracy: 74%         NoteTime: 28.765774         Time: 28.804617
 
 
-Removing object with ID: 'note-up-105' ...
+Need: Down    Pressed: Down
+29.060383 < 28.929549 < 29.346097
+
+
+Hit note with ID: 'note-up-105'
+Accuracy: 88%         NoteTime: 28.945927         Time: 28.963754
 
 
 Hit note with ID: 'note-down-106'
-Accuracy: 42%         NoteTime: 29.203240         Time: 29.288056
+Accuracy: 40%         NoteTime: 29.203240         Time: 29.290608
 
 
 Hit note with ID: 'note-left-107'
-Accuracy: 72%         NoteTime: 29.428997         Time: 29.469115
+Accuracy: 98%         NoteTime: 29.428997         Time: 29.426353
 
 
 Hit note with ID: 'note-right-108'
-Accuracy: 96%         NoteTime: 29.631020         Time: 29.625678
+Accuracy: 90%         NoteTime: 29.631020         Time: 29.619560
 
 
 Hit note with ID: 'note-left-109'
-Accuracy: 92%         NoteTime: 29.848296         Time: 29.838395
+Accuracy: 96%         NoteTime: 29.848296         Time: 29.856796
 
 
 Hit note with ID: 'note-down-110'
-Accuracy: 86%         NoteTime: 29.975504         Time: 29.958086
+Accuracy: 92%         NoteTime: 29.975504         Time: 29.987164
 
 
 Hit note with ID: 'note-up-111'
-Accuracy: 74%         NoteTime: 30.267716         Time: 30.231385
+Accuracy: 72%         NoteTime: 30.267716         Time: 30.228361
 
 
 Hit note with ID: 'note-down-112'
-Accuracy: 72%         NoteTime: 30.504476         Time: 30.464701
+Accuracy: 96%         NoteTime: 30.504476         Time: 30.501125
 
 
 Hit note with ID: 'note-right-113'
-Accuracy: 62%         NoteTime: 30.718310         Time: 30.665669
+Accuracy: 94%         NoteTime: 30.718310         Time: 30.711333
 
 
 Hit note with ID: 'note-down-114'
-Accuracy: 52%         NoteTime: 30.937007         Time: 30.869333
+Accuracy: 94%         NoteTime: 30.937007         Time: 30.945638
 
 
 Hit note with ID: 'note-left-115'
-Accuracy: 64%         NoteTime: 31.137131         Time: 31.088320
+Accuracy: 86%         NoteTime: 31.137131         Time: 31.119736
 
 
 Hit note with ID: 'note-down-116'
-Accuracy: 86%         NoteTime: 31.363594         Time: 31.344099
+Accuracy: 92%         NoteTime: 31.363594         Time: 31.353640
 
 
 Hit note with ID: 'note-left-117'
-Accuracy: 84%         NoteTime: 31.580791         Time: 31.559804
+Accuracy: 86%         NoteTime: 31.580791         Time: 31.563092
 
 
-Hit note with ID: 'note-down-118'
-Accuracy: 54%         NoteTime: 31.770315         Time: 31.706718
+Need: Up    Pressed: Up
+32.168309 < 31.787209 < 32.454023
 
 
 Hit note with ID: 'note-left-119'
-Accuracy: 70%         NoteTime: 31.954526         Time: 31.913196
+Accuracy: 86%         NoteTime: 31.954526         Time: 31.974695
+
+
+Removing object with ID: 'note-down-118' ...
+
+
+Need: Down    Pressed: Down
+32.269901 < 32.144132 < 32.555615
 
 
 Hit note with ID: 'note-right-120'
-Accuracy: 80%         NoteTime: 32.185690         Time: 32.216112
+Accuracy: 12%         NoteTime: 32.185690         Time: 32.313095
 
 
 Hit note with ID: 'note-up-121'
-Accuracy: 98%         NoteTime: 32.311166         Time: 32.310633
-
-
-Hit note with ID: 'note-down-122'
-Accuracy: 76%         NoteTime: 32.412758         Time: 32.381189
+Accuracy: 24%         NoteTime: 32.311166         Time: 32.421506
 
 
 Hit note with ID: 'note-left-123'
-Accuracy: 76%         NoteTime: 32.619246         Time: 32.587751
+Accuracy: 82%         NoteTime: 32.619246         Time: 32.647782
+
+
+Removing object with ID: 'note-down-122' ...
 
 
 Hit note with ID: 'note-right-124'
-Accuracy: 88%         NoteTime: 32.833336         Time: 32.850742
+Accuracy: 92%         NoteTime: 32.833336         Time: 32.846272
 
 
 Hit note with ID: 'note-down-125'
-Accuracy: 92%         NoteTime: 33.028723         Time: 33.019010
+Accuracy: 78%         NoteTime: 33.028723         Time: 33.061016
 
 
 Hit note with ID: 'note-down-126'
-Accuracy: 72%         NoteTime: 33.280829         Time: 33.242549
+Accuracy: 88%         NoteTime: 33.280829         Time: 33.266397
 
 
 Hit note with ID: 'note-down-127'
-Accuracy: 88%         NoteTime: 33.481683         Time: 33.465325
+Accuracy: 94%         NoteTime: 33.481683         Time: 33.473135
 
 
 Hit note with ID: 'note-right-128'
-Accuracy: 76%         NoteTime: 33.729723         Time: 33.697656
+Accuracy: 100%         NoteTime: 33.729723         Time: 33.731525
 
 
 Hit note with ID: 'note-left-129'
-Accuracy: 94%         NoteTime: 33.855656         Time: 33.865483
+Accuracy: 94%         NoteTime: 33.855656         Time: 33.849115
 
 
 Hit note with ID: 'note-down-130'
-Accuracy: 92%         NoteTime: 33.941754         Time: 33.932898
+Accuracy: 84%         NoteTime: 33.941754         Time: 33.966363
 
 
 Hit note with ID: 'note-up-131'
-Accuracy: 62%         NoteTime: 34.108567         Time: 34.055239
+Accuracy: 52%         NoteTime: 34.108567         Time: 34.042693
 
 
 Hit note with ID: 'note-down-132'
-Accuracy: 54%         NoteTime: 34.259337         Time: 34.194896
+Accuracy: 98%         NoteTime: 34.259337         Time: 34.258701
 
 
 Hit note with ID: 'note-left-133'
-Accuracy: 62%         NoteTime: 34.420361         Time: 34.366699
+Accuracy: 64%         NoteTime: 34.420361         Time: 34.371259
 
 
 Hit note with ID: 'note-right-134'
-Accuracy: 86%         NoteTime: 34.731434         Time: 34.713381
+Accuracy: 78%         NoteTime: 34.731434         Time: 34.765623
 
 
 Hit note with ID: 'note-down-135'
-Accuracy: 86%         NoteTime: 34.974775         Time: 34.957205
+Accuracy: 98%         NoteTime: 34.974775         Time: 34.979898
 
 
 Hit note with ID: 'note-down-136'
-Accuracy: 90%         NoteTime: 35.173487         Time: 35.161455
+Accuracy: 86%         NoteTime: 35.173487         Time: 35.194163
 
 
 Hit note with ID: 'note-left-137'
-Accuracy: 78%         NoteTime: 35.629196         Time: 35.600453
+Accuracy: 62%         NoteTime: 35.629196         Time: 35.576731
 
 
 Hit note with ID: 'note-down-138'
-Accuracy: 80%         NoteTime: 35.824078         Time: 35.796121
+Accuracy: 64%         NoteTime: 35.824078         Time: 35.774642
 
 
 Hit note with ID: 'note-down-139'
-Accuracy: 48%         NoteTime: 36.075714         Time: 36.003142
+Accuracy: 48%         NoteTime: 36.075714         Time: 36.001927
 
 
 Hit note with ID: 'note-up-140'
-Accuracy: 98%         NoteTime: 36.255794         Time: 36.253064
+Accuracy: 68%         NoteTime: 36.255794         Time: 36.211945
 
 
 Hit note with ID: 'note-right-141'
-Accuracy: 76%         NoteTime: 36.488412         Time: 36.455340
+Accuracy: 76%         NoteTime: 36.488412         Time: 36.456518
 
 
 Hit note with ID: 'note-right-142'
-Accuracy: 72%         NoteTime: 36.701773         Time: 36.664274
+Accuracy: 82%         NoteTime: 36.701773         Time: 36.678625
 
 
 Hit note with ID: 'note-down-143'
-Accuracy: 98%         NoteTime: 36.904229         Time: 36.903148
+Accuracy: 96%         NoteTime: 36.904229         Time: 36.912641
 
 
 Hit note with ID: 'note-left-144'
-Accuracy: 66%         NoteTime: 37.093825         Time: 37.045652
+Accuracy: 52%         NoteTime: 37.093825         Time: 37.026201
 
 
-Need: Down    Pressed: Down
-37.371804 < 37.277580 < 37.657518
+Hit note with ID: 'note-up-145'
+Accuracy: 66%         NoteTime: 37.264645         Time: 37.313707
 
 
 Hit note with ID: 'note-down-146'
-Accuracy: 98%         NoteTime: 37.514661         Time: 37.513147
-
-
-Removing object with ID: 'note-up-145' ...
-
-
-Need: Up    Pressed: Up
-38.181901 < 37.646733 < 38.467615
+Accuracy: 74%         NoteTime: 37.514661         Time: 37.480116
 
 
 Hit note with ID: 'note-right-147'
-Accuracy: 32%         NoteTime: 37.714781         Time: 37.814079
+Accuracy: 96%         NoteTime: 37.714781         Time: 37.710486
 
 
 Hit note with ID: 'note-left-148'
-Accuracy: 86%         NoteTime: 37.929031         Time: 37.951317
+Accuracy: 92%         NoteTime: 37.929031         Time: 37.942386
 
 
 Hit note with ID: 'note-down-149'
-Accuracy: 60%         NoteTime: 38.160246         Time: 38.105637
+Accuracy: 92%         NoteTime: 38.160246         Time: 38.150820
 
 
 Hit note with ID: 'note-up-150'
-Accuracy: 94%         NoteTime: 38.324758         Time: 38.316285
+Accuracy: 90%         NoteTime: 38.324758         Time: 38.339917
 
 
 Hit note with ID: 'note-right-151'
-Accuracy: 84%         NoteTime: 38.579520         Time: 38.556761
+Accuracy: 94%         NoteTime: 38.579520         Time: 38.590401
 
 
 Hit note with ID: 'note-left-152'
-Accuracy: 76%         NoteTime: 38.840673         Time: 38.807568
+Accuracy: 68%         NoteTime: 38.840673         Time: 38.797558
 
 
 Hit note with ID: 'note-down-153'
-Accuracy: 84%         NoteTime: 39.035539         Time: 39.013622
+Accuracy: 88%         NoteTime: 39.035539         Time: 39.019315
 
 
 Hit note with ID: 'note-up-154'
-Accuracy: 28%         NoteTime: 39.283426         Time: 39.182538
+Accuracy: 70%         NoteTime: 39.283426         Time: 39.240817
 
 
 Hit note with ID: 'note-down-155'
-Accuracy: 14%         NoteTime: 39.485330         Time: 39.362750
+Accuracy: 76%         NoteTime: 39.485330         Time: 39.452040
 
 
 Hit note with ID: 'note-right-156'
-Accuracy: 60%         NoteTime: 39.709538         Time: 39.654634
+Accuracy: 92%         NoteTime: 39.709538         Time: 39.722813
 
 
 Hit note with ID: 'note-left-157'
-Accuracy: 72%         NoteTime: 39.899308         Time: 39.861617
+Accuracy: 88%         NoteTime: 39.899308         Time: 39.883942
 
 
 Hit note with ID: 'note-down-158'
-Accuracy: 94%         NoteTime: 40.108589         Time: 40.100723
+Accuracy: 88%         NoteTime: 40.108589         Time: 40.127322
 
 
 Hit note with ID: 'note-up-159'
-Accuracy: 86%         NoteTime: 40.304777         Time: 40.324848
+Accuracy: 92%         NoteTime: 40.304777         Time: 40.317655
 
 
 Hit note with ID: 'note-down-160'
-Accuracy: 96%         NoteTime: 40.537997         Time: 40.546458
+Accuracy: 92%         NoteTime: 40.537997         Time: 40.528038
 
 
 Hit note with ID: 'note-left-161'
-Accuracy: 68%         NoteTime: 40.669255         Time: 40.715435
+Accuracy: 78%         NoteTime: 40.669255         Time: 40.701743
 
 
 Hit note with ID: 'note-right-162'
-Accuracy: 64%         NoteTime: 40.766495         Time: 40.715435
+Accuracy: 76%         NoteTime: 40.766495         Time: 40.803012
 
 
 Hit note with ID: 'note-up-163'
-Accuracy: 76%         NoteTime: 40.933984         Time: 40.899761
+Accuracy: 90%         NoteTime: 40.933984         Time: 40.921830
 
 
 Hit note with ID: 'note-down-164'
-Accuracy: 57%         NoteTime: 41.068743         Time: 41.011104
+Accuracy: 82%         NoteTime: 41.068743         Time: 41.097175
 
 
 Hit note with ID: 'note-left-165'
-Accuracy: 100%         NoteTime: 41.374043         Time: 41.375730
+Accuracy: 86%         NoteTime: 41.374043         Time: 41.354149
 
 
 Hit note with ID: 'note-right-166'
-Accuracy: 78%         NoteTime: 41.600533         Time: 41.571064
+Accuracy: 92%         NoteTime: 41.600533         Time: 41.591884
 
 
 Hit note with ID: 'note-down-167'
-Accuracy: 66%         NoteTime: 41.829058         Time: 41.781420
+Accuracy: 96%         NoteTime: 41.829058         Time: 41.824851
 
 
 Hit note with ID: 'note-up-168'
-Accuracy: 100%         NoteTime: 42.013067         Time: 42.014826
+Accuracy: 78%         NoteTime: 42.013067         Time: 41.982633
 
 
 Hit note with ID: 'note-down-169'
-Accuracy: 78%         NoteTime: 42.261985         Time: 42.232574
+Accuracy: 74%         NoteTime: 42.261985         Time: 42.226993
 
 
 Hit note with ID: 'note-left-170'
-Accuracy: 92%         NoteTime: 42.459400         Time: 42.449601
+Accuracy: 98%         NoteTime: 42.459400         Time: 42.463079
 
 
 Hit note with ID: 'note-right-171'
-Accuracy: 82%         NoteTime: 42.664589         Time: 42.640668
+Accuracy: 88%         NoteTime: 42.664589         Time: 42.650229
 
 
 Hit note with ID: 'note-down-172'
-Accuracy: 80%         NoteTime: 42.894191         Time: 42.868316
+Accuracy: 90%         NoteTime: 42.894191         Time: 42.882498
 
 
 Hit note with ID: 'note-up-173'
-Accuracy: 57%         NoteTime: 43.094704         Time: 43.034960
+Accuracy: 42%         NoteTime: 43.094704         Time: 43.012596
 
 
 Hit note with ID: 'note-down-174'
-Accuracy: 56%         NoteTime: 43.310640         Time: 43.249643
+Accuracy: 68%         NoteTime: 43.310640         Time: 43.357594
 
 
 Hit note with ID: 'note-right-175'
-Accuracy: 70%         NoteTime: 43.536550         Time: 43.493905
+Accuracy: 98%         NoteTime: 43.536550         Time: 43.533852
 
 
 Hit note with ID: 'note-down-176'
-Accuracy: 98%         NoteTime: 43.769193         Time: 43.768949
+Accuracy: 68%         NoteTime: 43.769193         Time: 43.815037
 
 
 Hit note with ID: 'note-right-177'
-Accuracy: 76%         NoteTime: 43.989460         Time: 43.957812
+Accuracy: 82%         NoteTime: 43.989460         Time: 43.964262
 
 
 Hit note with ID: 'note-left-178'
-Accuracy: 90%         NoteTime: 44.193528         Time: 44.207886
+Accuracy: 96%         NoteTime: 44.193528         Time: 44.190491
 
 
 Hit note with ID: 'note-down-179'
-Accuracy: 98%         NoteTime: 44.398608         Time: 44.403120
+Accuracy: 22%         NoteTime: 44.398608         Time: 44.510753
 
 
 Hit note with ID: 'note-down-180'
-Accuracy: 86%         NoteTime: 44.863515         Time: 44.844747
+Accuracy: 36%         NoteTime: 44.863515         Time: 44.773622
 
 
 Hit note with ID: 'note-down-181'
-Accuracy: 48%         NoteTime: 45.087536         Time: 45.014601
+Accuracy: 48%         NoteTime: 45.087536         Time: 45.014697
 
 
 Hit note with ID: 'note-up-182'
-Accuracy: 82%         NoteTime: 45.296958         Time: 45.271295
+Accuracy: 74%         NoteTime: 45.296958         Time: 45.262087
 
 
 Hit note with ID: 'note-left-183'
-Accuracy: 78%         NoteTime: 45.488195         Time: 45.458101
+Accuracy: 56%         NoteTime: 45.488195         Time: 45.426427
 
 
-Need: Down    Pressed: Down
-45.946488 < 45.683234 < 46.232202
-
-
-Need: Up    Pressed: Up
-45.539527 < 45.847965 < 45.825241
-
-
-Removing object with ID: 'note-up-184' ...
+Hit note with ID: 'note-up-184'
+Accuracy: 86%         NoteTime: 45.682384         Time: 45.663110
 
 
 Hit note with ID: 'note-left-185'
-Accuracy: 60%         NoteTime: 45.880163         Time: 45.937754
+Accuracy: 92%         NoteTime: 45.880163         Time: 45.869445
 
 
 Hit note with ID: 'note-down-186'
-Accuracy: 84%         NoteTime: 46.089345         Time: 46.068833
+Accuracy: 84%         NoteTime: 46.089345         Time: 46.067528
 
 
 Hit note with ID: 'note-up-187'
-Accuracy: 82%         NoteTime: 46.245760         Time: 46.222602
+Accuracy: 94%         NoteTime: 46.245760         Time: 46.238935
 
 
 Hit note with ID: 'note-down-188'
-Accuracy: 72%         NoteTime: 46.502625         Time: 46.464446
+Accuracy: 96%         NoteTime: 46.502625         Time: 46.497517
 
 
 Hit note with ID: 'note-left-189'
-Accuracy: 92%         NoteTime: 46.753518         Time: 46.743057
+Accuracy: 80%         NoteTime: 46.753518         Time: 46.726211
 
 
 Hit note with ID: 'note-right-190'
-Accuracy: 86%         NoteTime: 46.948804         Time: 46.931653
+Accuracy: 92%         NoteTime: 46.948804         Time: 46.939802
 
 
 Hit note with ID: 'note-left-191'
-Accuracy: 92%         NoteTime: 47.172549         Time: 47.163553
+Accuracy: 98%         NoteTime: 47.172549         Time: 47.177469
 
 
 Hit note with ID: 'note-down-192'
-Accuracy: 78%         NoteTime: 47.419369         Time: 47.389781
+Accuracy: 90%         NoteTime: 47.419369         Time: 47.406877
 
 
 Hit note with ID: 'note-left-193'
-Accuracy: 72%         NoteTime: 47.605642         Time: 47.567780
+Accuracy: 84%         NoteTime: 47.605642         Time: 47.584993
 
 
 Hit note with ID: 'note-down-194'
-Accuracy: 66%         NoteTime: 47.823836         Time: 47.776660
+Accuracy: 88%         NoteTime: 47.823836         Time: 47.842520
 
 
 Hit note with ID: 'note-left-195'
-Accuracy: 84%         NoteTime: 48.012019         Time: 47.991922
+Accuracy: 80%         NoteTime: 48.012019         Time: 47.986073
 
 
 Hit note with ID: 'note-up-196'
-Accuracy: 80%         NoteTime: 48.253557         Time: 48.227707
+Accuracy: 76%         NoteTime: 48.253557         Time: 48.289708
 
 
 Hit note with ID: 'note-down-197'
-Accuracy: 80%         NoteTime: 48.478636         Time: 48.450079
+Accuracy: 100%         NoteTime: 48.478636         Time: 48.480491
 
 
 Hit note with ID: 'note-right-198'
-Accuracy: 86%         NoteTime: 48.692059         Time: 48.672551
+Accuracy: 94%         NoteTime: 48.692059         Time: 48.684246
 
 
 Hit note with ID: 'note-left-199'
-Accuracy: 66%         NoteTime: 48.914454         Time: 48.866546
+Accuracy: 94%         NoteTime: 48.914454         Time: 48.906576
 
 
 Hit note with ID: 'note-left-200'
-Accuracy: 64%         NoteTime: 49.146934         Time: 49.096563
+Accuracy: 76%         NoteTime: 49.146934         Time: 49.114839
 
 
 Hit note with ID: 'note-left-201'
-Accuracy: 48%         NoteTime: 49.363904         Time: 49.291573
+Accuracy: 62%         NoteTime: 49.363904         Time: 49.310851
 
 
 Hit note with ID: 'note-right-202'
-Accuracy: 76%         NoteTime: 49.580219         Time: 49.547817
+Accuracy: 86%         NoteTime: 49.580219         Time: 49.561864
 
 
 Hit note with ID: 'note-right-203'
-Accuracy: 96%         NoteTime: 49.746602         Time: 49.741161
+Accuracy: 98%         NoteTime: 49.746602         Time: 49.744167
 
 
 Hit note with ID: 'note-down-204'
-Accuracy: 84%         NoteTime: 49.979370         Time: 49.957210
-
-
-Need: Down    Pressed: Down
-50.522415 < 50.160660 < 50.808129
+Accuracy: 72%         NoteTime: 49.979370         Time: 49.940953
 
 
 Hit note with ID: 'note-up-205'
-Accuracy: 34%         NoteTime: 50.245466         Time: 50.339935
+Accuracy: 50%         NoteTime: 50.245466         Time: 50.176243
 
 
 Hit note with ID: 'note-up-206'
-Accuracy: 46%         NoteTime: 50.450784         Time: 50.529988
+Accuracy: 48%         NoteTime: 50.450784         Time: 50.378663
 
 
 Hit note with ID: 'note-down-207'
-Accuracy: 86%         NoteTime: 50.665272         Time: 50.685415
+Accuracy: 52%         NoteTime: 50.665272         Time: 50.598842
 
 
 Hit note with ID: 'note-left-208'
-Accuracy: 72%         NoteTime: 50.864198         Time: 50.824907
+Accuracy: 84%         NoteTime: 50.864198         Time: 50.844154
 
 
 Hit note with ID: 'note-right-209'
-Accuracy: 82%         NoteTime: 51.080105         Time: 51.055347
+Accuracy: 62%         NoteTime: 51.080105         Time: 51.028073
 
 
 Hit note with ID: 'note-up-210'
-Accuracy: 62%         NoteTime: 51.309519         Time: 51.257940
+Accuracy: 40%         NoteTime: 51.309519         Time: 51.223937
 
 
 Hit note with ID: 'note-down-211'
-Accuracy: 82%         NoteTime: 51.482466         Time: 51.458152
+Accuracy: 72%         NoteTime: 51.482466         Time: 51.443303
 
 
 Hit note with ID: 'note-left-212'
-Accuracy: 72%         NoteTime: 51.706121         Time: 51.667000
+Accuracy: 68%         NoteTime: 51.706121         Time: 51.662569
 
 
 Hit note with ID: 'note-right-213'
-Accuracy: 80%         NoteTime: 51.895640         Time: 51.868506
+Accuracy: 90%         NoteTime: 51.895640         Time: 51.910632
 
 
 Hit note with ID: 'note-up-214'
-Accuracy: 54%         NoteTime: 52.106061         Time: 52.041043
+Accuracy: 96%         NoteTime: 52.106061         Time: 52.113885
 
 
 Hit note with ID: 'note-down-215'
-Accuracy: 80%         NoteTime: 52.308160         Time: 52.281890
+Accuracy: 88%         NoteTime: 52.308160         Time: 52.292691
 
 
 Hit note with ID: 'note-up-216'
-Accuracy: 64%         NoteTime: 52.568672         Time: 52.517297
+Accuracy: 64%         NoteTime: 52.568672         Time: 52.519351
 
 
 Hit note with ID: 'note-up-217'
-Accuracy: 94%         NoteTime: 52.717629         Time: 52.727707
+Accuracy: 98%         NoteTime: 52.717629         Time: 52.716656
 
 
 Hit note with ID: 'note-left-218'
-Accuracy: 52%         NoteTime: 52.953500         Time: 52.885688
+Accuracy: 74%         NoteTime: 52.953500         Time: 52.918176
 
 
 Hit note with ID: 'note-down-219'
-Accuracy: 70%         NoteTime: 53.181452         Time: 53.138941
+Accuracy: 100%         NoteTime: 53.181452         Time: 53.181921
 
 
 Hit note with ID: 'note-left-220'
-Accuracy: 78%         NoteTime: 53.381636         Time: 53.351809
+Accuracy: 78%         NoteTime: 53.381636         Time: 53.350413
 
 
 Hit note with ID: 'note-right-221'
-Accuracy: 78%         NoteTime: 53.609353         Time: 53.580663
+Accuracy: 82%         NoteTime: 53.609353         Time: 53.585427
 
 
 Hit note with ID: 'note-up-222'
-Accuracy: 64%         NoteTime: 53.805614         Time: 53.754600
+Accuracy: 94%         NoteTime: 53.805614         Time: 53.798725
 
 
 Hit note with ID: 'note-down-223'
-Accuracy: 48%         NoteTime: 54.048407         Time: 53.975464
+Accuracy: 88%         NoteTime: 54.048407         Time: 54.032593
 
 
 Hit note with ID: 'note-left-224'
-Accuracy: 42%         NoteTime: 54.233091         Time: 54.152338
+Accuracy: 68%         NoteTime: 54.233091         Time: 54.189148
 
 
 Hit note with ID: 'note-right-225'
-Accuracy: 82%         NoteTime: 54.388789         Time: 54.416330
+Accuracy: 84%         NoteTime: 54.388789         Time: 54.413472
 
 
 Hit note with ID: 'note-up-226'
-Accuracy: 100%         NoteTime: 54.549171         Time: 54.550417
+Accuracy: 66%         NoteTime: 54.549171         Time: 54.501658
 
 
 Hit note with ID: 'note-down-227'
-Accuracy: 74%         NoteTime: 54.729735         Time: 54.692978
+Accuracy: 50%         NoteTime: 54.729735         Time: 54.658600
 
 
 Hit note with ID: 'note-down-228'
-Accuracy: 78%         NoteTime: 54.987555         Time: 54.957688
+Accuracy: 98%         NoteTime: 54.987555         Time: 54.984867
 
 
 Hit note with ID: 'note-down-229'
-Accuracy: 66%         NoteTime: 55.219561         Time: 55.173121
+Accuracy: 98%         NoteTime: 55.219561         Time: 55.224577
 
 
 Hit note with ID: 'note-right-230'
-Accuracy: 52%         NoteTime: 55.439746         Time: 55.373802
+Accuracy: 70%         NoteTime: 55.439746         Time: 55.398290
 
 
 Hit note with ID: 'note-left-231'
-Accuracy: 84%         NoteTime: 55.606003         Time: 55.584435
+Accuracy: 92%         NoteTime: 55.606003         Time: 55.597058
 
 
 Hit note with ID: 'note-down-232'
-Accuracy: 70%         NoteTime: 55.814551         Time: 55.774169
+Accuracy: 96%         NoteTime: 55.814551         Time: 55.810176
 
 
 Hit note with ID: 'note-up-233'
-Accuracy: 60%         NoteTime: 56.000627         Time: 55.946244
+Accuracy: 94%         NoteTime: 56.000627         Time: 55.994377
 
 
 Hit note with ID: 'note-down-234'
-Accuracy: 46%         NoteTime: 56.226694         Time: 56.150518
+Accuracy: 78%         NoteTime: 56.226694         Time: 56.196594
 
 
 Hit note with ID: 'note-left-235'
-Accuracy: 88%         NoteTime: 56.422547         Time: 56.408128
+Accuracy: 88%         NoteTime: 56.422547         Time: 56.441646
 
 
 Hit note with ID: 'note-right-236'
-Accuracy: 94%         NoteTime: 56.563980         Time: 56.574333
+Accuracy: 74%         NoteTime: 56.563980         Time: 56.602999
 
 
 Hit note with ID: 'note-down-237'
-Accuracy: 90%         NoteTime: 56.806083         Time: 56.793967
+Accuracy: 76%         NoteTime: 56.806083         Time: 56.842281
 
 
 Hit note with ID: 'note-down-238'
-Accuracy: 94%         NoteTime: 57.013800         Time: 57.024910
+Accuracy: 72%         NoteTime: 57.013800         Time: 57.054914
 
 
 Hit note with ID: 'note-right-239'
-Accuracy: 92%         NoteTime: 57.242716         Time: 57.232433
+Accuracy: 88%         NoteTime: 57.242716         Time: 57.261545
 
 
 Hit note with ID: 'note-down-240'
-Accuracy: 100%         NoteTime: 57.488384         Time: 57.490753
+Accuracy: 54%         NoteTime: 57.488384         Time: 57.554495
 
 
 Hit note with ID: 'note-left-241'
-Accuracy: 68%         NoteTime: 57.710718         Time: 57.665407
+Accuracy: 98%         NoteTime: 57.710718         Time: 57.713777
 
 
 Hit note with ID: 'note-up-242'
-Accuracy: 86%         NoteTime: 57.906647         Time: 57.888658
+Accuracy: 96%         NoteTime: 57.906647         Time: 57.915055
 
 
 Hit note with ID: 'note-left-243'
-Accuracy: 74%         NoteTime: 58.115886         Time: 58.079556
+Accuracy: 92%         NoteTime: 58.115886         Time: 58.106811
 
 
 Hit note with ID: 'note-down-244'
-Accuracy: 94%         NoteTime: 58.315112         Time: 58.323835
+Accuracy: 98%         NoteTime: 58.315112         Time: 58.320614
 
 
 Hit note with ID: 'note-up-245'
-Accuracy: 64%         NoteTime: 58.533525         Time: 58.484582
+Accuracy: 90%         NoteTime: 58.533525         Time: 58.520715
 
 
 Hit note with ID: 'note-right-246'
-Accuracy: 68%         NoteTime: 58.728428         Time: 58.683710
+Accuracy: 90%         NoteTime: 58.728428         Time: 58.744445
 
 
 Hit note with ID: 'note-left-247'
-Accuracy: 94%         NoteTime: 58.933890         Time: 58.927821
+Accuracy: 90%         NoteTime: 58.933890         Time: 58.919959
 
 
 Hit note with ID: 'note-down-248'
-Accuracy: 82%         NoteTime: 59.152874         Time: 59.127849
+Accuracy: 88%         NoteTime: 59.152874         Time: 59.172766
 
 
 Hit note with ID: 'note-left-249'
-Accuracy: 78%         NoteTime: 59.365221         Time: 59.336394
+Accuracy: 92%         NoteTime: 59.365221         Time: 59.353882
 
 
 Hit note with ID: 'note-right-250'
-Accuracy: 98%         NoteTime: 59.573324         Time: 59.578969
+Accuracy: 80%         NoteTime: 59.573324         Time: 59.602448
 
 
 Hit note with ID: 'note-left-251'
-Accuracy: 82%         NoteTime: 59.773481         Time: 59.748050
+Accuracy: 84%         NoteTime: 59.773481         Time: 59.797584
 
 
 Hit note with ID: 'note-right-252'
-Accuracy: 90%         NoteTime: 60.007170         Time: 59.995605
+Accuracy: 86%         NoteTime: 60.007170         Time: 60.027752
 
 
 Hit note with ID: 'note-left-253'
-Accuracy: 82%         NoteTime: 60.218532         Time: 60.194536
+Accuracy: 100%         NoteTime: 60.218532         Time: 60.220512
 
 
 Hit note with ID: 'note-down-254'
-Accuracy: 76%         NoteTime: 60.413197         Time: 60.448258
+Accuracy: 70%         NoteTime: 60.413197         Time: 60.458755
 
 
 Hit note with ID: 'note-up-255'
-Accuracy: 48%         NoteTime: 60.651661         Time: 60.577719
+Accuracy: 84%         NoteTime: 60.651661         Time: 60.675044
 
 
 Hit note with ID: 'note-down-256'
-Accuracy: 86%         NoteTime: 60.875494         Time: 60.897596
+Accuracy: 92%         NoteTime: 60.875494         Time: 60.887748
 
 
 Hit note with ID: 'note-up-257'
-Accuracy: 96%         NoteTime: 61.112798         Time: 61.119965
+Accuracy: 100%         NoteTime: 61.112798         Time: 61.114954
 
 
 Hit note with ID: 'note-left-258'
-Accuracy: 82%         NoteTime: 61.369177         Time: 61.343512
+Accuracy: 68%         NoteTime: 61.369177         Time: 61.323592
 
 
 Hit note with ID: 'note-down-259'
-Accuracy: 50%         NoteTime: 61.369177         Time: 61.441062
+Accuracy: 90%         NoteTime: 61.369177         Time: 61.383585
 
 
 Hit note with ID: 'note-right-260'
-Accuracy: 62%         NoteTime: 61.598354         Time: 61.653431
+Accuracy: 92%         NoteTime: 61.598354         Time: 61.587575
 
 
 Hit note with ID: 'note-up-261'
-Accuracy: 62%         NoteTime: 61.999998         Time: 61.948223
+Accuracy: 84%         NoteTime: 61.999998         Time: 61.977846
 
 
 Hit note with ID: 'note-down-262'
-Accuracy: 66%         NoteTime: 62.239109         Time: 62.191270
+Accuracy: 66%         NoteTime: 62.239109         Time: 62.191080
 
 
 Hit note with ID: 'note-left-263'
-Accuracy: 48%         NoteTime: 62.423082         Time: 62.351477
+Accuracy: 56%         NoteTime: 62.423082         Time: 62.360914
 
 
-Hit note with ID: 'note-up-264'
-Accuracy: 96%         NoteTime: 62.595706         Time: 62.602007
+Need: Down    Pressed: Down
+62.688010 < 62.601326 < 62.973724
 
 
-Hit note with ID: 'note-down-265'
-Accuracy: 92%         NoteTime: 62.830867         Time: 62.844454
+Need: Up    Pressed: Up
+62.452849 < 62.776260 < 62.738563
 
 
-Hit note with ID: 'note-down-266'
-Accuracy: 98%         NoteTime: 63.032070         Time: 63.036001
+Removing object with ID: 'note-up-264' ...
+
+
+Need: Down    Pressed: Down
+62.688010 < 63.017521 < 62.973724
+
+
+Removing object with ID: 'note-down-265' ...
+
+
+Need: Down    Pressed: Down
+62.889213 < 63.204762 < 63.174927
+
+
+Removing object with ID: 'note-down-266' ...
 
 
 Hit note with ID: 'note-right-267'
-Accuracy: 94%         NoteTime: 63.252608         Time: 63.245074
+Accuracy: 10%         NoteTime: 63.252608         Time: 63.383354
 
 
 Hit note with ID: 'note-up-268'
-Accuracy: 86%         NoteTime: 63.486488         Time: 63.467661
+Accuracy: 74%         NoteTime: 63.486488         Time: 63.524678
 
 
 Hit note with ID: 'note-up-269'
-Accuracy: 70%         NoteTime: 63.696459         Time: 63.654515
+Accuracy: 88%         NoteTime: 63.696459         Time: 63.715132
 
 
 Hit note with ID: 'note-up-270'
-Accuracy: 68%         NoteTime: 63.920035         Time: 63.876504
+Accuracy: 100%         NoteTime: 63.920035         Time: 63.921030
 
 
 Hit note with ID: 'note-down-271'
-Accuracy: 57%         NoteTime: 64.150625         Time: 64.090645
+Accuracy: 82%         NoteTime: 64.150625         Time: 64.177898
 
 
 Hit note with ID: 'note-down-272'
-Accuracy: 60%         NoteTime: 64.355268         Time: 64.300555
+Accuracy: 80%         NoteTime: 64.355268         Time: 64.385998
 
 
 Hit note with ID: 'note-left-273'
-Accuracy: 64%         NoteTime: 64.558242         Time: 64.507314
+Accuracy: 94%         NoteTime: 64.558242         Time: 64.549896
 
 
 Hit note with ID: 'note-left-274'
-Accuracy: 57%         NoteTime: 64.775743         Time: 64.716135
+Accuracy: 82%         NoteTime: 64.775743         Time: 64.750553
 
 
 Hit note with ID: 'note-right-275'
-Accuracy: 57%         NoteTime: 65.009566         Time: 64.951934
+Accuracy: 90%         NoteTime: 65.009566         Time: 64.996936
 
 
 Hit note with ID: 'note-right-276'
-Accuracy: 92%         NoteTime: 65.180616         Time: 65.169805
+Accuracy: 98%         NoteTime: 65.180616         Time: 65.183894
 
 
 Hit note with ID: 'note-left-277'
-Accuracy: 60%         NoteTime: 65.413740         Time: 65.357522
+Accuracy: 70%         NoteTime: 65.413740         Time: 65.371943
 
 
 Need: Left    Pressed: Left
-65.619857 < 65.591756 < 65.905571
-
-
-Hit note with ID: 'note-left-278'
-Accuracy: 2%         NoteTime: 65.762714         Time: 65.904618
+65.619857 < 65.603281 < 65.905571
 
 
 Hit note with ID: 'note-down-279'
-Accuracy: 42%         NoteTime: 65.988440         Time: 66.071813
+Accuracy: 80%         NoteTime: 65.988440         Time: 65.960699
+
+
+Removing object with ID: 'note-left-278' ...
 
 
 Hit note with ID: 'note-down-280'
-Accuracy: 64%         NoteTime: 66.238062         Time: 66.291488
+Accuracy: 32%         NoteTime: 66.238062         Time: 66.141146
 
 
 Hit note with ID: 'note-up-281'
-Accuracy: 82%         NoteTime: 66.471805         Time: 66.499624
+Accuracy: 46%         NoteTime: 66.471805         Time: 66.395585
 
 
 Hit note with ID: 'note-up-282'
-Accuracy: 88%         NoteTime: 66.647579         Time: 66.665828
+Accuracy: 84%         NoteTime: 66.647579         Time: 66.626524
 
 
 Hit note with ID: 'note-up-283'
-Accuracy: 88%         NoteTime: 66.849587         Time: 66.867501
+Accuracy: 92%         NoteTime: 66.849587         Time: 66.863728
 
 
 Hit note with ID: 'note-down-284'
-Accuracy: 82%         NoteTime: 67.070828         Time: 67.096558
+Accuracy: 88%         NoteTime: 67.070828         Time: 67.088615
 
 
 Hit note with ID: 'note-right-285'
-Accuracy: 84%         NoteTime: 67.302045         Time: 67.326497
+Accuracy: 88%         NoteTime: 67.302045         Time: 67.286716
 
 
 Hit note with ID: 'note-left-286'
-Accuracy: 78%         NoteTime: 67.528502         Time: 67.499423
+Accuracy: 78%         NoteTime: 67.528502         Time: 67.497636
 
 
 Hit note with ID: 'note-down-287'
-Accuracy: 98%         NoteTime: 67.746613         Time: 67.744469
+Accuracy: 90%         NoteTime: 67.746613         Time: 67.763174
 
 
 Hit note with ID: 'note-up-288'
-Accuracy: 90%         NoteTime: 67.986816         Time: 67.974677
+Accuracy: 72%         NoteTime: 67.986816         Time: 67.948485
 
 
 Hit note with ID: 'note-right-289'
-Accuracy: 100%         NoteTime: 68.178647         Time: 68.180920
+Accuracy: 92%         NoteTime: 68.178647         Time: 68.190267
 
 
 Hit note with ID: 'note-right-290'
-Accuracy: 82%         NoteTime: 68.388018         Time: 68.362354
+Accuracy: 84%         NoteTime: 68.388018         Time: 68.412605
 
 
 Hit note with ID: 'note-right-291'
-Accuracy: 90%         NoteTime: 68.589387         Time: 68.576108
+Accuracy: 94%         NoteTime: 68.589387         Time: 68.600127
 
 
 Hit note with ID: 'note-left-292'
-Accuracy: 72%         NoteTime: 68.832476         Time: 68.792937
+Accuracy: 82%         NoteTime: 68.832476         Time: 68.807714
 
 
 Hit note with ID: 'note-down-293'
-Accuracy: 78%         NoteTime: 69.049561         Time: 69.020435
+Accuracy: 92%         NoteTime: 69.049561         Time: 69.038513
 
 
 Hit note with ID: 'note-left-294'
-Accuracy: 86%         NoteTime: 69.247595         Time: 69.227790
+Accuracy: 92%         NoteTime: 69.247595         Time: 69.236259
 
 
 Hit note with ID: 'note-down-295'
-Accuracy: 90%         NoteTime: 69.485561         Time: 69.474108
+Accuracy: 88%         NoteTime: 69.485561         Time: 69.469791
 
 
 Hit note with ID: 'note-left-296'
-Accuracy: 92%         NoteTime: 69.690368         Time: 69.679703
+Accuracy: 84%         NoteTime: 69.690368         Time: 69.669771
 
 
 Hit note with ID: 'note-left-297'
-Accuracy: 76%         NoteTime: 69.922668         Time: 69.889850
+Accuracy: 66%         NoteTime: 69.922668         Time: 69.876292
 
 
 Hit note with ID: 'note-left-298'
-Accuracy: 80%         NoteTime: 70.121488         Time: 70.095312
+Accuracy: 82%         NoteTime: 70.121488         Time: 70.097290
 
 
 Hit note with ID: 'note-left-299'
-Accuracy: 80%         NoteTime: 70.333626         Time: 70.306710
+Accuracy: 88%         NoteTime: 70.333626         Time: 70.317581
 
 
 Hit note with ID: 'note-right-300'
-Accuracy: 54%         NoteTime: 70.641907         Time: 70.578720
+Accuracy: 82%         NoteTime: 70.641907         Time: 70.668883
 
 
 Hit note with ID: 'note-right-301'
-Accuracy: 80%         NoteTime: 70.803250         Time: 70.776736
+Accuracy: 64%         NoteTime: 70.803250         Time: 70.856030
 
 
 Hit note with ID: 'note-right-302'
-Accuracy: 52%         NoteTime: 71.033244         Time: 70.966034
+Accuracy: 98%         NoteTime: 71.033244         Time: 71.038331
 
 
 Hit note with ID: 'note-right-303'
-Accuracy: 40%         NoteTime: 71.245566         Time: 71.160767
-
-
-Hit note with ID: 'note-up-304'
-Accuracy: 86%         NoteTime: 71.419850         Time: 71.399906
+Accuracy: 86%         NoteTime: 71.245566         Time: 71.266598
 
 
 Hit note with ID: 'note-down-305'
-Accuracy: 80%         NoteTime: 71.620387         Time: 71.594225
+Accuracy: 40%         NoteTime: 71.620387         Time: 71.535618
+
+
+Removing object with ID: 'note-up-304' ...
 
 
 Hit note with ID: 'note-up-306'
-Accuracy: 82%         NoteTime: 71.836158         Time: 71.810458
+Accuracy: 44%         NoteTime: 71.836158         Time: 71.757715
 
 
 Hit note with ID: 'note-down-307'
-Accuracy: 84%         NoteTime: 72.016647         Time: 71.994686
+Accuracy: 26%         NoteTime: 72.016647         Time: 71.911740
 
 
 Hit note with ID: 'note-left-308'
-Accuracy: 72%         NoteTime: 72.264527         Time: 72.226632
+Accuracy: 72%         NoteTime: 72.264527         Time: 72.227155
 
 
 Hit note with ID: 'note-right-309'
-Accuracy: 66%         NoteTime: 72.482560         Time: 72.436652
+Accuracy: 96%         NoteTime: 72.482560         Time: 72.488622
 
 
 Hit note with ID: 'note-left-310'
-Accuracy: 82%         NoteTime: 72.693075         Time: 72.668841
+Accuracy: 90%         NoteTime: 72.693075         Time: 72.708678
 
 
 Hit note with ID: 'note-right-311'
-Accuracy: 98%         NoteTime: 72.884078         Time: 72.888285
+Accuracy: 72%         NoteTime: 72.884078         Time: 72.925566
 
 
 Hit note with ID: 'note-up-312'
-Accuracy: 96%         NoteTime: 73.085665         Time: 73.081564
+Accuracy: 76%         NoteTime: 73.085665         Time: 73.119979
 
 
 Hit note with ID: 'note-down-313'
-Accuracy: 57%         NoteTime: 73.320673         Time: 73.262491
+Accuracy: 94%         NoteTime: 73.320673         Time: 73.314305
 
 
 Hit note with ID: 'note-left-314'
-Accuracy: 80%         NoteTime: 73.496843         Time: 73.470482
+Accuracy: 98%         NoteTime: 73.496843         Time: 73.494409
 
 
 Hit note with ID: 'note-right-315'
-Accuracy: 90%         NoteTime: 73.743547         Time: 73.729565
+Accuracy: 88%         NoteTime: 73.743547         Time: 73.726672
 
 
 Hit note with ID: 'note-up-316'
-Accuracy: 86%         NoteTime: 73.970599         Time: 73.951672
+Accuracy: 82%         NoteTime: 73.970599         Time: 73.947534
 
 
 Hit note with ID: 'note-down-317'
-Accuracy: 86%         NoteTime: 74.155958         Time: 74.136926
+Accuracy: 94%         NoteTime: 74.155958         Time: 74.149546
 
 
 Hit note with ID: 'note-up-318'
-Accuracy: 70%         NoteTime: 74.378532         Time: 74.335857
+Accuracy: 92%         NoteTime: 74.378532         Time: 74.367983
 
 
 Hit note with ID: 'note-down-319'
-Accuracy: 96%         NoteTime: 74.561395         Time: 74.558207
+Accuracy: 90%         NoteTime: 74.561395         Time: 74.548301
 
 
 Hit note with ID: 'note-right-320'
-Accuracy: 56%         NoteTime: 74.862585         Time: 74.801100
+Accuracy: 64%         NoteTime: 74.862585         Time: 74.812814
 
 
 Hit note with ID: 'note-right-321'
-Accuracy: 68%         NoteTime: 75.052123         Time: 75.008151
+Accuracy: 94%         NoteTime: 75.052123         Time: 75.045577
 
 
 Hit note with ID: 'note-right-322'
-Accuracy: 84%         NoteTime: 75.247721         Time: 75.225624
+Accuracy: 90%         NoteTime: 75.247721         Time: 75.233576
 
 
 Hit note with ID: 'note-right-323'
-Accuracy: 90%         NoteTime: 75.446822         Time: 75.433526
+Accuracy: 88%         NoteTime: 75.446822         Time: 75.431952
 

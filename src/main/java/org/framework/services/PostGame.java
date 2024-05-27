@@ -27,6 +27,11 @@ public class PostGame implements Runnable {
                     System.out.println("Name has more than 5 letters! Try again.");
                     continue;
                 }
+                else if (playerName.isEmpty()) {
+                    System.out.println("Score discarded.");
+                    readName = true;
+                    break;
+                }
 
                 int levelNumber = (levelPlayed == null) ? 1 : Integer.parseInt(levelPlayed.get("number"));
 				CRUDService.insertPlayer(playerName);
@@ -35,10 +40,16 @@ public class PostGame implements Runnable {
                     double scoreValue = Double.parseDouble(score.get("value"));
                     if (scoreValue < ChartEditor.getScore()) {
                         CRUDService.updatePlayerScoreOnLevel(playerName, levelNumber, ChartEditor.getScore());
+                        System.out.println("Score recorded.");
+                    }
+                    else {
+                        System.out.println("Score is lower than best.");
+                        System.out.println("Score discarded.");
                     }
                 } catch (Exception e) {
                     try {
                         CRUDService.insertScore(ChartEditor.getScore(), playerName, levelNumber);
+                        System.out.println("Score recorded.");
                     } catch (Exception ee) {
                         ee.printStackTrace();
                     }
