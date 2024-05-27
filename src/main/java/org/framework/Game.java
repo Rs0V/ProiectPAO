@@ -4,11 +4,11 @@ import org.framework.actor.Actor;
 import org.framework.actor.Camera;
 import org.framework.animation.components.CAnimation;
 import org.framework.animation.enums.EasingType;
-import org.framework.component.IComponent;
 import org.framework.level.Level;
 import org.framework.services.*;
 import org.framework.services.UIManager;
 import org.framework.services.database.CRUDService;
+import org.framework.services.PostGame;
 import org.framework.services.enums.RenderHints;
 import org.framework.services.enums.UIPositions;
 import org.framework.sound.components.CSound;
@@ -16,10 +16,14 @@ import org.framework.sprite.Sprite;
 import org.framework.ui.UIElement;
 import org.framework.vec2.Vec2;
 import org.game.player.components.CCameraInput;
+import org.game.player.objects.Note;
 
 
 import javax.swing.*;
+import javax.swing.Timer;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
@@ -27,12 +31,8 @@ import java.awt.image.BufferStrategy;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -40,12 +40,13 @@ import java.util.stream.Collectors;
 
 public class Game extends JFrame implements Runnable {
     private boolean running = false;
-
+	private Map<String, String> levelToPlay = null;
+	private Level levelPlayed = null;
 
     public Game() {
         setSize((int)GameProperties.getScreenRes().x, (int)GameProperties.getScreenRes().y);
         setTitle("Game Window");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null); // Center the window
         setResizable(false);
         setVisible(true);
@@ -56,8 +57,6 @@ public class Game extends JFrame implements Runnable {
             }
         });
 
-
-		CRUDService.createTables();
 
 		TimeManager.init();
 
@@ -128,22 +127,41 @@ public class Game extends JFrame implements Runnable {
 
 		ChartEditor.setNotesDespawnY(camera.getScreenSize().y + 100);
 
-		//region Create level-1 ...
-	    String levelMap = null;
-	    try {
-		    levelMap = String.join("\n", Files.readAllLines(Paths.get("src/main/java/org/framework/level/levels/level-1.txt"), StandardCharsets.UTF_8));
-	    } catch (Exception e) {
-			e.printStackTrace();
-	    }
-	    Level level1 = new Level(
-				"level-1",
-			    700,
-			    "src/main/resources/music/Level-1.wav",
-			    levelMap);
-	    //endregion
-		level1.load();
-		CRUDService.insertLevel(1, level1.getSong().getSound().getPath(), level1.getNotesSpeed());
-		CRUDService.insertNotes(1, level1.getMap());
+		//region Create level ...
+		try {
+			String levelMap = CRUDService.getNotesByLevel(Integer.parseInt(levelToPlay.get("number")))
+					.stream().map(x -> String.format("%s -> %s%n", x.get("timing"), x.get("direction")))
+					.collect(Collectors.joining());
+			Level level = new Level(
+					"level-" + levelToPlay.get("number"),
+					Double.parseDouble(levelToPlay.get("note_speed")),
+					levelToPlay.get("song"),
+					levelMap
+			);
+			level.load();
+			levelPlayed = level;
+		} catch (Exception e) {
+			String levelMap = null;
+			try {
+				levelMap = String.join("\n", Files.readAllLines(Paths.get("src/main/java/org/framework/level/levels/level-1.txt"), StandardCharsets.UTF_8));
+			} catch (Exception ee) {
+				ee.printStackTrace();
+			}
+			Level level = new Level(
+					"level-1",
+					700,
+					"src/main/resources/music/Level-1.wav",
+					levelMap);
+			level.load();
+			CRUDService.insertLevel(1, level.getSong().getSound().getPath(), level.getNotesSpeed());
+			try {
+				CRUDService.insertNotes(1, level.getMap());
+			} catch (Exception ee) {
+				ee.printStackTrace();
+			}
+			levelPlayed = level;
+		}
+		//endregion
 
 		camera.addComponent("beat-zoom", new CAnimation(
 				camera,
@@ -204,33 +222,25 @@ public class Game extends JFrame implements Runnable {
 	public void _start() {
 		TimeManager.start();
 		Recorder.watch("presses", "src/main/java/org/framework/services/records/presses.txt", true);
+
+		// Bring game window to the front
+		try {
+			Robot robot = new Robot();
+			this.setExtendedState(JFrame.ICONIFIED);
+			robot.delay(100);
+			this.setExtendedState(JFrame.NORMAL);
+		} catch (AWTException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void _stop() {
-		System.out.printf("%n%nScore: %dpts%n%n", ChartEditor.getScore());
+		levelPlayed.getSong().stop();
 
-		try {
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-			System.out.print("Enter a string: ");
-			String input = reader.readLine();
-			System.out.println("You entered: " + input);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-//		Scanner scanner = new Scanner(System.in);
-//		System.out.println("Enter your name (5 letters): ");
-//
-//		boolean readName = false;
-//		while(readName == false) {
-//			if (scanner.hasNextLine()) {
-//				String playerName = scanner.nextLine().trim();
-//				CRUDService.insertPlayer(playerName);
-//				CRUDService.insertScore(ChartEditor.getScore(), playerName, 1);
-//
-//				readName = true;
-//			}
-//		}
-//		scanner.close();
+		PostGame postGame = new PostGame();
+		postGame.setLevelPlayed(levelToPlay);
+
+		new Thread(new PostGame()).start();
 	}
 
     public void update() {
@@ -286,9 +296,28 @@ public class Game extends JFrame implements Runnable {
 
 
     public static void main(String[] args) {
+		PreGame preGame = new PreGame();
+		new Thread(preGame).start();
+
+		while (preGame.isRunning()) {
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		if (preGame.getRet() != null) {
+			if (preGame.getRet().getClass().equals(String.class)) {
+				return;
+			}
+		}
+
         Game game = new Game();
-        // Initialize JFrame settings...
         game.setVisible(true);
+		if (preGame.getRet() != null) {
+			game.levelToPlay = (Map<String, String>) preGame.getRet();
+		}
 
 
 	    InputMapper.createAction(game, "left-move", "A");

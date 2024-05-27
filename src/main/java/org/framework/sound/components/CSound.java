@@ -66,6 +66,12 @@ public class CSound implements IComponent {
 		}
 	}
 
+	public void stop() {
+		if (clip.isActive() == true) {
+			clip.stop();
+		}
+	}
+
 	@Override
 	public void update() {
 

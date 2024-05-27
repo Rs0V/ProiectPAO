@@ -154,7 +154,6 @@ public abstract class ChartEditor {
 					.sorted(Comparator.comparingInt(a -> Integer.parseInt(a.getId().substring(a.getId().lastIndexOf('-') + 1))))
 					.collect(Collectors.toCollection(ArrayList::new)).getFirst();
 		} catch (Exception e) {
-//			e.printStackTrace();
 			return;
 		}
 

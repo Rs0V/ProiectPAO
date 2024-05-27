@@ -45,9 +45,9 @@ public class CCameraInput implements IComponent {
 		);
 		moveInput = moveInput.normalized();
 
-		if (leftMove || rightMove || upMove || downMove) {
+//		if (leftMove || rightMove || upMove || downMove) {
 //			self.getTransform().moveLocal(moveInput.mul(TimeManager.getDeltaTime()).mul(200));
-		}
+//		}
 
 		if (leftMove) {
 			if (this.leftHeld == false) {

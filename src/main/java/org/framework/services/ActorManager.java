@@ -22,7 +22,6 @@ public abstract class ActorManager {
 			actorsMap.put(id, newActor);
 			return newActor;
 		} catch (Exception e) {
-//			e.printStackTrace();
 			throw new RuntimeException("Class '" + actorClassType.getName() + "' doesn't inherit from Actor"); // workaround for rust-like panic!()
 		}
 	}
